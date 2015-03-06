@@ -1,12 +1,12 @@
 <div class="login">
 	<h1>Welcome Back!</h1>
-	<form ng-submit>
+	<form ng-submit="loginUser(user)">
 		<div class="row collapse">
 	    <div class="small-3 large-2 columns">
 	      <span class="prefix">Email</span>
 	    </div>
 	    <div class="small-9 large-10 columns">
-	      <input type="text" placeholder="dwellingkitRocks@gmail.com">
+	      <input ng-model="user.email" type="text" placeholder="dwellingkitRocks@gmail.com">
 	    </div>
   	</div>
   	<div class="row collapse">
@@ -14,7 +14,7 @@
 	      <span class="prefix">Password</span>
 	    </div>
 	    <div class="small-9 large-10 columns">
-	      <input type="text" placeholder="johndwells065">
+	      <input ng-model="user.password" type="text" placeholder="johndwells065">
 	    </div>
   	</div>
 		<button>Login</button>

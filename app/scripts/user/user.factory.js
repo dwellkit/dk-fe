@@ -12,7 +12,7 @@
 			// Get Status of User
 
 			// Register
-			var registerUser = function (userInfo){
+			var registerUser = function (userInfo) {
 				$http.post(heroku.url + 'auth', userInfo, heroku.config)
 					.success( function (response){
 						console.log(response);
@@ -21,12 +21,21 @@
 			};
 
 			// Login
+			var loginUser = function (userInfo) {
+					$http.post(heroku.url + 'auth/sign_in', userInfo, heroku.config)
+						.success( function (response){
+							console.log(response);
+							$rootScope.$broadcast('user:loggedin');
+					}
+				);
+			};
 
 			// Logout
 
 
 			return {
-				register: registerUser
+				register: registerUser,
+				login: loginUser
 			};
 
 		}

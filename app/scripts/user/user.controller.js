@@ -4,8 +4,8 @@
 
 	angular.module('DwellingKit')
 
-	.controller('UserController', ['$scope', 'UserFactory', '$rootScope',
-		function ($scope, UserFactory, $rootScope){
+	.controller('UserController', ['$scope', 'UserFactory', '$rootScope', '$location',
+		function ($scope, UserFactory, $rootScope, $location){
 
 			// Get User
 
@@ -24,6 +24,9 @@
 			};
 
 			// Routing
+			$rootScope.$on('user:loggedin', function (){
+				$location.path('/');
+			});
 
 
 		}
