@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="DwellingKit">
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -10,6 +10,7 @@
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="../bower_components/normalize-css/normalize.css" />
+    <link rel="stylesheet" href="../bower_components/foundation/css/foundation.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -23,20 +24,56 @@
   </head>
   <body>
 
+  <!-- Header Section & Nav -->
+    <header>
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="#/"><img src="../images/icon_transparent.png" alt=""> DwellingKit</a></h1>
+        </li>
+      </ul>
 
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li class="active"><a href="#">Right Button Active</a></li>
+          <li class="has-dropdown">
+            <a href="#">Right Button Dropdown</a>
+            <ul class="dropdown">
+              <li><a href="#">First link in dropdown</a></li>
+              <li class="active"><a href="#">Active link in dropdown</a></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </nav>
+    </header>
+    
+    <div class="container" ng-view></div>
+    <footer>
+        
+    </footer>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/underscore/underscore.js"></script>
-    <script src="../bower_components/angular/angular.min.js"></script>
-    <script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
-    <script src="../bower_components/angular-route/angular-route.min.js"></script>
+    <script src="../bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="../bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script src="../bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+    <script src="../bower_components/foundation/js/foundation.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
+
+        <script src="scripts/user/user.controller.js"></script>
+        <script src="scripts/user/user.factory.js"></script>   
+             
         <!-- endbuild -->
 </body>
 </html>
