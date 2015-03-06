@@ -31,11 +31,16 @@
 			};
 
 			// Logout
+			var logoutUser = function (userInfo) {
+
+				$rootScope.$broadcast('user:loggedout');
+			};
 
 
 			return {
 				register: registerUser,
-				login: loginUser
+				login: loginUser,
+				logout: logoutUser
 			};
 
 		}

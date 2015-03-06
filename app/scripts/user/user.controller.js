@@ -28,6 +28,9 @@
 				$location.path('/');
 			});
 
+			$rootScope.$on('user:loggedout', function (){
+				$location.path('/');
+			});
 
 		}
 

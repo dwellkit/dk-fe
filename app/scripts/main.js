@@ -29,10 +29,23 @@
 			controller: 'UserController'
 		})
 
+		.when('/profile', {
+			templateUrl: 'scripts/profile/profile.tpl.html',
+			controller: 'ProfileController'
+		})
+
 		.otherwise({
 			reirectTo: '/'
 		});
 
-	});
+	})
+
+	.run([ '$rootScope', 'UserFactory', 'heroku',
+		function ($rootScope, UserFactory, heroku){
+			$rootScope.$on('$routeChangeStart', function (){
+
+			});
+		}
+	]);
 
 }());
