@@ -4,6 +4,15 @@
 
 	angular.module('DwellingKit', ['ngRoute', 'ngCookies'])
 
+	.constant('heroku', {
+		url: 'https://dwellingkit-api.herokuapp.com/',
+		config: {
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}
+	})
+
 	.config( function ($routeProvider){
 
 		$routeProvider.when('/', {
