@@ -34,6 +34,11 @@
 			controller: 'ProfileController'
 		})
 
+		.when('/your-address', {
+			templateUrl: 'scripts/user/address.tpl.html',
+			controller: 'UserController'
+		})
+
 		.otherwise({
 			reirectTo: '/'
 		});
@@ -47,5 +52,9 @@
 			});
 		}
 	]);
+
+	// Modal Models
+
+
 
 }());

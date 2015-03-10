@@ -4,21 +4,21 @@
     <div class="row">
       <div class="input-field col s6">
         <i class="mdi-action-account-circle prefix"></i>
-        <input id="icon_prefix" type="text" class="validate">
+        <input ng-model="user.email" id="icon_prefix" type="text" class="validate">
         <label for="icon_prefix">Email</label>
       </div>
       <div class="input-field col s6">
-        <i class="mdi-communication-phone prefix"></i>
-        <input id="icon_telephone" type="password" class="validate">
+        <i class="mdi-action-lock prefix"></i>
+        <input ng-model="user.password" id="icon_telephone" type="password" class="validate">
         <label for="icon_telephone">Password</label>
       </div>
       <div class="input-field col s6">
-        <i class="mdi-communication-phone prefix"></i>
-        <input id="icon_telephone" type="password" class="validate">
+        <i class="mdi-action-lock prefix"></i>
+        <input ng-model="user.password_confirmation" id="icon_telephone" type="password" class="validate">
         <label for="icon_telephone">Confirm Password</label>
      	</div>
    	</div>
-   	<button class="waves-effect waves-light btn-large"><i class="mdi-file-cloud left"></i>Register</button>
+   	<button id="reg" class="waves-effect waves-light btn-large"><i class="mdi-file-cloud left"></i>Register</button>
   </form>
 	<small>Already have an account? <a href="#/login">Login</a></small>
 </div>

@@ -9,8 +9,6 @@ $button-fsize: 1rem;
 $button-mar-top: 5rem;
 $button-hover: #003A82;
 
-
-
 // Mixins
 @mixin button(){
 	background-color: $button-bgcolor;
@@ -91,6 +89,9 @@ nav{
 	small{
 		font-size: 1rem;
 	}
+	.prefix.active{
+		color: black;
+	}
 }
 
 // Register
@@ -110,5 +111,8 @@ nav{
 	}
 	small{
 		font-size: 1rem;
+	}
+	.prefix.active{
+		color: black;
 	}
 }
