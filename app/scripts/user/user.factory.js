@@ -16,8 +16,7 @@
 			var checkLoginStatus = function (){
 				var user = currentUser();
 				if(user){
-					console.log(user);
-					heroku.config.headers['authentication_token'] = user;
+					heroku.config.headers['auth_token'] = user.authentication_token;
 				}
 			}; 
 
@@ -25,7 +24,7 @@
 			var registerUser = function (userInfo) {
 				$http.post(heroku.url + 'users', userInfo, heroku.config)
 					.success( function (response){
-						console.log(response);
+					heroku.config.headers['auth_token'] = response.user.authentication_token;
 						$rootScope.$broadcast('user:registered');
 					}
 				);
@@ -35,7 +34,8 @@
 			var loginUser = function (userInfo) {
 					$http.post(heroku.url + 'users/sign_in', userInfo, heroku.config)
 						.success( function (response){
-							console.log(response);
+							$cookieStore.put('DKCookie', response.user);
+							heroku.config.headers['auth_token'] = response.user.authentication_token;
 							$rootScope.$broadcast('user:loggedin');
 					}
 				);
@@ -43,7 +43,7 @@
 
 			// Logout
 			var logoutUser = function (userInfo) {
-
+				$cookieStore.remove('DKCookie');
 				$rootScope.$broadcast('user:loggedout');
 			};
 

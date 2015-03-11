@@ -4,7 +4,7 @@
     <div class="row">
       <div class="input-field col s6">
         <i class="mdi-action-account-circle prefix"></i>
-        <input ng-model="user.address" id="icon_prefix" type="text" class="validate">
+        <input ng-model="user.street_address" id="icon_prefix" type="text" class="validate">
         <label for="icon_prefix">Street</label>
       </div>
       <div class="input-field col s6">
@@ -14,12 +14,12 @@
       </div>
       <div class="input-field col s6">
         <i class="mdi-action-lock prefix"></i>
-        <input ng-model="user.state" id="icon_telephone" type="text" class="validate">
+        <input ng-model="user.state" id="icon_telephone" type="text" class="validate" maxlength="2">
         <label for="icon_telephone">State (GA)</label>
       </div>
       <div class="input-field col s6">
         <i class="mdi-action-lock prefix"></i>
-        <input ng-model="user.zipcode" id="icon_telephone" type="number" class="validate">
+        <input ng-model="user.zipcode" id="icon_telephone" type="text" class="validate">
         <label for="icon_telephone">Zip Code</label>
      	</div>
    	</div>

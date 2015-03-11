@@ -8,28 +8,28 @@
 		function ($scope, UserFactory, $rootScope, $location){
 
 			// Get User
-			var user = UserFactory.user();
+			UserFactory.user();
 
 			// Check Authentication
-			var status = UserFactory.status();
+			UserFactory.status();
 
 			// Register User
 			$scope.registerUser = function (userInfo){
 				if($scope.user.password !== $scope.user.password_confirmation){
 					alert('passwords have to match');
 				} else {
-					UserFactory.register(userInfo);
+					UserFactory.register({ user: userInfo });
 				}
 			};
 
 			// Login User
 			$scope.loginUser = function (userInfo){
-				UserFactory.login(userInfo);
+				UserFactory.login({ user: userInfo });
 			};
 
 			// Submit Address
 			$scope.submitAddress = function (userInfo){
-				UserFactory.addAddress(userInfo);
+				UserFactory.addAddress({ property: userInfo });
 			};
 
 			// Routing
