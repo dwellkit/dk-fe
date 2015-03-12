@@ -19,11 +19,6 @@
 				$scope.userProp = prop.property.property;
 			});
 
-			// Routing
-			$rootScope.$on('user:fetch', function (){
-				console.log('yay');
-			});
-
 		}
 
 	]);

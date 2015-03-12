@@ -13,6 +13,10 @@
 			// Check Authentication
 			UserFactory.status();
 
+			// Grab localStorage addressInfo
+			$scope.addressInfo = JSON.parse(localStorage.getItem('addressInfo'));
+			console.log($scope.addressInfo);
+
 			// Add A Room
 			$scope.addRoom = function (roomObj){
 
@@ -36,14 +40,6 @@
 			$scope.routeRoom = function (){
 				UserFactory.routeRoom();
 			};
-
-
-			$scope.propertyAdd = {};
-
-  		$rootScope.$on('user:addressfetch', function (event, prop){
-  			$scope.propertyAdd = prop.property.address;
-  			console.log('ko', $scope.propertyAdd.street_address);
-  		});
 
 		}
 

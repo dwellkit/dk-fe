@@ -1,24 +1,41 @@
-<div class="add-rooms" ng-model="propertyAdd">
-  <h1 ng-model="propertyAdd">Your Home Information</h1>
-  {{propertyAdd.street_address}}
+<div class="add-rooms row" ng-model="addressInfo">
+  <h1 ng-model="addressInfo">Your Home Information</h1>
+  <div class="basic col s12 m6 l6">
+    <h4>Basic Info</h4>
+    <div class="street">
+      Street: {{addressInfo.property.address.street_address}}
+    </div>
+    <div class="city">
+      City: {{addressInfo.property.address.city}}
+    </div>
+    <div class="state">
+      State: {{addressInfo.property.address.state}}
+    </div>
+    <div class="zip">
+      Zipcode: {{addressInfo.property.address.zipcode}}
+    </div>
+    <div class="bedrooms">
+      Bedrooms: {{addressInfo.property.bedrooms}}
+    </div>
+    <div class="bathrooms">
+      Bathrooms: {{addressInfo.property.bathrooms}}
+    </div>
+    <div class="sqft">
+      Total Squarefeet: {{addressInfo.property.sqft}}
+    </div>
+    <div class="year">
+      Year Built: {{addressInfo.property.yearbuilt}}
+    </div>
+  </div>
 
+  <div class="map col s12 m6 l6">
+    <iframe width="300" height="225" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=4998%20Bent%20Oak%20Drive%20Northwest%2C%20Acworth%2C%20GA%2C%20United%20States&key=AIzaSyBfXbj6bvAcfbWayWxtOKIwvKyTORvZn34"></iframe>
+  </div>
+  
+  <div class="editInfo col s12">
+    <h3>Missing Some Information?</h3>
+    <a href="">Add Rooms</a>
+    <a href="">Skip</a> </br>
+    <small>Don't worry you can add rooms later too</small>
+  </div>
 </div>
-
-<!-- Modal Structure -->
-  <!--   <div id="modal1" class="modal">
-      <div class="modal-content">
-        <h2>Confirm Address</h2>
-        <h6>You entered the following..</h6>
-        <ul ng-model="propertyAdd">
-          <li>Street: {{ propertyAdd.street_address }}</li>
-          <li>City: {{ propertyAdd.city }}</li>
-          <li>State: {{ propertyAdd.state }}</li>
-          <li>Zip: {{ propertyAdd.zipcode }}</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <h6>Is this information correct?</h6>
-        <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Yes</a>
-        <a href="#/add-your-address" class="waves-effect waves-green btn-flat modal-action modal-close" ng-click('routeRoom')>No</a>
-      </div>
-    </div> -->

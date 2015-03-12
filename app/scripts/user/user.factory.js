@@ -49,16 +49,11 @@
 
 			// Send Address to API
 			var submitAddress = function (userInfo) {
-				$http.post(heroku.url + 'property/add', userInfo, heroku.config)
-					.success ( function (response){
-						console.log(response);
-						$rootScope.$broadcast('user:addressfetch', response);
-					}
-				);
+				return $http.post(heroku.url + 'property/add', userInfo, heroku.config);
 			};
 
-			// Reroute to address page if not correct
-			var routeRoom = function (){
+			// Confirm Address correct
+			var routeRoom = function (userInfo){
 				$rootScope.$broadcast('address:correct');
 			};
 

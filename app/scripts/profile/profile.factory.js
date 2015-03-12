@@ -14,7 +14,6 @@
 						url: heroku.url + 'user/info' ,
 						method: 'GET'
 				}).success( function (data){
-						console.log('user fetched');
 						console.log(data);
 						$rootScope.$broadcast('user:fetch');
 				});

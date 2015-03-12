@@ -35,7 +35,7 @@
 			controller: 'UserController'
 		})
 
-		.when('/property/:id/rooms', {
+		.when('/property/:address/basic-info', {
 			templateUrl: 'scripts/rooms/addRooms.tpl.html',
 			controller: 'RoomsController'
 		})
