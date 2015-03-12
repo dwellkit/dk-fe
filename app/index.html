@@ -24,22 +24,33 @@
   </head>
   <body>
 
+    <!-- Header -->
     <header>
-    <!-- Materialize Header -->
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#/" class="brand-logo"><img src="../images/icon_transparent.png" alt=""></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#/about">About DwellingKit</a></li>
-          <li><a href="#/contact">Contact Us</a></li>
-        </ul>
-      </div>
-    </nav>
+      <nav ng-controller="NavController">
+        <div class="nav-wrapper">
+          <a href="#/" class="brand-logo"><img src="../images/icon_transparent.png" alt=""></a>
+          <ul class="right hide-on-med-and-down" ng-show="loggedin">
+            <a href="#/profile"><li><i class="mdi-communication-contacts prefix"></i>Profile</li></a>
+            <a ng-click="logout()" href="#/"><li><i class="mdi-navigation-close prefix"></i>Logout</li></a>
+          </ul>
+        </div>
+      </nav>
     </header>
     
-    <div class="container" ng-view></div>
-    <footer>
-        
+    <!-- Main -->
+    <main>
+      <div class="container" ng-view></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <div class="container">
+        © 2015 Copyright
+        <a class="grey-text text-lighten-4 right" href="#/about">About DwellingKit</a> 
+        <a class="grey-text text-lighten-4 right" href="#/contact">Contact Us</a>
+        </div>
+      </div>
     </footer>
 
     <!-- build:js scripts/vendor.js -->
@@ -58,11 +69,13 @@
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
-
+        <script src="scripts/nav/nav.controller.js"></script>
         <script src="scripts/user/user.controller.js"></script>
         <script src="scripts/user/user.factory.js"></script>  
-
-        <script src="scripts/profile/profile.controller.js"></script>    
+        <script src="scripts/profile/profile.controller.js"></script> 
+        <script src="scripts/profile/profile.factory.js"></script> 
+        <script src="scripts/rooms/rooms.controller.js"></script> 
+        <script src="scripts/rooms/rooms.factory.js"></script>    
         <!-- endbuild -->
 </body>
 </html>

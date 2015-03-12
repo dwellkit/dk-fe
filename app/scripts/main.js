@@ -2,6 +2,7 @@
 
 	'use strict';
 
+	// Angular Module
 	angular.module('DwellingKit', ['ngRoute', 'ngCookies'])
 
 	.constant('heroku', {
@@ -29,14 +30,19 @@
 			controller: 'UserController'
 		})
 
+		.when('/add-your-address', {
+			templateUrl: 'scripts/user/address.tpl.html',
+			controller: 'UserController'
+		})
+
+		.when('/property/:id/rooms', {
+			templateUrl: 'scripts/rooms/addRooms.tpl.html',
+			controller: 'RoomsController'
+		})
+
 		.when('/profile', {
 			templateUrl: 'scripts/profile/profile.tpl.html',
 			controller: 'ProfileController'
-		})
-
-		.when('/your-address', {
-			templateUrl: 'scripts/user/address.tpl.html',
-			controller: 'UserController'
 		})
 
 		.otherwise({
@@ -45,16 +51,13 @@
 
 	})
 
-	.run([ '$rootScope', 'UserFactory', 'heroku',
+	.run([ '$rootScope', 'UserFactory', 'heroku', 
 		function ($rootScope, UserFactory, heroku){
 			$rootScope.$on('$routeChangeStart', function (){
+
 
 			});
 		}
 	]);
-
-	// Modal Models
-
-
 
 }());

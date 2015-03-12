@@ -22,6 +22,11 @@
 				}
 			};
 
+			// Modal Config
+			$scope.load = function () {
+				$('.modal-trigger').leanModal();
+			};
+
 			// Login User
 			$scope.loginUser = function (userInfo){
 				UserFactory.login({ user: userInfo });
@@ -29,12 +34,18 @@
 
 			// Submit Address
 			$scope.submitAddress = function (userInfo){
-				UserFactory.addAddress({ property: userInfo });
+				$scope.addressInfo = userInfo;
+				$('#modal1').openModal();
+				UserFactory.addAddress({property: userInfo});
+			};
+
+			$scope.routeRoom = function (){
+				UserFactory.routeRoom();
 			};
 
 			// Routing
 			$rootScope.$on('user:registered', function (){
-				$location.path('/your-address');
+				$location.path('/add-your-address');
 			});
 
 			$rootScope.$on('user:loggedin', function (){
@@ -45,9 +56,15 @@
 				$location.path('/');
 			});
 
-			$rootScope.$on('user:addressfetch', function (){
-				$location.path('/');
+			$rootScope.$on('user:addressfetch', function (event, propId){
+				console.log('addressed fetch');
+				$scope.propertyId = propId;
+				console.log($scope.propertyId);
+				$location.path('/property/' + propId + '/rooms');
+
 			});
+
+			$scope.load();
 
 		}
 

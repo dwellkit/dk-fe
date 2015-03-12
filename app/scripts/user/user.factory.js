@@ -47,11 +47,12 @@
 				$rootScope.$broadcast('user:loggedout');
 			};
 
+			// Send Address to API
 			var submitAddress = function (userInfo) {
 				$http.post(heroku.url + 'property/add', userInfo, heroku.config)
 					.success ( function (response){
 						console.log(response);
-						$rootScope.$broadcast('user:addressfetch');
+						$rootScope.$broadcast('user:addressfetch', response.property.id);
 					}
 				);
 			};
