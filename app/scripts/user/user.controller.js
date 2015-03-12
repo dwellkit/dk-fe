@@ -40,8 +40,11 @@
 			};
 
 			$scope.routeRoom = function (){
-				UserFactory.routeRoom();
+				$('#modal1').closeModal();
+				UserFactory.reroute();
 			};
+			$scope.load();
+
 
 			// Routing
 			$rootScope.$on('user:registered', function (){
@@ -56,15 +59,17 @@
 				$location.path('/');
 			});
 
-			$rootScope.$on('user:addressfetch', function (event, propId){
+			$rootScope.$on('user:addressfetch', function (event, prop){
 				console.log('addressed fetch');
-				$scope.propertyId = propId;
+				$scope.propertyId = prop.property.id;
 				console.log($scope.propertyId);
-				$location.path('/property/' + propId + '/rooms');
-
+				// $location.path('/property/' + prop.property.id + '/rooms');
 			});
 
-			$scope.load();
+			$rootScope.$on('address:correct', function (){
+				$location.path('/property/' + $scope.propertyId + '/rooms');
+			});
+
 
 		}
 

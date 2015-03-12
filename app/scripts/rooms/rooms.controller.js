@@ -32,6 +32,19 @@
 			$scope.addItem = function (itemObj){
 
 			};
+
+			$scope.routeRoom = function (){
+				UserFactory.routeRoom();
+			};
+
+
+			$scope.propertyAdd = {};
+
+  		$rootScope.$on('user:addressfetch', function (event, prop){
+  			$scope.propertyAdd = prop.property.address;
+  			console.log('ko', $scope.propertyAdd.street_address);
+  		});
+
 		}
 
 	]);

@@ -1,1 +1,5 @@
-<h1>Profile Goes Here</h1>
+<h1>{{user.user}}</h1>
+<h4>List of Properties</h4>
+<ul ng-repeat="prop in userProp">
+	<li>Year Built: {{ prop.yearbuilt}}, SQFT: {{ prop.sqft }}</li>
+</ul>

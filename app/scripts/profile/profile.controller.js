@@ -14,7 +14,10 @@
 			UserFactory.status();
 
 			// Grab User Info
-			ProfileFactory.grab();
+			ProfileFactory.grab().success( function(prop){
+				$scope.user = prop;
+				$scope.userProp = prop.property.property;
+			});
 
 			// Routing
 			$rootScope.$on('user:fetch', function (){

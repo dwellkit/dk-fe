@@ -52,11 +52,15 @@
 				$http.post(heroku.url + 'property/add', userInfo, heroku.config)
 					.success ( function (response){
 						console.log(response);
-						$rootScope.$broadcast('user:addressfetch', response.property.id);
+						$rootScope.$broadcast('user:addressfetch', response);
 					}
 				);
 			};
 
+			// Reroute to address page if not correct
+			var routeRoom = function (){
+				$rootScope.$broadcast('address:correct');
+			};
 
 			return {
 				register: registerUser,
@@ -64,7 +68,8 @@
 				logout: logoutUser,
 				addAddress: submitAddress,
 				user: currentUser,
-				status: checkLoginStatus
+				status: checkLoginStatus,
+				reroute: routeRoom
 			};
 
 		}
