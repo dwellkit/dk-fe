@@ -1,18 +1,18 @@
 <div class="register">
 	<h1>Complete the form to Register</h1>
-  <form ng-submit="registerUser(user)" class="col s12">
-    <div class="row">
-      <div class="input-field col s6">
+  <form ng-submit="registerUser(user)">
+    <div class="row container">
+      <div class="input-field col s12 m12 l6 offset-l3">
         <i class="mdi-action-account-circle prefix"></i>
         <input ng-model="user.email" id="icon_prefix" type="text" class="validate">
         <label for="icon_prefix">Email</label>
       </div>
-      <div class="input-field col s6">
+      <div class="input-field col s12 m12 l6 offset-l3">
         <i class="mdi-action-lock prefix"></i>
         <input ng-model="user.password" id="icon_telephone" type="password" class="validate">
         <label for="icon_telephone">Password</label>
       </div>
-      <div class="input-field col s6">
+      <div class="input-field col s12 m12 l6 offset-l3">
         <i class="mdi-action-lock prefix"></i>
         <input ng-model="user.password_confirmation" id="icon_telephone" type="password" class="validate">
         <label for="icon_telephone">Confirm Password</label>

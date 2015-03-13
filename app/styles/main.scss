@@ -38,11 +38,11 @@ main {
 // Header Nav
 header{
 	height: 5rem;
-}
-nav{
-	height: 5rem;
-	.row{
-		margin-bottom: 0;
+	nav{
+		height: 5rem;
+		.row{
+			margin-bottom: 0;
+		}
 	}
 }
 .nav-wrapper{
@@ -63,9 +63,23 @@ nav{
 	display: inline-block;
 	}
 }
+.section{
+	color: black;
+	background: transparent;
+
+	i{
+		color: #0493D9;
+	}
+	.col{
+		text-align:center;
+	}
+}
+.section .row h2{
+	text-align: center;
+}
 
 // Main Welcome View
-.container{
+.welcome-container{
 	max-width: 100%;
 	width: 100%;
 	padding: 0;
@@ -73,8 +87,19 @@ nav{
 }
 .parallax-container{
 	height: 50rem;
+	text-align: center;
 	a{
 		@include button();
+	}
+	.dk-info{
+		margin: 0 auto;
+		a{
+			text-align: center;
+		}
+		img{
+			width: 75%;
+			margin-top: 5rem;
+		}
 	}
 }
 
@@ -145,6 +170,9 @@ nav{
 }
 
 // Address
+.input-address{
+	text-align: center;
+}
 form{
 	text-align:center;
 	#reg{
@@ -195,10 +223,41 @@ form{
 	margin-bottom: 3rem;
 }
 
+// Profile View
+.profile{
+	margin-top: 2rem;
+	h1{
+		margin: 0rem 1rem 3rem 1rem;
+	}
+	.user-prop{
+		border-bottom: 0.1rem solid lightgray;
+		a{
+		@include button();
+		margin-top: -1rem;
+		}
+	}
+	.row{
+		margin-top: 1rem;
+	}
+	li.tab a{
+		color: #0493D9;
+		font-size: 1rem;
+		&:hover{
+			color: navy;
+		}
+	}
+	.indicator{
+		background-color: #0493D9;
+	}
+	.house-info{
+	}
+}
+
+
 // Footer
 footer.page-footer{
-	background-color: lightgray;
-	border-top: 0.1rem solid black;
+	background-color: black;
+	color: white;
 	padding: 0;
 	a{
 		padding-right: 1rem;
