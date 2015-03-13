@@ -66,7 +66,7 @@ nav{
 	width:100%;
 	text-align: center;
 	img{
-		width: 70%;
+		width: 100%;
 		background-color: transparent;
 	}
 	a{
@@ -95,9 +95,6 @@ nav{
 		margin-top: 2rem;
 		button{
 		@include button()
-		}
-		.col.s6{
-			width: 100%;
 		}
 	}
 	small{
@@ -160,16 +157,17 @@ form{
 		padding: 1rem;
 		margin-right: 2rem;
 	}
-	h3{
+	h4{
 		margin-bottom: 3rem;
 	}
 	small{
 		display: inline-block;
+		font-size: 0.7rem;
 		margin-top: 2rem;
 	}
-	.basic{
-		margin-bottom: 5rem;
-	}
+}
+.basic{
+	margin-bottom: 5rem;
 }
 
 // Footer
@@ -182,5 +180,25 @@ footer.page-footer{
 	}
 	a:hover{
 			color: #0493D9;
+	}
+}
+
+#modal2{
+	width: 50rem;
+	border: 0.3rem solid #0493D9;
+	border-radius: 0.5rem;
+	background-color: white;
+	input{
+		margin-bottom: 0;
+	}
+	button{
+		@include button();
+		padding: 1rem;
+		border: none;
+		margin-top: 1rem;
+		border-radius: 0.2rem;
+	}
+	.modal-footer{
+		border-top: 0.2rem solid lightgray;
 	}
 }

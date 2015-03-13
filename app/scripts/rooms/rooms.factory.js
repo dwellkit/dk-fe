@@ -9,7 +9,7 @@
 
 			// Add A Room
 			var addRoom = function (propId, roomObj){
-				$http.post(herok.url + 'property/' + propId + '/room', roomObj, herok.config)
+				$http.post(heroku.url + 'property/' + propId + '/room', roomObj, heroku.config)
 					.success( function (response){
 						console.log(response);
 					});
@@ -17,8 +17,8 @@
 
 			// Delete A Room
 			var dltRoom = function (propId, roomId, roomObj){
-				$http.delete(herok.url + '/property' + propId + '/room/' + roomId, roomObj, heroku.config)
-					.success( function (reponse){
+				$http.delete(heroku.url + '/property' + propId + '/room/' + roomId, roomObj, heroku.config)
+					.success( function (response){
 						console.log(response);
 						console.log('room deleted');
 					});

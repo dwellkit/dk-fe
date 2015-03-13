@@ -13,13 +13,28 @@
 			// Check Authentication
 			UserFactory.status();
 
+			// Modal Config & Trigger
+			$scope.load = function () {
+				$('.modal-trigger').leanModal();
+			};
+
+			// Load Modal
+			$scope.load();
+
+			$scope.modal = function (){
+				$('#modal2').openModal();
+			};
+
 			// Grab localStorage addressInfo
 			$scope.addressInfo = JSON.parse(localStorage.getItem('addressInfo'));
 			console.log($scope.addressInfo);
+			console.log($scope.addressInfo.property.id);
 
 			// Add A Room
-			$scope.addRoom = function (roomObj){
-
+			$scope.addRoom = function (propId, roomObj){
+				propId = $scope.addressInfo.property.id;
+				roomObj = {};
+				RoomsFactory.addRm(propId, {room: roomObj});
 			};
 
 			// Delete A Room

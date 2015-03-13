@@ -26,10 +26,10 @@
 
     <!-- Header -->
     <header>
-      <nav ng-controller="NavController">
+      <nav ng-controller="NavController" class="row">
         <div class="nav-wrapper">
-          <a href="#/" class="brand-logo"><img src="../images/icon_transparent.png" alt=""></a>
-          <ul class="right hide-on-med-and-down" ng-show="loggedin">
+          <a href="#/"><img src="../images/icon_transparent.png" alt=""></a>
+          <ul class="right" ng-show="loggedin">
             <a href="#/profile"><li><i class="mdi-communication-contacts prefix"></i>Profile</li></a>
             <a ng-click="logout()" href="#/"><li><i class="mdi-navigation-close prefix"></i>Logout</li></a>
           </ul>

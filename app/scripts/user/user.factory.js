@@ -37,6 +37,7 @@
 							$cookieStore.put('DKCookie', response.user);
 							heroku.config.headers['auth_token'] = response.user.authentication_token;
 							$rootScope.$broadcast('user:loggedin');
+							localStorage.setItem('user', JSON.stringify(response.user));
 					}
 				);
 			};
