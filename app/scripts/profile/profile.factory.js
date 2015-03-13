@@ -11,7 +11,7 @@
 			var grabUser = function (){
 				return $http({
 						headers: heroku.config.headers,
-						url: heroku.url + 'user/info' ,
+						url: heroku.url + 'users/info' ,
 						method: 'GET'
 				}).success( function (data){
 						console.log(data);
