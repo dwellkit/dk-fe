@@ -61,6 +61,11 @@ nav{
 }
 
 // Main Welcome View
+.parallax-container{
+	img{
+		width:100%;
+	}
+}
 
 .welcome{
 	width:100%;
@@ -151,10 +156,11 @@ form{
 // Initial Add Rooms View
 .add-rooms{
 	border: 0.3rem solid #0493D9;
+	background-color: white;
 	border-radius: 0.5rem;
 	box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba(0,0,0,0.75);
 	.map{
-		margin-left:2rem;
+		padding:1rem;
 	}
 }
 .editInfo{

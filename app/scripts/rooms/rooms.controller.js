@@ -23,6 +23,8 @@
 
 			$scope.modal = function (){
 				$('#modal2').openModal();
+				$('#modal2').scope = $scope;
+				$scope.$emit('tpl:loaded');
 			};
 
 			// Grab localStorage addressInfo
@@ -31,10 +33,10 @@
 			console.log($scope.addressInfo.property.id);
 
 			// Add A Room
-			$scope.addRoom = function (propId, roomObj){
-				propId = $scope.addressInfo.property.id;
-				roomObj = {};
+			$scope.addRoom = function (roomObj){
+				var propId = $scope.addressInfo.property.id;
 				RoomsFactory.addRm(propId, {room: roomObj});
+				$scope.rm = null;
 			};
 
 			// Delete A Room
@@ -55,6 +57,10 @@
 			$scope.routeRoom = function (){
 				UserFactory.routeRoom();
 			};
+
+			$scope.$on('tpl:loaded', function(){
+				console.log('tpl loaded');
+			});
 
 		}
 
