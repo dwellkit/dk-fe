@@ -1,13 +1,12 @@
 <div class="profile">
-	<div class="user-prop valign-wrapper">
-		<h1>{{user.user}}</h1>
+	<div class="user-prop row">
+		<h1 class="col s12 m6 l3">{{user.user}}</h1>
 		  <!-- Dropdown Trigger -->
-	  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Properties</a>
+	  <a class='dropdown-button btn col s6 m3 l1 offset-s3' href='#' data-activates='dropdown1' ng-click="dropDown()">Properties</a>
 
 	  <!-- Dropdown Structure -->
 	  <ul id='dropdown1' class='dropdown-content'>
-	    <li><a href="#!">one</a></li>
-	    <li><a href="#!">two</a></li>
+	    <li><a href="#!">{{addr.address.street_address}}</a></li>
 	    <li class="divider"></li>
 	    <li><a href="#/add-your-address">Add Property</a></li>
 	  </ul>
@@ -16,60 +15,78 @@
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s3"><a class="active" href="#test1">OverView</a></li>
-        <li class="tab col s3"><a href="#test2">Rooms</a></li>
+        <li class="tab col s3" ng-click="grabProperty()"><a href="#test2">Rooms</a></li>
         <li class="tab col s3"><a href="#test3">Warranties</a></li>
         <li class="tab col s3"><a href="#test4">Contacts</a></li>
       </ul>
     </div>
-    <div id="test1" class="col s12">
+    <div id="test1" class=" oveview col s12">
 			<div class="overview row">
-				<div class="home-img col s6 m6 l6">
-					<img class="responsive-img" src="/images/house.jpg">
+				<div class="home-img col s12 m6 l6">
+					<h1 class="flow-text">Add A picture of your home!</h1>
+					<!-- <img class="responsive-img" src="/images/house.jpg"> -->
 				</div>
-				<div class="house-info col s6 m6 l6">
-					<h1 class="flow-text">Your Basic Information</h1>
-					<blockquote> Total Rooms: </blockquote>
-					<blockquote> Total Squarefeet: </blockquote>
-					<blockquote> Year Built: </blockquote>
-
+				<div class="house-info col s12 m6 l6">
+					<h1 class="flow-text">Address: {{ mainProp.address.street_address }} {{ mainProp.address.city }} {{ mainProp.address.state }} {{ mainProp.address.zipcode }}</h1>
+					<h2 class="flow-text">Basic Information: </h2>
+					<blockquote> Total Rooms: {{ mainProp.actual_rooms }} </blockquote>
+					<blockquote> Bedrooms: {{ mainProp.bedrooms }} </blockquote>
+					<blockquote> Bathrooms: {{ mainProp.bathrooms }} </blockquote>
+					<blockquote> Total Squarefeet: {{ mainProp.sqft }} </blockquote>
+					<blockquote> Year Built: {{ mainProp.yearbuilt }}</blockquote>
 				</div>
 			</div>
+			<button class="l6 m6 s12" ng-click="addImage()">Choose Photo</button>
     </div>
-    <div id="test2" class="col s12">
-
-
+    <div id="test2" class="rooms col s12">
+			<h1 class="flow-text">Your Rooms</h1>
+			<ul class="collapsible" data-collapsible="accordion">
+		    <li ng-repeat="room in rooms">
+		      <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>{{room.name}}</div>
+		      <div class="collapsible-body row">
+		      	<blockquote class="col l6 m6 s12">Square Feet: {{room.sqft}}</blockquote>
+		      	<blockquote class="col l6 m6 s12">Floor: {{room.flooring_type}}</blockquote>
+		      	<blockquote class="col l6 m6 s12">Paint Color: {{room.paint_color}}</blockquote>
+		      	<blockquote class="col l6 m6 s12">Items: </blockquote>
+		      	<a href="">Edit This Room</a>
+		      </div>
+		    </li>
+		  </ul>
     </div>
-    <div id="test3" class="col s12">
-    	
+    <div id="test3" class="warranty col s12">
+			<h1 class="flow-text">Your Warranties</h1>
+			<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Warranties">
     </div>
-    <div id="test4" class="col s12">
-    	
+    <div id="test4" class="contact col s12">
+			<h1 class="flow-text">Your Contacts</h1>
+			<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Contacts">
+			<a class="col s12 m12 l12" href="">Add A Contact</a>
+			<div class="row">
+        <div class=" c-card col s12 m3 l3">
+          <div class="card white darken-1">
+            <div class="card-content black-text">
+              <span class="card-title">Contact Card</span>
+              <p>This is a sample of what your contact card will look like. Once you started adding contacts they will populate like this.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">Call</a>
+              <a href='#'>Email</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-	<h4 class="flow-text">List of Properties</h4>
-	<ul ng-repeat="prop in userProp">
-		<li>Year Built: {{ prop.yearbuilt}}, SQFT: {{ prop.sqft }}</li>
-	</ul>
+	<!-- <h4 class="flow-text">List of Properties</h4> -->
+	<!-- <ul ng-repeat="prop in userPropCol">
+		<li>Address: {{ prop.address.street_address}}, SQFT: {{ prop.sqft }}</li>
+	</ul> -->
 </div>
 
-
-<!-- Tab JS -->
-<script> 
-	$(document).ready(function(){
-    $('ul.tabs').tabs();
-  });
-</script>
-
-<!-- Dropdown JS -->
 <script>
-	$('.dropdown-button').dropdown({
-      inDuration: 300,
-      outDuration: 225,
-      constrain_width: false, // Does not change width of dropdown to that of the activator
-      hover: false, // Activate on click
-      alignment: 'left', // Aligns dropdown to left or right edge (works with constrain_width)
-      gutter: 0, // Spacing from edge
-      belowOrigin: true // Displays dropdown below the button
-    }
-  );	
+	$(document).ready(function(){
+    $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+  });
 </script>

@@ -50,7 +50,7 @@
 
 			// Send Address to API
 			var submitAddress = function (userInfo) {
-				return $http.post(heroku.url + 'property/add', userInfo, heroku.config);
+				return $http.post(heroku.url + 'properties/add', userInfo, heroku.config);
 			};
 
 			// Confirm Address correct

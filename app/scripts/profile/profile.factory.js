@@ -19,8 +19,27 @@
 				});
 			};
 
+			// Add Image of Home
+			var addImage = function (propId){
+				filepicker.pickAndStore({}, {}, function (img){
+					$rootScope.$broadcast('img:upload', pic[0]);
+					$http.post(heroku.url + propId + '/pic', img, heroku.config);
+				});
+			};
+
+			// Grab Specific Property
+			var grabProperty = function (propId){
+				return $http({
+						headers: heroku.config.headers,
+						url: heroku.url + 'properties/' + propId,
+						method: 'GET'
+				});
+			};
+
 			return {
-				grab: grabUser
+				grab: grabUser,
+				addImg: addImage,
+				grabProp: grabProperty
 			};
 
 		}

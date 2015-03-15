@@ -14,6 +14,7 @@ $button-hover: #003A82;
 	background-color: $button-bgcolor;
 	color: $button-txtcolor;
 	font-size: $button-fsize;
+	border: none;
 	margin-top: $button-mar-top;
 	&:hover{
 		background-color: $button-hover;
@@ -233,7 +234,7 @@ form{
 		border-bottom: 0.1rem solid lightgray;
 		a{
 		@include button();
-		margin-top: -1rem;
+		margin-top: 1.3rem;
 		}
 	}
 	.row{
@@ -250,6 +251,38 @@ form{
 		background-color: #0493D9;
 	}
 	.house-info{
+		h1{
+			margin-bottom: 0;
+			border-bottom: 0.1rem solid #0493D9; 
+		}
+		h2{
+			margin: 0 0 1rem 1rem;
+		}
+		blockquote{
+			font-size: 1rem;
+		}
+	}
+	.home-img{
+		height: 30rem;
+		border: 0.1rem solid black;
+		h1{
+			margin-top: 25%;
+			text-align: center;
+		}
+	}
+	button{
+		@include button();
+		margin-top: 0.5rem;
+	}
+}
+
+// CONTACTS
+.card .card-title{
+	color: #0493D9;
+}
+.card-action{
+	a{
+		color: #0493D9;
 	}
 }
 

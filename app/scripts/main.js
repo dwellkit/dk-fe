@@ -2,6 +2,9 @@
 
 	'use strict';
 
+	// File Picker Key
+	filepicker.setKey("A54bKitiuSVQ3a9gF1SdBz");
+
 	// Angular Module
 	angular.module('DwellingKit', ['ngRoute', 'ngCookies'])
 
@@ -55,6 +58,11 @@
 		function ($rootScope, UserFactory, heroku){
 			$rootScope.$on('$routeChangeStart', function (){
 
+				// Check User
+				UserFactory.user();
+				
+				// Check Authentication
+				UserFactory.status();
 
 			});
 		}
