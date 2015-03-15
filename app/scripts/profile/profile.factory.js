@@ -4,8 +4,8 @@
 
 	angular.module('DwellingKit')
 
-	.factory('ProfileFactory', ['$http', '$rootScope', 'heroku',
-		function ($http, $rootScope, heroku){
+	.factory('ProfileFactory', ['$http', '$rootScope', 'heroku', '$upload',
+		function ($http, $rootScope, heroku, $upload){
 
 			// Grab User Info
 			var grabUser = function (){
@@ -19,12 +19,16 @@
 				});
 			};
 
+
 			// Add Image of Home
-			var addImage = function (propId){
-				filepicker.pickAndStore({}, {}, function (img){
-					$rootScope.$broadcast('img:upload', pic[0]);
-					$http.post(heroku.url + propId + '/pic', img, heroku.config);
-				});
+			var addImage = function (propId, img){
+					$http({
+						headers: heroku.config.headers,
+						url: heroku.url + 'properties/' + propId + '/pic',
+						method: 'POST',
+						data: img,
+						'content-type': 'multipart/form-data'
+					});
 			};
 
 			// Grab Specific Property

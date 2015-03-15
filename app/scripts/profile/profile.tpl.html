@@ -36,7 +36,10 @@
 					<blockquote> Year Built: {{ mainProp.yearbuilt }}</blockquote>
 				</div>
 			</div>
-			<button class="l6 m6 s12" ng-click="addImage()">Choose Photo</button>
+			<form enctype="multipart/form-data">
+				<button class="button" ng-file-select ng-model="files" ng-multiple="multiple">Select Photo</button>
+			</form>
+			<!-- <span class="l6 m6 s12" ng-file-select ng-click="addImage()">Choose Photo</span> -->
     </div>
     <div id="test2" class="rooms col s12">
 			<h1 class="flow-text">Your Rooms</h1>

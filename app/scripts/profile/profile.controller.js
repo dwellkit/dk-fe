@@ -33,7 +33,7 @@
 				$scope.user = prop;
 				$scope.allProp = prop.property;
 				$scope.mainProp = prop.property[0];
-				console.log($scope.mainProp.id);
+				console.log($scope.mainProp);
 				localStorage.setItem('currentProp', JSON.stringify(prop.property[0]));
 			});
 
@@ -47,19 +47,33 @@
 
 			$scope.tabs();
 
+			// Watch for user picking file
+			$scope.$watch('files', function () {
+        $scope.upload($scope.files);
+    	});
+
 			// Add Picture of Home
-			$scope.addImage = function (img){
-				ProfileFactory.addImg(img);
-			};
+    	$scope.upload = function (files) {
+				var propId = $scope.currentProp.id;
+        if (files && files.length) {
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+								ProfileFactory.addImg(propId, {property: file});
+						}
+				}
+      };
 
 			// Grab Specific Property
 			$scope.grabProperty = function (){
 				var propId = $scope.currentProp.id;
 				ProfileFactory.grabProp(propId).success( function (rooms){
+					console.log(rooms);
 					$scope.rooms = rooms.property.rooms;
 					console.log($scope.rooms);
 				});
 			};
+
+			$scope.grabProperty();
 
 		}
 
