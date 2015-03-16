@@ -5,25 +5,9 @@
     <div class="row">
       <div class="input-field col l6 m6 s12">
         <i class="mdi-action-account-circle prefix"></i>
-        <input ng-model="user.street_address" id="icon_prefix" type="text" class="validate">
+        <input ng-model="user.address" id="icon_prefix" type="text" class="validate">
         <label for="icon_prefix">Street</label>
       </div>
-      <div class="input-field col l6 m6 s12">
-        <i class="mdi-action-lock prefix"></i>
-        <input ng-model="user.city" id="icon_telephone" type="text" class="validate">
-        <label for="icon_telephone">City</label>
-      </div>
-      <div class="input-field col l6 m6 s12">
-        <i class="mdi-action-lock prefix"></i>
-        <input ng-model="user.state" id="icon_telephone" type="text" class="validate" maxlength="2">
-        <label for="icon_telephone">State (GA)</label>
-      </div>
-      <div class="input-field col l6 m6 s12">
-        <i class="mdi-action-lock prefix"></i>
-        <input ng-model="user.zipcode" id="icon_telephone" type="text" class="validate">
-        <label for="icon_telephone">Zip Code</label>
-     	</div>
-   	</div>
    	<button id="reg" class="waves-effect waves-light btn-large"><i class="mdi-file-cloud left"></i>Submit</a></button>
   </form>
 </div>
@@ -34,11 +18,7 @@
         <h2>Confirm Address</h2>
         <h6>You entered the following..</h6>
         <ul ng-model="addressInfo">
-          <li>Street: {{ addressInfo.street_address }}</li>
-          <li>City: {{ addressInfo.city }}</li>
-          <li>State: {{ addressInfo.state }}</li>
-          <li>Zip: {{ addressInfo.zipcode }}</li>
-        </ul>
+          <li>Street: {{ addressInfo.address }}</li>
       </div>
       <div class="modal-footer">
         <h6>Is this information correct?</h6>

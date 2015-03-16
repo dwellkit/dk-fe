@@ -13,23 +13,8 @@
 			// Check Authentication
 			UserFactory.status();
 
-			// Load Drop Down
-			$scope.dropDown = function (){
-				$('.dropdown-button').dropdown({
-		      inDuration: 300,
-		      outDuration: 225,
-		      constrain_width: false, // Does not change width of dropdown to that of the activator
-		      hover: false, // Activate on click
-		      alignment: 'left', // Aligns dropdown to left or right edge (works with constrain_width)
-		      gutter: 0, // Spacing from edge
-		      belowOrigin: true // Displays dropdown below the button
-		    });
-
-			};
-
 			// Grab User Info
 			ProfileFactory.grab().success( function (prop){
-				$scope.dropDown();
 				$scope.user = prop;
 				$scope.allProp = prop.property;
 				console.log($scope.allProp);
@@ -42,28 +27,22 @@
 			$scope.currentProp = JSON.parse(localStorage.getItem('currentProp'));
 			console.log($scope.currentProp);
 
-			// Load Tabs
+			// Set Up Tabs
 			$scope.tabs = function (){
     		$('ul.tabs').tabs();
 			};
 
+			// Load Tabs 
 			$scope.tabs();
-
-			// Watch for user picking file
-			$scope.$watch('files', function () {
-        $scope.upload($scope.files);
-    	});
 
 			// Add Picture of Home
     	$scope.upload = function (files) {
 				var propId = $scope.currentProp.id;
-        if (files && files.length) {
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-								ProfileFactory.addImg(propId, {property: file});
-						}
-				}
-      };
+				var img = document.getElementById('file-select');
+				var file = img.files[0];
+ 
+				ProfileFactory.addImg(propId, file);
+			};
 
 			// Grab Specific Property
 			$scope.grabProperty = function (){
@@ -72,7 +51,7 @@
 				ProfileFactory.grabProp(propId).success( function (data){
 					console.log(data);
 					$scope.houseImg = data.property.image;
-					console.log($scope.houseImg);
+					console.log($scope.houseImg.large);
 					$scope.rooms = data.property.rooms;
 					console.log($scope.rooms);
 				});
@@ -92,13 +71,6 @@
 				$('#modal2').openModal();
 				$('#modal2').scope = $scope;
 				$scope.$emit('tpl:loaded');
-			};
-
-			// Add Room
-			$scope.addRoom = function (roomObj){
-				var propId = $scope.currentProp.id;
-				RoomsFactory.addRm(propId, { room: roomObj });
-				$scope.rm = null;
 			};
 
 		}

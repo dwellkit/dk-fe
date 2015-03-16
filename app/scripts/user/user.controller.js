@@ -72,7 +72,7 @@
 			});
 
 			$rootScope.$on('address:correct', function (event, prop){
-				$location.path('/property/' + $scope.addressInfo.street_address + '/basic-info/');
+				$location.path('/property/' + $scope.addressInfo.address + '/basic-info/');
 			});
 
 

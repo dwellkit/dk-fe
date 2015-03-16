@@ -22,12 +22,17 @@
 
 			// Add Image of Home
 			var addImage = function (propId, img){
+ 
+				heroku.config.headers['Content-Type'] =  undefined;
+ 
+					var formData = new FormData();
+					formData.append('property[profile]', img);
+ 
 					$http({
 						headers: heroku.config.headers,
 						url: heroku.url + 'properties/' + propId + '/pic',
 						method: 'POST',
-						data: img,
-						'content-type': 'multipart/form-data'
+						data: formData
 					});
 			};
 

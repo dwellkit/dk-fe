@@ -232,6 +232,7 @@ form{
 	}
 	.user-prop{
 		border-bottom: 0.1rem solid lightgray;
+		text-align: center;
 		a{
 		@include button();
 		margin-top: 1.3rem;
@@ -265,14 +266,23 @@ form{
 	.home-img{
 		height: 30rem;
 		border: 0.1rem solid black;
+		overflow: hidden;
 		h1{
 			margin-top: 25%;
 			text-align: center;
+			z-index: -1;
 		}
 	}
 	button{
 		@include button();
 		margin-top: 0.5rem;
+	}
+	.collapsible .row{
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	ul{
+		border: none;
 	}
 }
 

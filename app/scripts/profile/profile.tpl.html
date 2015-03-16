@@ -1,15 +1,6 @@
 <div class="profile">
 	<div class="user-prop row">
-		<h1 class="col s12 m6 l3">{{user.user}}</h1>
-		  <!-- Dropdown Trigger -->
-	  <a class='dropdown-button btn col s6 m3 l1 offset-s3' href='#' data-activates='dropdown1' ng-click="dropDown()">Properties</a>
-
-	  <!-- Dropdown Structure -->
-	  <ul id='dropdown1' class='dropdown-content'>
-	    <li><a href="#!">{{addr.address.street_address}}</a></li>
-	    <li class="divider"></li>
-	    <li><a href="#/add-your-address">Add Property</a></li>
-	  </ul>
+		<h1 class="col s12 m12 l12">{{user.user}}</h1>
 	</div>
 	<div class="row">
     <div class="col s12">
@@ -23,11 +14,9 @@
     <div id="test1" class=" oveview col s12">
 			<div class="overview row">
 				<div class="home-img col s12 m6 l6">
-					<h1 class="flow-text">Add A picture of your home!</h1>
-					<img class="responsive-img" src="{{ $scope.houseImg }}">
+					<!-- <h1 class="flow-text">Add A picture of your home!</h1> -->
+					<img class="responsive-img" src="{{ houseImg.large }}">
 				</div>
-					<img class="responsive-img" src="{{ $scope.houseImg }}">
-
 				<div class="house-info col s12 m6 l6">
 					<h1 class="flow-text">Address: {{ mainProp.address.street_address }} {{ mainProp.address.city }} {{ mainProp.address.state }} {{ mainProp.address.zipcode }}</h1>
 					<h2 class="flow-text">Basic Information: </h2>
@@ -38,17 +27,27 @@
 					<blockquote> Year Built: {{ mainProp.yearbuilt }}</blockquote>
 				</div>
 			</div>
-			<form enctype="multipart/form-data" ng-submit="upload(pic)">
-				<input webkitdirectory type="file" ng-model="pic.profile" class="button"></input>
+			<form ng-submit="upload()">
+  			<input type="file" id="file-select" name="photo"/>
+  			<button type="submit">Upload</button>
 			</form>
     </div>
-    <div id="test2" class="rooms col s12">
+    <div id="test2" class="rooms row col s12">
 			<h1 class="flow-text">Your Rooms</h1>
 			<a ng-click="modal()">Add A Room</a>
 			<ul class="collapsible" data-collapsible="accordion">
-		    <li ng-repeat="room in rooms">
-		      <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>{{room.name}}</div>
-		      <div class="collapsible-body row">
+		    <li class="row" ng-repeat="room in rooms">
+		      <div class=" col l8 m6 s12 offset-l2 collapsible-header"><i class="mdi-image-filter-drama"></i>{{room.name}}</div>
+		      <div class=" col l8 m6 s12 offset-l2 collapsible-body row">
+		      	<h4 class="l6 m6 s12">Basic Room Info</h4>
+		      	<blockquote class="col l6 m6 s12">Square Feet: {{room.sqft}}</blockquote>
+		      	<blockquote class="col l6 m6 s12">Floor: {{room.flooring_type}}</blockquote>
+		      	<blockquote class="col l6 m6 s12">Paint Color: {{room.paint_color}}</blockquote>
+		      	<blockquote class="col l6 m6 s12">Items: </blockquote>
+		      	<a>Edit This Room</a>
+		      </div>
+		      <div class="col l8 m6 s12 offset-l2 collapsible-body row">
+		      	<h4>Basic Items Info</h4>
 		      	<blockquote class="col l6 m6 s12">Square Feet: {{room.sqft}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Floor: {{room.flooring_type}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Paint Color: {{room.paint_color}}</blockquote>
@@ -97,7 +96,7 @@
 </script>
 
 <!-- Modal Structure -->
-    <div id="modal2" class="modal" ng-controller="ProfileController">
+    <div id="modal2" class="modal" ng-controller="RoomsController">
       <div class="modal-content">
         <h2>Add A Room</h2>
         <form ng-submit="addRoom(rm)">

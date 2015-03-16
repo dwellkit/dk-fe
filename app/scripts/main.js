@@ -45,7 +45,7 @@
 
 		.when('/profile', {
 			templateUrl: 'scripts/profile/profile.tpl.html',
-			controller: 'ProfileController'
+			controller: 'ProfileController',
 		})
 
 		.otherwise({
@@ -70,7 +70,7 @@
 
 	.directive('addRoom', function () {
 		return {
-
+			restrict: 'AC',
 			templateUrl: 'scripts/modals/addRooms.modal.html'
 		};
 	});
