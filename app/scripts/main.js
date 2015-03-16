@@ -66,6 +66,13 @@
 
 			});
 		}
-	]);
+	])
+
+	.directive('addRoom', function () {
+		return {
+
+			templateUrl: 'scripts/modals/addRooms.modal.html'
+		};
+	});
 
 }());

@@ -41,7 +41,7 @@
 				addRm: addRoom,
 				dltRm: dltRoom,
 				upRm: updateRoom,
-				addIt: addItem
+				addIt: addItem,
 			};
 		}
 

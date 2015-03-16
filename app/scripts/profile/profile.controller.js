@@ -32,6 +32,7 @@
 				$scope.dropDown();
 				$scope.user = prop;
 				$scope.allProp = prop.property;
+				console.log($scope.allProp);
 				$scope.mainProp = prop.property[0];
 				console.log($scope.mainProp);
 				localStorage.setItem('currentProp', JSON.stringify(prop.property[0]));
@@ -39,6 +40,7 @@
 
 			// Grab current Property
 			$scope.currentProp = JSON.parse(localStorage.getItem('currentProp'));
+			console.log($scope.currentProp);
 
 			// Load Tabs
 			$scope.tabs = function (){
@@ -66,14 +68,38 @@
 			// Grab Specific Property
 			$scope.grabProperty = function (){
 				var propId = $scope.currentProp.id;
-				ProfileFactory.grabProp(propId).success( function (rooms){
-					console.log(rooms);
-					$scope.rooms = rooms.property.rooms;
+				console.log(propId);
+				ProfileFactory.grabProp(propId).success( function (data){
+					console.log(data);
+					$scope.houseImg = data.property.image;
+					console.log($scope.houseImg);
+					$scope.rooms = data.property.rooms;
 					console.log($scope.rooms);
 				});
 			};
 
 			$scope.grabProperty();
+
+			// Modal Config & Trigger
+			$scope.load = function () {
+				$('.modal-trigger').leanModal();
+			};
+
+			// Load Modal
+			$scope.load();
+
+			$scope.modal = function (){
+				$('#modal2').openModal();
+				$('#modal2').scope = $scope;
+				$scope.$emit('tpl:loaded');
+			};
+
+			// Add Room
+			$scope.addRoom = function (roomObj){
+				var propId = $scope.currentProp.id;
+				RoomsFactory.addRm(propId, { room: roomObj });
+				$scope.rm = null;
+			};
 
 		}
 

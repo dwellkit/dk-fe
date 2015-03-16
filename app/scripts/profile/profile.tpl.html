@@ -24,8 +24,10 @@
 			<div class="overview row">
 				<div class="home-img col s12 m6 l6">
 					<h1 class="flow-text">Add A picture of your home!</h1>
-					<!-- <img class="responsive-img" src="/images/house.jpg"> -->
+					<img class="responsive-img" src="{{ $scope.houseImg }}">
 				</div>
+					<img class="responsive-img" src="{{ $scope.houseImg }}">
+
 				<div class="house-info col s12 m6 l6">
 					<h1 class="flow-text">Address: {{ mainProp.address.street_address }} {{ mainProp.address.city }} {{ mainProp.address.state }} {{ mainProp.address.zipcode }}</h1>
 					<h2 class="flow-text">Basic Information: </h2>
@@ -36,13 +38,13 @@
 					<blockquote> Year Built: {{ mainProp.yearbuilt }}</blockquote>
 				</div>
 			</div>
-			<form enctype="multipart/form-data">
-				<button class="button" ng-file-select ng-model="files" ng-multiple="multiple">Select Photo</button>
+			<form enctype="multipart/form-data" ng-submit="upload(pic)">
+				<input webkitdirectory type="file" ng-model="pic.profile" class="button"></input>
 			</form>
-			<!-- <span class="l6 m6 s12" ng-file-select ng-click="addImage()">Choose Photo</span> -->
     </div>
     <div id="test2" class="rooms col s12">
 			<h1 class="flow-text">Your Rooms</h1>
+			<a ng-click="modal()">Add A Room</a>
 			<ul class="collapsible" data-collapsible="accordion">
 		    <li ng-repeat="room in rooms">
 		      <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>{{room.name}}</div>
@@ -51,7 +53,7 @@
 		      	<blockquote class="col l6 m6 s12">Floor: {{room.flooring_type}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Paint Color: {{room.paint_color}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Items: </blockquote>
-		      	<a href="">Edit This Room</a>
+		      	<a>Edit This Room</a>
 		      </div>
 		    </li>
 		  </ul>
@@ -93,3 +95,49 @@
     });
   });
 </script>
+
+<!-- Modal Structure -->
+    <div id="modal2" class="modal" ng-controller="ProfileController">
+      <div class="modal-content">
+        <h2>Add A Room</h2>
+        <form ng-submit="addRoom(rm)">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.name" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Room Name</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.sqft" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Square Footage</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.dimensions" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Dimensions</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.flooring_type" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Floor Type</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.wall_type" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Wall Type</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.paint_color" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Paint Color</label>
+            </div>
+          </div>           
+          <button>Add Room</button></br>
+          <small>You can leave any of the above items blank except the name!</small>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#/add-your-address" class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
+      </div>
+    </div>
