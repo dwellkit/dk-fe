@@ -71,6 +71,11 @@
 				$scope.$emit('tpl:loaded');
 			};
 
+			$scope.modal3 = function (roomId){
+				$('#modal3').openModal();
+				$('#modal3').scope = $scope;
+				$scope.$broadcast('tpl:loaded', roomId);
+			};
 		}
 
 	]);

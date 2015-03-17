@@ -61,21 +61,23 @@
 			};
 
 			// Add Items To Room
-			$scope.addItem = function (itemObj){
+			$scope.addItem = function (itemObj, roomId){
+				console.log(roomId);
 				var propId = $scope.addressInfo.property.id;
-
+				RoomsFactory.addIt(propId, roomId, { item: itemObj });
 			};
 
 			$scope.routeRoom = function (){
 				UserFactory.routeRoom();
 			};
 
-			$scope.$on('tpl:loaded', function(){
-				console.log('tpl loaded');
+			$scope.$on('tpl:loaded', function(event, roomId){
+				$scope.roomId = roomId;
 			});
 
 			$scope.$on('prop:grabbed', function (response, data){
 			});
+
 		}
 
 	]);

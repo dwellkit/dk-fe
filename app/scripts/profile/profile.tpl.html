@@ -1,14 +1,15 @@
 <div class="profile">
 	<div class="user-prop row">
-		<h1 class="col s12 m12 l12">{{user.user}}</h1>
+		<h1 class="col s12 m12 l12">{{ mainProp.address.full_address }}</h1>
 	</div>
 	<div class="row">
     <div class="col s12">
       <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="#test1">OverView</a></li>
-        <li class="tab col s3" ng-click="grabProperty()"><a href="#test2">Rooms</a></li>
-        <li class="tab col s3"><a href="#test3">Warranties</a></li>
-        <li class="tab col s3"><a href="#test4">Contacts</a></li>
+        <li class="tab col s12 m2 l2"><a class="active" href="#test1">OverView</a></li>
+        <li class="tab col s12 m2 l2" ng-click="grabProperty()"><a href="#test2">Rooms</a></li>
+        <li class="tab col s12 m2 l2"><a href="#test3">Warranties</a></li>
+        <li class="tab col s12 m2 l2"><a href="#test4">Contacts</a></li>
+        <li class="tab col s12 m2 l2"><a href="#test5">Items</a></li>
       </ul>
     </div>
     <div id="test1" class=" row overview col s12">
@@ -18,7 +19,6 @@
 					<img class="responsive-img" src="{{ houseImg.large }}">
 				</div>
 				<div class="house-info col s12 m6 l6">
-					<h1 class="flow-text">Address: {{ mainProp.address.full_address }}</h1>
 					<h2 class="flow-text">Basic Information: </h2>
 					<blockquote> Total Rooms: {{ mainProp.actual_rooms }} </blockquote>
 					<blockquote> Bedrooms: {{ mainProp.bedrooms }} </blockquote>
@@ -41,17 +41,15 @@
 		    <li class="row" ng-repeat="room in rooms">
 		      <div class=" col l10 m6 s12 offset-l1 offset-m3 collapsible-header"><i class="mdi-image-filter-drama"></i>{{room.name}} <span ng-controller="RoomsController" ng-click="dltRoom(room.id)">Delete Room</span></div>
 		      <div class=" col l10 m6 s12 offset-l1 offset-m3 collapsible-body row">
-		      	<h4 class="l6 m6 s12">Basic Room Info</h4>
+		      	<h4 class="l6 m6 s12">Basic Room Info</h4> <a>Edit Room</a>
 		      	<blockquote class="col l6 m6 s12">Square Feet: {{room.sqft}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Floor: {{room.flooring_type}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Paint Color: {{room.paint_color}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Items: </blockquote>
-		      	<a>Edit Room</a>
 		      </div>
 		      <div class="col l10 m6 s12 offset-l1 offset-m3 collapsible-body row">
-		      	<h4>Basic Items Info</h4>
+		      	<h4>Basic Items Info</h4><a ng-click="modal3(room.id)">Add Items</a>
 		      	
-		      	<a>Edit Items</a><a>Add Items</a>
 		      </div>
 		    </li>
 		  </ul>
@@ -87,7 +85,7 @@
 </div>
 
 
-<!-- Modal Structure -->
+<!-- Add Room Modal Structure -->
     <div id="modal2" class="modal" ng-controller="RoomsController">
       <div class="modal-content">
         <h2>Add A Room</h2>
@@ -125,6 +123,60 @@
             </div>
           </div>           
           <button>Add Room</button></br>
+          <small>You can leave any of the above items blank except the name!</small>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#/add-your-address" class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
+      </div>
+    </div>
+
+<!-- Add Items Modal Structure -->
+    <div id="modal3" class="modal" ng-controller="RoomsController">
+      <div class="modal-content">
+        <h2>Add Item to Room</h2>
+        <form ng-submit="addItem(item, roomId)">
+          <div class="row">
+            <div class="input-field col s6 offset-s3">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="item.name" id="icon_prefix" type="text">
+              <label for="icon_prefix">Item Name</label>
+            </div>
+            <div class="input-field col s6 offset-s3">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="item.serial_number" id="icon_prefix" type="text">
+              <label for="icon_prefix">Serial Number</label>
+            </div>
+            <div class="input-field col s6 offset-s3">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="item.price" id="icon_prefix" type="text">
+              <label for="icon_prefix">Price</label>
+            </div>
+            <div class="input-field col s6 offset-s3">
+            	<h6>Purchase Date</h6>
+							<input ng-model="item.purchase_date" type="date" class="datepicker">
+            </div>
+            <div class="input-field col s6 offset-s3">
+            	<h6>Category</h6>
+							<p>
+						    <input name="group1" type="radio" id="test1" />
+						    <label for="test1">Appliance</label>
+						  </p>
+						  <p>
+						    <input name="group1" type="radio" id="test2" />
+						    <label for="test2">Antique</label>
+						  </p>
+						  <p>
+						    <input name="group1" type="radio" id="test3"  />
+						    <label for="test3">Furniture</label>
+						  </p>
+						    <p>
+						      <input name="group1" type="radio" id="test4" />
+						      <label for="test4">Electronic</label>
+						  </p>
+            </div>
+          </div>           
+          <button>Add Item</button></br>
           <small>You can leave any of the above items blank except the name!</small>
         </form>
       </div>

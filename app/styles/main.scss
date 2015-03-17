@@ -284,8 +284,7 @@ form{
 		-webkit-box-shadow: none;
 		box-shadow: none;
 		div.collapsible-header:hover{
-			background-color: #0493D9;
-			color: white;
+			background-color: lightgray;
 		}
 		span{
 			float:right;
@@ -374,3 +373,23 @@ footer.page-footer{
 		border-top: 0.2rem solid lightgray;
 	}
 }
+#modal3{
+	width: 50rem;
+	height: 60rem;
+	border: 0.3rem solid #0493D9;
+	border-radius: 0.5rem;
+	background-color: white;
+	input{
+		margin-bottom: 0;
+	}
+	button{
+		@include button();
+		padding: 1rem;
+		border: none;
+		margin-top: 1rem;
+		border-radius: 0.2rem;
+	}
+	.modal-footer{
+		border-top: 0.2rem solid lightgray;
+	}
+}	
