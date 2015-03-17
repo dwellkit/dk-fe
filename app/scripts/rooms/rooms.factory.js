@@ -42,11 +42,17 @@
 					});
 			};
 
+			// Delete Item
+			var dltItem = function (roomId){
+				$http.delete(heroku.url + 'items/' + roomId);
+			};
+
 			return{
 				addRm: addRoom,
 				dltRm: dltRoom,
 				upRm: updateRoom,
 				addIt: addItem,
+				dltIt: dltItem
 			};
 		}
 

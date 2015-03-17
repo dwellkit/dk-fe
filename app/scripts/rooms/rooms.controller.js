@@ -31,7 +31,7 @@
 			// Load Accordion
 			$scope.accord();
 
-
+			// Add Room Modal
 			$scope.modal = function (){
 				$('#modal2').openModal();
 				$('#modal2').scope = $scope;
@@ -65,6 +65,11 @@
 				console.log(roomId);
 				var propId = $scope.addressInfo.property.id;
 				RoomsFactory.addIt(propId, roomId, { item: itemObj });
+			};
+
+			// Delete Items
+			$scope.dltItem = function (itemId){
+				RoomsFactory.dltIt(itemId);
 			};
 
 			$scope.routeRoom = function (){

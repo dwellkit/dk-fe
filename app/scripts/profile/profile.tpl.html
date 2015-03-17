@@ -35,21 +35,23 @@
     <div id="test2" class="rooms row col s12">
     	<div class="room-head">
 				<h1 class="flow-text">Your Rooms</h1>
-				<a ng-click="modal()">Add A Room</a>
+				<a ng-click="modal2()">Add A Room</a>
 			</div>
 			<ul class="collapsible" data-collapsible="accordion">
 		    <li class="row" ng-repeat="room in rooms">
-		      <div class=" col l10 m6 s12 offset-l1 offset-m3 collapsible-header"><i class="mdi-image-filter-drama"></i>{{room.name}} <span ng-controller="RoomsController" ng-click="dltRoom(room.id)">Delete Room</span></div>
+		      <div class=" col l10 m6 s12 offset-l1 offset-m3 collapsible-header"><i class="mdi-image-filter-drama"></i>{{room.name}} <span ng-controller="RoomsController" ng-click="dltRoom(room.id)">| Delete Room</span></div>
 		      <div class=" col l10 m6 s12 offset-l1 offset-m3 collapsible-body row">
-		      	<h4 class="l6 m6 s12">Basic Room Info</h4> <a>Edit Room</a>
+		      	<h4 class="l6 m6 s12">Room Info</h4> <a>Edit Room</a>
 		      	<blockquote class="col l6 m6 s12">Square Feet: {{room.sqft}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Floor: {{room.flooring_type}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Paint Color: {{room.paint_color}}</blockquote>
-		      	<blockquote class="col l6 m6 s12">Items: </blockquote>
+		      	<blockquote class="col l6 m6 s12">Dimensions: {{room.dimensions}}</blockquote>
 		      </div>
 		      <div class="col l10 m6 s12 offset-l1 offset-m3 collapsible-body row">
-		      	<h4>Basic Items Info</h4><a ng-click="modal3(room.id)">Add Items</a>
-		      	
+		      	<h4>Items Info</h4><a ng-click="modal3(room.id)">Add Items</a>
+						<div class="items" ng-repeat="item in room.items">
+		      		<blockquote>Item: {{item.name}}</blockquote>
+		      	</div>
 		      </div>
 		    </li>
 		  </ul>

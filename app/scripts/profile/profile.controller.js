@@ -45,12 +45,11 @@
 			// Grab Specific Property
 			$scope.grabProperty = function (){
 				var propId = $scope.currentProp.id;
-				console.log(propId);
 				ProfileFactory.grabProp(propId).success( function (data){
 					$scope.houseImg = data.property.image;
 					$scope.rooms = data.property.rooms;
-					localStorage.setItem('propRooms', JSON.stringify(data.property.rooms));
 					console.log($scope.rooms);
+					localStorage.setItem('propRooms', JSON.stringify(data.property.rooms));
 					$rootScope.$broadcast('prop:grabbed', data);
 				});
 			};
@@ -65,12 +64,14 @@
 			// Load Modal
 			$scope.load();
 
-			$scope.modal = function (){
+
+			$scope.modal2 = function (){
 				$('#modal2').openModal();
 				$('#modal2').scope = $scope;
 				$scope.$emit('tpl:loaded');
 			};
 
+			// Add Item Modal
 			$scope.modal3 = function (roomId){
 				$('#modal3').openModal();
 				$('#modal3').scope = $scope;

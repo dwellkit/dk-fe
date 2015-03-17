@@ -4,8 +4,8 @@
 
 	angular.module('DwellingKit')
 
-	.factory('ProfileFactory', ['$http', '$rootScope', 'heroku', '$upload',
-		function ($http, $rootScope, heroku, $upload){
+	.factory('ProfileFactory', ['$http', '$rootScope', 'heroku',
+		function ($http, $rootScope, heroku){
 
 			// Grab User Info
 			var grabUser = function (){
