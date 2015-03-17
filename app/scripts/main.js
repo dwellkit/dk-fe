@@ -54,8 +54,8 @@
 
 	})
 
-	.run([ '$rootScope', 'UserFactory', 'heroku', 
-		function ($rootScope, UserFactory, heroku){
+	.run([ '$rootScope', 'UserFactory', 'heroku', '$location',
+		function ($rootScope, UserFactory, heroku, $location){
 			$rootScope.$on('$routeChangeStart', function (){
 
 				// Check User

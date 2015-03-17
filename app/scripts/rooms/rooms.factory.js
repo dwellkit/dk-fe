@@ -16,8 +16,8 @@
 			};
 
 			// Delete A Room
-			var dltRoom = function (propId, roomId, roomObj){
-				$http.delete(heroku.url + '/properties' + propId + '/rooms/' + roomId, roomObj, heroku.config)
+			var dltRoom = function (propId, roomId){
+				return $http.delete(heroku.url + 'properties/' + propId + '/rooms/' + roomId, heroku.config)
 					.success( function (response){
 						console.log(response);
 						console.log('room deleted');
@@ -25,15 +25,20 @@
 			};
 
 			// Update A Room
-			var updateRoom = function (){
-
+			var updateRoom = function (propId, roomId, roomObj){
+				$http.put(heroku.url + 'properties/' + propId + '/rooms/' + roomId, roomObj, heroku.config)
+					.success( function (response){
+						console.log(response);
+						console.log('room updated');
+					});
 			};
 
 			// Add Items To Room
-			var addItem = function (propId, roomId, roomObj){
-				$http.post(heroku.url + 'properties/' + propId + '/rooms/' + roomId + '/items')
+			var addItem = function (propId, roomId, itemObj){
+				$http.post(heroku.url + 'properties/' + propId + '/rooms/' + roomId + '/items', itemObj, heroku.config)
 					.success(function (response){
 						console.log(response);
+						console.log('item added');
 					});
 			};
 

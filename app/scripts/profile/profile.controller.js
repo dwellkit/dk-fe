@@ -4,8 +4,8 @@
 
 	angular.module('DwellingKit')
 
-	.controller('ProfileController', [ '$scope', 'UserFactory', 'ProfileFactory', 'RoomsFactory',
-		function ($scope, UserFactory, ProfileFactory, RoomsFactory){
+	.controller('ProfileController', [ '$scope', 'UserFactory', 'ProfileFactory', 'RoomsFactory', '$rootScope',
+		function ($scope, UserFactory, ProfileFactory, RoomsFactory, $rootScope){
 
 			// Check User
 			UserFactory.user();
@@ -16,8 +16,6 @@
 			// Grab User Info
 			ProfileFactory.grab().success( function (prop){
 				$scope.user = prop;
-				$scope.allProp = prop.property;
-				console.log($scope.allProp);
 				$scope.mainProp = prop.property[0];
 				console.log($scope.mainProp);
 				localStorage.setItem('currentProp', JSON.stringify(prop.property[0]));
@@ -49,11 +47,11 @@
 				var propId = $scope.currentProp.id;
 				console.log(propId);
 				ProfileFactory.grabProp(propId).success( function (data){
-					console.log(data);
 					$scope.houseImg = data.property.image;
-					console.log($scope.houseImg.large);
 					$scope.rooms = data.property.rooms;
+					localStorage.setItem('propRooms', JSON.stringify(data.property.rooms));
 					console.log($scope.rooms);
+					$rootScope.$broadcast('prop:grabbed', data);
 				});
 			};
 

@@ -4,8 +4,8 @@
 
 	angular.module('DwellingKit')
 
-	.factory('UserFactory', ['$http', '$rootScope', '$cookieStore', 'heroku',
-		function ($http, $rootScope, $cookieStore, heroku){
+	.factory('UserFactory', ['$http', '$rootScope', '$cookieStore', 'heroku', '$location',
+		function ($http, $rootScope, $cookieStore, heroku, $location){
 
 			// Get Current User
 			var currentUser = function (){

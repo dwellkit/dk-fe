@@ -21,6 +21,17 @@
 			// Load Modal
 			$scope.load();
 
+			// Config Accordion
+			$scope.accord = function (){
+				$('.collapsible').collapsible({
+      		accordion : false
+    		});
+			};
+
+			// Load Accordion
+			$scope.accord();
+
+
 			$scope.modal = function (){
 				$('#modal2').openModal();
 				$('#modal2').scope = $scope;
@@ -29,8 +40,6 @@
 
 			// Grab localStorage addressInfo
 			$scope.addressInfo = JSON.parse(localStorage.getItem('addressInfo'));
-			console.log($scope.addressInfo);
-			console.log($scope.addressInfo.property.id);
 
 			// Add A Room
 			$scope.addRoom = function (roomObj){
@@ -40,17 +49,20 @@
 			};
 
 			// Delete A Room
-			$scope.dltRoom = function (roomObj){
-
+			$scope.dltRoom = function (roomId){
+				var propId = $scope.addressInfo.property.id;
+				RoomsFactory.dltRm(propId, roomId);
 			};
 
 			// Update A Room
 			$scope.updateRoom = function (roomObj){
+				var propId = $scope.addressInfo.property.id;
 
 			};
 
 			// Add Items To Room
 			$scope.addItem = function (itemObj){
+				var propId = $scope.addressInfo.property.id;
 
 			};
 
@@ -62,6 +74,8 @@
 				console.log('tpl loaded');
 			});
 
+			$scope.$on('prop:grabbed', function (response, data){
+			});
 		}
 
 	]);

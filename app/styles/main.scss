@@ -8,6 +8,7 @@ $button-txtcolor: white;
 $button-fsize: 1rem;
 $button-mar-top: 5rem;
 $button-hover: #003A82;
+$button-pointer: pointer;
 
 // Mixins
 @mixin button(){
@@ -15,6 +16,7 @@ $button-hover: #003A82;
 	color: $button-txtcolor;
 	font-size: $button-fsize;
 	border: none;
+	cursor: $button-pointer;
 	margin-top: $button-mar-top;
 	&:hover{
 		background-color: $button-hover;
@@ -264,9 +266,10 @@ form{
 		}
 	}
 	.home-img{
-		height: 30rem;
-		border: 0.1rem solid black;
+		height: auto;
+		border: 0.2rem solid black;
 		overflow: hidden;
+		padding: 0;
 		h1{
 			margin-top: 25%;
 			text-align: center;
@@ -277,12 +280,46 @@ form{
 		@include button();
 		margin-top: 0.5rem;
 	}
+	.collapsible{
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		div.collapsible-header:hover{
+			background-color: #0493D9;
+			color: white;
+		}
+		span{
+			float:right;
+			color: red;
+			padding: 0 1rem 0 1rem;
+			&:hover{
+				background-color: red;
+				color: white;
+			}
+		}
+	}
 	.collapsible .row{
 		margin-top: 0;
 		margin-bottom: 0;
+		.col{
+			padding-right: 0;
+		}
 	}
 	ul{
 		border: none;
+	}
+	.overview input{
+		cursor: pointer;
+	}
+}
+
+.rooms{
+	a{
+		@include button();
+		padding: 1rem;
+	}
+	.room-head{
+		margin-bottom: 3rem;
+		text-align: center;
 	}
 }
 
@@ -291,10 +328,12 @@ form{
 	color: #0493D9;
 }
 .card-action{
+	margin-bottom: 2rem;
 	a{
 		color: #0493D9;
 	}
 }
+
 
 
 // Footer

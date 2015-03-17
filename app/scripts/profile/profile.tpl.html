@@ -11,14 +11,14 @@
         <li class="tab col s3"><a href="#test4">Contacts</a></li>
       </ul>
     </div>
-    <div id="test1" class=" oveview col s12">
+    <div id="test1" class=" row overview col s12">
 			<div class="overview row">
 				<div class="home-img col s12 m6 l6">
 					<!-- <h1 class="flow-text">Add A picture of your home!</h1> -->
 					<img class="responsive-img" src="{{ houseImg.large }}">
 				</div>
 				<div class="house-info col s12 m6 l6">
-					<h1 class="flow-text">Address: {{ mainProp.address.street_address }} {{ mainProp.address.city }} {{ mainProp.address.state }} {{ mainProp.address.zipcode }}</h1>
+					<h1 class="flow-text">Address: {{ mainProp.address.full_address }}</h1>
 					<h2 class="flow-text">Basic Information: </h2>
 					<blockquote> Total Rooms: {{ mainProp.actual_rooms }} </blockquote>
 					<blockquote> Bedrooms: {{ mainProp.bedrooms }} </blockquote>
@@ -27,32 +27,31 @@
 					<blockquote> Year Built: {{ mainProp.yearbuilt }}</blockquote>
 				</div>
 			</div>
-			<form ng-submit="upload()">
+			<form class="col s12 m3 l3" ng-submit="upload()">
   			<input type="file" id="file-select" name="photo"/>
   			<button type="submit">Upload</button>
 			</form>
     </div>
     <div id="test2" class="rooms row col s12">
-			<h1 class="flow-text">Your Rooms</h1>
-			<a ng-click="modal()">Add A Room</a>
+    	<div class="room-head">
+				<h1 class="flow-text">Your Rooms</h1>
+				<a ng-click="modal()">Add A Room</a>
+			</div>
 			<ul class="collapsible" data-collapsible="accordion">
 		    <li class="row" ng-repeat="room in rooms">
-		      <div class=" col l8 m6 s12 offset-l2 collapsible-header"><i class="mdi-image-filter-drama"></i>{{room.name}}</div>
-		      <div class=" col l8 m6 s12 offset-l2 collapsible-body row">
+		      <div class=" col l10 m6 s12 offset-l1 offset-m3 collapsible-header"><i class="mdi-image-filter-drama"></i>{{room.name}} <span ng-controller="RoomsController" ng-click="dltRoom(room.id)">Delete Room</span></div>
+		      <div class=" col l10 m6 s12 offset-l1 offset-m3 collapsible-body row">
 		      	<h4 class="l6 m6 s12">Basic Room Info</h4>
 		      	<blockquote class="col l6 m6 s12">Square Feet: {{room.sqft}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Floor: {{room.flooring_type}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Paint Color: {{room.paint_color}}</blockquote>
 		      	<blockquote class="col l6 m6 s12">Items: </blockquote>
-		      	<a>Edit This Room</a>
+		      	<a>Edit Room</a>
 		      </div>
-		      <div class="col l8 m6 s12 offset-l2 collapsible-body row">
+		      <div class="col l10 m6 s12 offset-l1 offset-m3 collapsible-body row">
 		      	<h4>Basic Items Info</h4>
-		      	<blockquote class="col l6 m6 s12">Square Feet: {{room.sqft}}</blockquote>
-		      	<blockquote class="col l6 m6 s12">Floor: {{room.flooring_type}}</blockquote>
-		      	<blockquote class="col l6 m6 s12">Paint Color: {{room.paint_color}}</blockquote>
-		      	<blockquote class="col l6 m6 s12">Items: </blockquote>
-		      	<a>Edit This Room</a>
+		      	
+		      	<a>Edit Items</a><a>Add Items</a>
 		      </div>
 		    </li>
 		  </ul>
@@ -87,13 +86,6 @@
 	</ul> -->
 </div>
 
-<script>
-	$(document).ready(function(){
-    $('.collapsible').collapsible({
-      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-    });
-  });
-</script>
 
 <!-- Modal Structure -->
     <div id="modal2" class="modal" ng-controller="RoomsController">
