@@ -289,21 +289,21 @@ form{
 		box-shadow: none;
 		div{
 			padding-bottom: 2rem;
+			background-color: none;
 		}
 		div.collapsible-header{
 			font-size: 1.3rem;
 		}
 		div.collapsible-header:hover{
-			background-color: lightgray;
+			background-color: RGBA(251, 250, 248, 1);
 		}
 		span{
 			float:right;
-			color: red;
+			color: lightgray;
 			font-size: 0.8rem;
 			padding: 0 1rem 0 1rem;
 			&:hover{
-				background-color: red;
-				color: white;
+				color: red;
 			}
 		}
 	}
@@ -314,8 +314,13 @@ form{
 			padding-right: 0;
 		}
 	}
+	#test2{
+			margin-top: 0;
+	}
 	ul{
 		border: none;
+		padding-top: 0;
+		margin-top: 0;
 		a{
 			float:right;
 		}

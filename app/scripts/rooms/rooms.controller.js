@@ -46,6 +46,7 @@
 				var propId = $scope.addressInfo.property.id;
 				RoomsFactory.addRm(propId, {room: roomObj});
 				$scope.rm = null;
+
 			};
 
 			// Delete A Room
@@ -69,18 +70,20 @@
 
 			// Delete Items
 			$scope.dltItem = function (itemId){
-				RoomsFactory.dltIt(itemId);
+				console.log(itemId);
+				// RoomsFactory.dltIt(itemId);
 			};
 
 			$scope.routeRoom = function (){
 				UserFactory.routeRoom();
 			};
 
-			$scope.$on('tpl:loaded', function(event, roomId){
+			$scope.$on('tpl:loaded', function (event, roomId){
 				$scope.roomId = roomId;
 			});
 
-			$scope.$on('prop:grabbed', function (response, data){
+			$scope.$on('prop:grabbed', function (event, data){
+				console.log(data);
 			});
 
 		}
