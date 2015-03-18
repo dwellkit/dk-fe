@@ -71,7 +71,7 @@
 			// Delete Items
 			$scope.dltItem = function (itemId){
 				console.log(itemId);
-				// RoomsFactory.dltIt(itemId);
+				RoomsFactory.dltIt(itemId);
 			};
 
 			$scope.routeRoom = function (){

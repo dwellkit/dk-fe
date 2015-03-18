@@ -49,12 +49,19 @@
 					$scope.houseImg = data.property.image;
 					$scope.rooms = data.property.rooms;
 					console.log($scope.rooms);
+					$scope.singRoom = data.property.rooms[0];
 					localStorage.setItem('propRooms', JSON.stringify(data.property.rooms));
 					$rootScope.$broadcast('prop:grabbed', data);
 				});
 			};
 
 			$scope.grabProperty();
+
+			// Show Room Info Upon Click
+			$scope.displaySingle = function (room){
+				$scope.singRoom = room;
+				$scope.roomItems = room.items;
+			};
 
 			// Modal Config & Trigger
 			$scope.load = function () {

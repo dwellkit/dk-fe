@@ -44,7 +44,7 @@
 
 			// Delete Item
 			var dltItem = function (roomId){
-				$http.delete(heroku.url + 'items/' + roomId);
+				$http.delete(heroku.url + 'items/' + roomId, heroku.config);
 			};
 
 			return{

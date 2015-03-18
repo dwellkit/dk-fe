@@ -27,9 +27,9 @@
     <!-- Header -->
     <header>
       <nav ng-controller="NavController" class="row">
-        <div class="nav-wrapper">
-          <a href="#/"><img src="../images/icon_transparent.png" alt=""></a>
-          <ul class="right" ng-show="loggedin">
+        <div class="nav-wrapper row col s12">
+          <a class="col s4 l4" href="#/"><img src="../images/icon_transparent.png" alt=""><p ng-show="loggedin" class="flowtext" ng-controller="ProfileController">{{ mainProp.address.full_address }}</p></a>
+          <ul class="right col l8 s4" ng-show="loggedin">
             <a href="#/profile"><li><i class="mdi-communication-contacts prefix"></i>Profile</li></a>
             <a ng-click="logout()" href="#/"><li><i class="mdi-navigation-close prefix"></i>Logout</li></a>
           </ul>
