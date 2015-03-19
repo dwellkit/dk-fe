@@ -464,3 +464,26 @@ footer.page-footer{
 		border-top: 0.2rem solid lightgray;
 	}
 }	
+#modal4{
+	width: 50rem;
+	height: 31rem;
+	border: 0.3rem solid #0493D9;
+	border-radius: 0.5rem;
+	background-color: white;
+	input{
+		margin-bottom: 0;
+	}
+	h2{
+		text-align: center;
+	}
+	button{
+		@include button();
+		padding: 1rem;
+		border: none;
+		margin-top: 1rem;
+		border-radius: 0.2rem;
+	}
+	.modal-footer{
+		border-top: 0.2rem solid lightgray;
+	}
+}

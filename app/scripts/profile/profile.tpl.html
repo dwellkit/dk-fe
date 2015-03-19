@@ -8,7 +8,7 @@
         <li class="tab col s12 m2 l2"><a class="active" href="#test1">OverView</a></li>
         <li class="tab col s12 m2 l2" ng-click="grabProperty()"><a href="#test2">Rooms</a></li>
         <li class="tab col s12 m2 l2"><a href="#test3">Warranties</a></li>
-        <li class="tab col s12 m2 l2"><a href="#test4">Contacts</a></li>
+        <li class="tab col s12 m2 l2" ng-click="grabContacts()"><a href="#test4">Contacts</a></li>
         <li class="tab col s12 m2 l2" ng-click="grabItems()"><a href="#test5">Items</a></li>
       </ul>
     </div>
@@ -119,20 +119,25 @@
 
     <!-- Contacts Tab -->
 
-    <div id="test4" class="contact col s12">
-			<h1 class="flow-text">Your Contacts</h1>
+    <div id="test4" class="contact col s12 m12 l12">
 			<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Contacts">
-			<a class="col s12 m12 l12" href="">Add A Contact</a>
-			<div class="row">
-        <div class=" c-card col s12 m3 l3">
+			<a class="col s12 m12 l12" ng-click="modal4()">Add A Contact</a>
+			<div class="row col l3" ng-repeat="contact in contacts">
+        <div class=" c-card col s12 m12 l12">
           <div class="card white darken-1">
             <div class="card-content black-text">
-              <span class="card-title">Contact Card</span>
-              <p>This is a sample of what your contact card will look like. Once you started adding contacts they will populate like this.</p>
+              <span class="card-title">{{contact.name}}</span>
+              <ul>
+              	<li> Company: {{contact.company}} </li>
+              	<li> URL: {{contact.url}}</li>
+              	<li> Phone: {{contact.telephone_number}}</li>
+              	<li> Email: {{contact.email}}</li>
+              	<li> Notes: {{contact.notes}}</li>
+              </ul>
             </div>
             <div class="card-action">
-              <a href="#">Call</a>
-              <a href='#'>Email</a>
+              <a href="tel:{{contact.telephone_number}}">Call</a>
+              <a href='mailto:{{contact.email}}'>Email</a>
             </div>
           </div>
         </div>
@@ -272,5 +277,56 @@
       </div>
       <div class="modal-footer">
         <a href="#/add-your-address" class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
+      </div>
+    </div>
+
+    <!-- Add Contact Modal Structure -->
+
+    <div id="modal4" class="modal" ng-controller="ProfileController">
+      <div class="modal-content">
+        <h2>Add Contact</h2>
+        <form ng-submit="addContact(contact)">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.name" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Contact Name</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.email" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Email</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.company" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Company</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.telephone_number" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Phone Number</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.fax_number" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Fax</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.url" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">URL</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.notes" id="icon_prefix" type="textarea" class="validate">
+              <label for="icon_prefix">Notes</label>
+            </div>
+          </div>           
+          <button>Add Contact</button></br>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
       </div>
     </div>

@@ -74,7 +74,7 @@
 			});
 
 			$scope.$on('prop:grabbed', function (event, data){
-				console.log(data);
+				console.log('grabbed');
 			});
 
 		}

@@ -71,6 +71,22 @@
 				});
 			};
 
+			// Add Contact
+			$scope.addContact = function (contObj){
+				var propId = $scope.currentProp.id;
+				ContactsFactory.addCont(propId, { contact: contObj });
+				$scope.contact = null;
+			};
+
+			// Grab Contacts
+			$scope.grabContacts = function (){
+				var propId = $scope.currentProp.id;
+				ContactsFactory.grabCont(propId).success( function (data){
+					$scope.contacts = data.contacts;
+					console.log($scope.contacts);
+				});
+			};
+
 			// Modal Config & Trigger
 			$scope.load = function () {
 				$('.modal-trigger').leanModal();
@@ -90,6 +106,13 @@
 			$scope.modal3 = function (roomId){
 				$('#modal3').openModal();
 				$('#modal3').scope = $scope;
+				$scope.$broadcast('tpl:loaded', roomId);
+			};
+
+			// Add Contact Modal
+			$scope.modal4 = function (roomId){
+				$('#modal4').openModal();
+				$('#modal4').scope = $scope;
 				$scope.$broadcast('tpl:loaded', roomId);
 			};
 		}
