@@ -9,7 +9,7 @@
         <li class="tab col s12 m2 l2" ng-click="grabProperty()"><a href="#test2">Rooms</a></li>
         <li class="tab col s12 m2 l2"><a href="#test3">Warranties</a></li>
         <li class="tab col s12 m2 l2"><a href="#test4">Contacts</a></li>
-        <li class="tab col s12 m2 l2"><a href="#test5">Items</a></li>
+        <li class="tab col s12 m2 l2" ng-click="grabItems()"><a href="#test5">Items</a></li>
       </ul>
     </div>
 
@@ -68,8 +68,8 @@
     		</li>
 				<li class="addrm col l12 m12 s12" ng-click="modal2()">Add A Room</li>
     	</ul>
-    	<div class="roomInfo col l7 m6 s12 offset-l1" ng-model="singRoom">
-    		<h5>{{singRoom.name}} <i class="mdi-editor-border-color" > Edit Room</i></h5>
+    	<div class="roomInfo col l7 m6 s12 offset-l1" ng-model="singRoom" ng-controller="RoomsController">
+    		<h5 ng-click="editRoom()">{{singRoom.name}} <i class="mdi-editor-border-color"> Edit Room</i></h5>
 		  	<table>
 	        <thead>
 	          <tr>
@@ -80,7 +80,7 @@
 	        <tbody>
 	          <tr>
 	            <td>Sqaurefeet</td>
-	            <td>{{ singRoom.sqft }}</td>
+	            <td contenteditable="true">{{ singRoom.sqft }}</td>
 	          </tr>
 	          <tr>
 	          	<td>Flooring Type</td>
@@ -136,6 +136,37 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+		<!-- Items Tab -->
+
+    <div id="test5" class="items-tab contact col s12">
+			<h1 class="flow-text">Items</h1>
+			<div class="row">
+      	<table>
+	        <thead>
+	          <tr>
+	              <th data-field="id">Item Name</th>
+	              <th data-field="name">Price</th>
+	              <th data-field="name">Purchase Date</th>
+	              <th data-field="name">Category</th>
+	              <th data-field="name">Serial Number</th>
+	              <th data-field="name">Warranty</th>
+	              <th data-field="name">Picture</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <tr ng-repeat="item in items">
+	            <td>{{ item.name }}</td>
+	            <td>{{ item.price }}</td>
+	            <td>{{ item.purchase_date }}</td>
+	            <td>{{ item.category }}</td>
+	            <td>{{ item.serial_number }}</td>
+	            <td>{{ item.warranty_id }}</td>
+	          </tr>
+	        </tbody>
+	      </table>
       </div>
     </div>
   </div>

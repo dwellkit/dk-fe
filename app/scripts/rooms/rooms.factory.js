@@ -25,7 +25,7 @@
 			};
 
 			// Update A Room
-			var updateRoom = function (propId, roomId, roomObj){
+			var editRoom = function (propId, roomId, roomObj){
 				$http.put(heroku.url + 'properties/' + propId + '/rooms/' + roomId, roomObj, heroku.config)
 					.success( function (response){
 						console.log(response);
@@ -50,7 +50,7 @@
 			return{
 				addRm: addRoom,
 				dltRm: dltRoom,
-				upRm: updateRoom,
+				editRm: editRoom,
 				addIt: addItem,
 				dltIt: dltItem
 			};

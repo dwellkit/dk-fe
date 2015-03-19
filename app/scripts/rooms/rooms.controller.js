@@ -21,16 +21,6 @@
 			// Load Modal
 			$scope.load();
 
-			// Config Accordion
-			$scope.accord = function (){
-				$('.collapsible').collapsible({
-      		accordion : false
-    		});
-			};
-
-			// Load Accordion
-			$scope.accord();
-
 			// Add Room Modal
 			$scope.modal = function (){
 				$('#modal2').openModal();
@@ -56,9 +46,10 @@
 			};
 
 			// Update A Room
-			$scope.updateRoom = function (roomObj){
+			$scope.editRoom = function (roomObj){
 				var propId = $scope.addressInfo.property.id;
 
+				RoomsFactory.editRm(propId, roomId, roomObj);
 			};
 
 			// Add Items To Room

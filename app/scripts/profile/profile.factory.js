@@ -14,7 +14,6 @@
 						url: heroku.url + 'users/info' ,
 						method: 'GET'
 				}).success( function (data){
-						console.log(data);
 						$rootScope.$broadcast('user:fetch');
 				});
 			};
@@ -45,10 +44,19 @@
 				});
 			};
 
+			var grabItems = function (propId){
+				return $http({
+					headers: heroku.config.headers,
+					url: heroku.url + 'properties/' + propId + '/items',
+					method: 'GET'
+				});
+			};
+
 			return {
 				grab: grabUser,
 				addImg: addImage,
-				grabProp: grabProperty
+				grabProp: grabProperty,
+				grabItems: grabItems
 			};
 
 		}

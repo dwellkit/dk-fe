@@ -4,8 +4,8 @@
 
 	angular.module('DwellingKit')
 
-	.controller('ProfileController', [ '$scope', 'UserFactory', 'ProfileFactory', 'RoomsFactory', '$rootScope',
-		function ($scope, UserFactory, ProfileFactory, RoomsFactory, $rootScope){
+	.controller('ProfileController', [ '$scope', 'UserFactory', 'ProfileFactory', 'RoomsFactory', '$rootScope', 'ContactsFactory',
+		function ($scope, UserFactory, ProfileFactory, RoomsFactory, $rootScope, ContactsFactory){
 
 			// Check User
 			UserFactory.user();
@@ -21,9 +21,8 @@
 				localStorage.setItem('currentProp', JSON.stringify(prop.property[0]));
 			});
 
-			// Grab current Property
+			// Grab current Property from LS
 			$scope.currentProp = JSON.parse(localStorage.getItem('currentProp'));
-			console.log($scope.currentProp);
 
 			// Set Up Tabs
 			$scope.tabs = function (){
@@ -63,6 +62,15 @@
 				$scope.roomItems = room.items;
 			};
 
+			// Grab All Items
+			$scope.grabItems = function (){
+				var propId = $scope.currentProp.id;
+				ProfileFactory.grabItems(propId).success( function (data){
+					$scope.items = data.items;
+					console.log($scope.items);
+				});
+			};
+
 			// Modal Config & Trigger
 			$scope.load = function () {
 				$('.modal-trigger').leanModal();
@@ -71,7 +79,7 @@
 			// Load Modal
 			$scope.load();
 
-
+			// Add Room Modal
 			$scope.modal2 = function (){
 				$('#modal2').openModal();
 				$('#modal2').scope = $scope;
