@@ -2,9 +2,6 @@
 
 	'use strict';
 
-	// File Picker Key
-	filepicker.setKey("A54bKitiuSVQ3a9gF1SdBz");
-
 	// Angular Module
 	angular.module('DwellingKit', ['ngRoute', 'ngCookies', 'angularFileUpload'])
 

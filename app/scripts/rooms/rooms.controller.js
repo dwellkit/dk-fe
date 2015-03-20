@@ -65,11 +65,6 @@
 				RoomsFactory.addIt(propId, roomId, { item: itemObj });
 			};
 
-			// Delete Items
-			$scope.dltItem = function (itemId){
-				RoomsFactory.dltIt(itemId);
-			};
-
 			$scope.routeRoom = function (){
 				UserFactory.routeRoom();
 			};

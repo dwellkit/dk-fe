@@ -21,7 +21,7 @@
 					<!-- <h1 class="flow-text">Add A picture of your home!</h1> -->
 					<img class="responsive-img" src="{{ houseImg.large }}">
 				</div>
-				<div class="house-info col s12 m6 l6">
+				<div class="house-info col s12 m4 l4">
 					<table>
 		        <thead>
 		          <tr>
@@ -51,6 +51,20 @@
 		          </tr>
 		        </tbody>
 		      </table>
+				</div>
+				<div class="collage col l4 m4 s12">
+					<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
+					</a>
+					<a href="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg">
+					</a>
+					<a href="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg">
+					</a>
+					<a href="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh" data-lightbox="home">
+						<img data-lightbox="home" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh">
+					</a>
 				</div>
 			</div>
 			<form class=" upld-pic col s12 m3 l3" ng-submit="upload()">
@@ -181,6 +195,8 @@
 	            <td>{{ item.category }}</td>
 	            <td>{{ item.serial_number }}</td>
 	            <td>{{ item.warranty_id }}</td>
+	            <td>Picture</td>
+	            <td><span><i class="mdi-content-backspace" ng-click="dltItem(item.id)"></i></span></td>
 	          </tr>
 	        </tbody>
 	      </table>
@@ -266,24 +282,14 @@
             	<h6>Purchase Date</h6>
 							<input ng-model="item.purchase_date" type="date" class="datepicker">
             </div>
-            <div class="input-field row col s6">
-            	<h6>Category</h6>
-							<p class="col s3">
-						    <input name="group1" type="radio" id="test1" />
-						    <label for="test1">Appliance</label>
-						  </p>
-						  <p class="col s3">
-						    <input name="group1" type="radio" id="test2" />
-						    <label for="test2">Antique</label>
-						  </p>
-						  <p class="col s3">
-						    <input name="group1" type="radio" id="test3"  />
-						    <label for="test3">Furniture</label>
-						  </p class="col s3">
-						    <p>
-						      <input name="group1" type="radio" id="test4" />
-						      <label for="test4">Electronic</label>
-						  </p>
+            <div class="item-category col l6 m6 s12">
+						  <select class="browser-default" ng-model="item.category">
+						    <option value="" disabled selected>Category</option>
+						    <option value="Appliance">Appliance</option>
+						    <option value="Antique">Antique</option>
+						    <option value="Electronic">Electronic</option>
+						    <option value="Furniture">Furniture</option>
+						  </select>
             </div>
           </div>           
           <button>Add Item</button></br>

@@ -43,8 +43,8 @@
 			};
 
 			// Delete Item
-			var dltItem = function (roomId){
-				$http.delete(heroku.url + 'items/' + roomId, heroku.config);
+			var dltItem = function (itemId){
+				return $http.delete(heroku.url + 'items/' + itemId, heroku.config);
 			};
 
 			// Add Warranty

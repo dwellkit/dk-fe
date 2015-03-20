@@ -69,6 +69,19 @@
 				});
 			};
 
+			// Delete Items
+			$scope.dltItem = function (itemId){
+				console.log('clicked');
+				RoomsFactory.dltIt(itemId).success( function (){
+					for (var i = 0; i < $scope.items.length; i++){
+						if ($scope.items[i].id === itemId){
+							$scope.items.splice(i, 1);
+							return;
+						}
+					}
+				});
+			};
+
 			// Add Contact
 			$scope.addContact = function (contObj){
 				var propId = $scope.currentProp.id;
