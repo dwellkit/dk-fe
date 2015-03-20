@@ -43,9 +43,9 @@
 			$scope.dltRoom = function (roomId){
 				var propId = $scope.addressInfo.property.id;
 				RoomsFactory.dltRm(propId, roomId).success( function (){
-					for (var i = 0; i < $scope.beerCol.length; i++){
-						if ($scope.beerCol[i].objectId === id){
-							$scope.beerCol.splice(i, 1);
+					for (var i = 0; i < $scope.rooms.length; i++){
+						if ($scope.rooms[i].id === roomId){
+							$scope.rooms.splice(i, 1);
 							return;
 						}
 					}
@@ -80,7 +80,6 @@
 
 			$scope.$on('prop:grabbed', function (event, data){
 				$scope.rooms = data.property.rooms;
-				console.log($scope.rooms);
 			});
 
 		}
