@@ -112,11 +112,24 @@
 
     <!-- Warranty Tab -->
 
-    <div id="test3" class="warranty col s12">
-			<a ng-click="modal5()">Add A Warranty</a>
-			<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Warranties">
-    </div>
-
+    <div id="test3" class="warranty row col s12">
+    	<div class="war-top col l12 m12 s12">
+				<a ng-click="modal5()">Add A Warranty</a>
+				<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Warranties">
+			</div>
+	    <div class="warranty-list" ng-repeat="w in warranties">
+	    	<div class="war-img">
+	    		<img src="../images/warranty.png">
+	    	</div>
+	    	<div class="war-info">
+	    		Title: {{w.name}}
+	    		Number: {{w.warranty_number}}
+	    		Website: {{w.url}}
+	    		Expiration: {{w.expiration_date}}
+	    		<span ng-click="deleteWarranty(w.id)">Delete</span>
+	    	</div>
+	    </div>
+	  </div>
     <!-- Contacts Tab -->
 
     <div id="test4" class="contact col s12 m12 l12">

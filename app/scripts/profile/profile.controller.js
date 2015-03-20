@@ -111,6 +111,20 @@
 				var propId = $scope.currentProp.id;
 				RoomsFactory.grabWar(propId).success( function (data){
 					console.log(data);
+					$scope.warranties = data.warranties;
+				});
+			};
+
+			// Delete Warrnaty
+			$scope.deleteWarranty = function (warId){
+				console.log('here');
+				RoomsFactory.dltWar(warId).success( function(){
+					for (var i = 0; i < $scope.warranties.length; i++){
+						if ($scope.warranties[i].id === warId){
+							$scope.warranties.splice(i, 1);
+							return;
+						}
+					}
 				});
 			};
 

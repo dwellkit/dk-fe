@@ -52,8 +52,14 @@
 				$http.post(heroku.url + 'properties/' + propId + '/items/' + itemId + '/warranties', warObj, heroku.config);
 			};
 
+			// Grab Warranties
 			var grabWarranties = function (propId){
 				return $http.get(heroku.url + 'properties/' + propId + '/warranties', heroku.config);
+			};
+
+			// Delete Warranty
+			var dltWarranty = function (warId){
+				return $http.delete(heroku.url + 'warranties/' + warId, heroku.config);
 			};
 
 			return{
@@ -63,7 +69,8 @@
 				addIt: addItem,
 				dltIt: dltItem,
 				addWar: addWarranty,
-				grabWar: grabWarranties
+				grabWar: grabWarranties,
+				dltWar: dltWarranty
 			};
 		}
 
