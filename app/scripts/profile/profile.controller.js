@@ -17,7 +17,6 @@
 			ProfileFactory.grab().success( function (prop){
 				$scope.user = prop;
 				$scope.mainProp = prop.property[0];
-				console.log($scope.mainProp);
 				localStorage.setItem('currentProp', JSON.stringify(prop.property[0]));
 			});
 
@@ -47,7 +46,6 @@
 				ProfileFactory.grabProp(propId).success( function (data){
 					$scope.houseImg = data.property.image;
 					$scope.rooms = data.property.rooms;
-					console.log($scope.rooms);
 					$scope.singRoom = data.property.rooms[0];
 					localStorage.setItem('propRooms', JSON.stringify(data.property.rooms));
 					$rootScope.$broadcast('prop:grabbed', data);
@@ -87,6 +85,35 @@
 				});
 			};
 
+			// Delete Contact
+			$scope.dltContact = function (contId){
+				var propId = $scope.currentProp.id;
+				ContactsFactory.dltCont(propId, contId).success( function (){
+					for (var i = 0; i < $scope.contacts.length; i++){
+						if ($scope.contacts[i].id === contId){
+							$scope.contacts.splice(i, 1);
+							return;
+						}
+					}
+				});
+			};
+
+			// Add Warranty 
+			$scope.addWarranty = function (warObj) {
+				console.clear();
+				var propId = $scope.currentProp.id;
+				var itemId = warObj.itemId;
+				RoomsFactory.addWar(propId, itemId, { warranty: warObj });
+			};
+
+			// Grab All Warranties
+			$scope.grabWarranties = function (){
+				var propId = $scope.currentProp.id;
+				RoomsFactory.grabWar(propId).success( function (data){
+					console.log(data);
+				});
+			};
+
 			// Modal Config & Trigger
 			$scope.load = function () {
 				$('.modal-trigger').leanModal();
@@ -115,6 +142,17 @@
 				$('#modal4').scope = $scope;
 				$scope.$broadcast('tpl:loaded', roomId);
 			};
+
+			// Add Warranty Modal
+			$scope.modal5 = function (){
+				$('#modal5').openModal();
+				$('#modal5').scope = $scope;
+				var propId = $scope.currentProp.id;
+				ProfileFactory.grabItems(propId).success( function (data){
+					$scope.items = data.items;
+				});
+			};
+		
 		}
 
 	]);

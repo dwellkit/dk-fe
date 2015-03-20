@@ -42,7 +42,14 @@
 			// Delete A Room
 			$scope.dltRoom = function (roomId){
 				var propId = $scope.addressInfo.property.id;
-				RoomsFactory.dltRm(propId, roomId);
+				RoomsFactory.dltRm(propId, roomId).success( function (){
+					for (var i = 0; i < $scope.beerCol.length; i++){
+						if ($scope.beerCol[i].objectId === id){
+							$scope.beerCol.splice(i, 1);
+							return;
+						}
+					}
+				});
 			};
 
 			// Update A Room
@@ -54,14 +61,12 @@
 
 			// Add Items To Room
 			$scope.addItem = function (itemObj, roomId){
-				console.log(roomId);
 				var propId = $scope.addressInfo.property.id;
 				RoomsFactory.addIt(propId, roomId, { item: itemObj });
 			};
 
 			// Delete Items
 			$scope.dltItem = function (itemId){
-				console.log(itemId);
 				RoomsFactory.dltIt(itemId);
 			};
 
@@ -74,7 +79,8 @@
 			});
 
 			$scope.$on('prop:grabbed', function (event, data){
-				console.log('grabbed');
+				$scope.rooms = data.property.rooms;
+				console.log($scope.rooms);
 			});
 
 		}

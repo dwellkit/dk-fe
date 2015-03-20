@@ -47,12 +47,23 @@
 				$http.delete(heroku.url + 'items/' + roomId, heroku.config);
 			};
 
+			// Add Warranty
+			var addWarranty = function (propId, itemId, warObj){
+				$http.post(heroku.url + 'properties/' + propId + '/items/' + itemId + '/warranties', warObj, heroku.config);
+			};
+
+			var grabWarranties = function (propId){
+				return $http.get(heroku.url + 'properties/' + propId + '/warranties', heroku.config);
+			};
+
 			return{
 				addRm: addRoom,
 				dltRm: dltRoom,
 				editRm: editRoom,
 				addIt: addItem,
-				dltIt: dltItem
+				dltIt: dltItem,
+				addWar: addWarranty,
+				grabWar: grabWarranties
 			};
 		}
 

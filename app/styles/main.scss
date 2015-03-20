@@ -403,6 +403,17 @@ form{
 		color: #0493D9;
 	}
 }
+.card-content{
+	span:nth-child(2){
+		color: lightgray;
+		font-size: 1.3rem;
+		float:right;
+		cursor: pointer;
+		&:hover{
+			color: red;
+		}
+	}
+}
 
 
 

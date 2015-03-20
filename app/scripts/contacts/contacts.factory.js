@@ -19,7 +19,7 @@
 
 			// Delete Contact
 			var dltContact = function (propId, contId){
-				return $http.delete(heroku.url + 'properties/' + propId + '/contacts/' + contId, heroku.config);
+				return $http.delete(heroku.url + 'contacts/' + contId, heroku.config);
 			};
 
 			// Edit Existing Contacts

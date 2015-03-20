@@ -44,6 +44,7 @@
 				});
 			};
 
+			// Grab All Items
 			var grabItems = function (propId){
 				return $http({
 					headers: heroku.config.headers,
