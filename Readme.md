@@ -12,5 +12,7 @@
  * Angular
  * Angular Routes
  * Angular Cookies
- * Foundation
+ * Materialize 
  * Sass
+ * Angular Xeditable
+ 
