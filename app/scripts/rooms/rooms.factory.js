@@ -42,9 +42,14 @@
 					});
 			};
 
+			// Edit Item
+			var editItem = function (propId, itemId, itemObj){
+				return $http.put(heroku.url + 'properties/' + propId + '/items/' + itemId, itemObj, heroku.config);
+			};
+
 			// Delete Item
-			var dltItem = function (itemId){
-				return $http.delete(heroku.url + 'items/' + itemId, heroku.config);
+			var dltItem = function (propId, itemId){
+				return $http.delete(heroku.url + 'properties/' + propId + '/items/' + itemId, heroku.config);
 			};
 
 			// Add Warranty
@@ -57,9 +62,14 @@
 				return $http.get(heroku.url + 'properties/' + propId + '/warranties', heroku.config);
 			};
 
+			// Edit Warranty
+			var editWarranty = function (propId, warId, warObj){
+				return $http.put(heroku.url + 'properties/' + propId + '/warranties/' + warId, warObj, heroku.config);
+			};
+
 			// Delete Warranty
-			var dltWarranty = function (warId){
-				return $http.delete(heroku.url + 'warranties/' + warId, heroku.config);
+			var dltWarranty = function (propId, itemId, warId){
+				return $http.delete(heroku.url + 'properties/' + propId + '/items/' + itemId + '/warranties/' + warId, heroku.config);
 			};
 
 			return{
@@ -70,7 +80,9 @@
 				dltIt: dltItem,
 				addWar: addWarranty,
 				grabWar: grabWarranties,
-				dltWar: dltWarranty
+				dltWar: dltWarranty,
+				editItem: editItem,
+				editWar: editWarranty
 			};
 		}
 

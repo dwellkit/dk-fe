@@ -69,10 +69,19 @@
 				});
 			};
 
+			// Edit Item
+			$scope.editItem = function (itemId, itemObj){
+				var propId = $scope.currentProp.id;
+				RoomsFactory.editItem(propId, itemId, { item: itemObj }).success( function (data){
+					console.log(data);
+				});
+			};
+
 			// Delete Items
 			$scope.dltItem = function (itemId){
 				console.log('clicked');
-				RoomsFactory.dltIt(itemId).success( function (){
+				var propId = $scope.currentProp.id;
+				RoomsFactory.dltIt(propId, itemId).success( function (){
 					for (var i = 0; i < $scope.items.length; i++){
 						if ($scope.items[i].id === itemId){
 							$scope.items.splice(i, 1);
@@ -95,6 +104,14 @@
 				ContactsFactory.grabCont(propId).success( function (data){
 					$scope.contacts = data.contacts;
 					console.log($scope.contacts);
+				});
+			};
+
+			// Edit Contact
+			$scope.editContact = function (contId, contObj){
+				var propId = $scope.currentProp.id;
+				ContactsFactory.editCont(propId, contId, contObj). success( function (data){
+					console.log(data);
 				});
 			};
 
@@ -128,10 +145,16 @@
 				});
 			};
 
+			$scope.editWarranty = function (warId, warObj) {
+				var propId = $scope.currentProp.id;
+				RoomsFactory.editWar(propId, warId, { warranty: warObj});
+			};
+
 			// Delete Warrnaty
-			$scope.deleteWarranty = function (warId){
+			$scope.deleteWarranty = function (itemId, warId){
 				console.log('here');
-				RoomsFactory.dltWar(warId).success( function(){
+				var propId = $scope.currentProp.id;
+				RoomsFactory.dltWar(propId, itemId, warId).success( function(){
 					for (var i = 0; i < $scope.warranties.length; i++){
 						if ($scope.warranties[i].id === warId){
 							$scope.warranties.splice(i, 1);
@@ -140,6 +163,17 @@
 					}
 				});
 			};
+
+			// Line Chart
+			$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+		  $scope.series = ['Series A', 'Series B'];
+		  $scope.data = [
+		    [65, 59, 80, 81, 56, 55, 40],
+		    [28, 48, 40, 19, 86, 27, 90]
+		  ];
+		  $scope.onClick = function (points, evt) {
+		    console.log(points, evt);
+		  };
 
 			// Modal Config & Trigger
 			$scope.load = function () {

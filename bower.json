@@ -16,6 +16,7 @@
     "ng-file-upload": "~3.2.4",
     "ng-file-upload-shim": "~3.2.4",
     "lightbox2": "~2.7.1",
-    "angular-xeditable": "~0.1.8"
+    "angular-xeditable": "~0.1.8",
+    "angular-chart.js": "~0.5.3"
   }
 }

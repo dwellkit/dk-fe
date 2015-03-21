@@ -24,6 +24,7 @@
 			var registerUser = function (userInfo) {
 				$http.post(heroku.url + 'users', userInfo, heroku.config)
 					.success( function (response){
+					$cookieStore.put('DKCookie', response.user);
 					heroku.config.headers['auth_token'] = response.user.authentication_token;
 						$rootScope.$broadcast('user:registered');
 					}
@@ -50,7 +51,7 @@
 
 			// Send Address to API
 			var submitAddress = function (userInfo) {
-				return $http.post(heroku.url + 'properties/add', userInfo, heroku.config);
+				return $http.post(heroku.url + 'properties', userInfo, heroku.config);
 			};
 
 			// Confirm Address correct

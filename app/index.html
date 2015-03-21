@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../bower_components/materialize/dist/css/materialize.css" />
     <link rel="stylesheet" href="../bower_components/lightbox2/css/lightbox.css" />
     <link rel="stylesheet" href="../bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel="stylesheet" href="../bower_components/angular-chart.js/dist/angular-chart.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -30,7 +31,7 @@
     <header>
       <nav ng-controller="NavController" class="row">
         <div class="nav-wrapper row col s12">
-          <a class="col s4 l4" href="#/"><img src="../images/icon_transparent.png" alt=""><p ng-show="loggedin" class="flowtext" ng-controller="ProfileController">{{ mainProp.address.full_address }}</p></a>
+          <a class="col s4 l4" href="#/"><img src="../images/icon_transparent.png" alt=""><p ng-show="loggedin" ng-show="registered" class="flowtext" ng-controller="ProfileController">{{ mainProp.address.full_address }}</p></a>
           <ul class="right col l8 s4" ng-show="loggedin">
             <a href="#/profile"><li><i class="mdi-communication-contacts prefix"></i>Profile</li></a>
             <a ng-click="logout()" href="#/"><li><i class="mdi-navigation-close prefix"></i>Logout</li></a>
@@ -70,6 +71,8 @@
     <script src="../bower_components/ng-file-upload/angular-file-upload.min.js"></script>
     <script src="../bower_components/lightbox2/js/lightbox.min.js"></script>
     <script src="../bower_components/angular-xeditable/dist/js/xeditable.min.js"></script>
+    <script src="../bower_components/Chart.js/Chart.min.js"></script>
+    <script src="../bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

@@ -3,10 +3,11 @@
 	'use strict';
 
 	// Angular Module
-	angular.module('DwellingKit', ['ngRoute', 'ngCookies', 'angularFileUpload', 'xeditable'])
+	angular.module('DwellingKit', ['ngRoute', 'ngCookies', 'angularFileUpload', 'xeditable', 'chart.js'])
 
 	.constant('heroku', {
-		url: 'https://dwellingkit-api.herokuapp.com/',
+		// url: 'https://dwellingkit-api.herokuapp.com/',
+		url: 'http://3b11.t.proxylocal.com/',
 		config: {
 			headers: {
 				'Content-Type': 'application/json'

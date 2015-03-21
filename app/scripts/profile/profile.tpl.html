@@ -107,6 +107,14 @@
   			<input type="file" id="file-select" name="photo"/>
   			<button type="submit">Upload</button>
 			</form>
+			<div class="charts row col l12">
+	    	<div class="line-chart col l4">
+	    		<canvas id="line" class="chart chart-line" data="data"
+					  labels="labels" legend="true" series="series"
+					  click="onClick">
+					</canvas> 
+	    	</div>
+	    </div>
     </div>
 
     <!-- Rooms Tab -->
@@ -134,15 +142,15 @@
 	          </tr>
 	          <tr>
 	          	<td>Flooring Type</td>
-	            <td editable-text="singRoom.flooring_type" onaftersave="editRoom(singRoom)">{{ singRoom.flooring_type || 'empty' }}</td>
+	            <td editable-text="singRoom.flooring_type" onaftersave="editRoom(singRoom, singRoom.id)">{{ singRoom.flooring_type || 'empty' }}</td>
 	          </tr>
 	          <tr>
 	          	<td>Paint Color</td>
-	            <td editable-text="singRoom.paint_color" onaftersave="editRoom(singRoom)">{{ singRoom.paint_color || 'empty' }}</td>
+	            <td editable-text="singRoom.paint_color" onaftersave="editRoom(singRoom, singRoom.id)">{{ singRoom.paint_color || 'empty' }}</td>
 	          </tr>
 	          <tr>
 	          	<td>Dimensions</td>
-	            <td editable-text="singRoom.dimensions" onaftersave="editRoom(singRoom)">{{ singRoom.dimensions || 'empty' }}</td>
+	            <td editable-text="singRoom.dimensions" onaftersave="editRoom(singRoom, singRoom.id)">{{ singRoom.dimensions || 'empty' }}</td>
 	          </tr>
 	        </tbody>
 	      </table> 
@@ -171,12 +179,12 @@
 	    	<div class="war-img">
 	    		<img src="../images/warranty.png">
 	    	</div>
-	    	<div class="war-info">
+	    	<div class="war-info" editable-text="w.name" onaftersave="editWarranty(w.id, w)">
 	    		Title: {{w.name}}
 	    		Number: {{w.warranty_number}}
 	    		Website: {{w.url}}
 	    		Expiration: {{w.expiration_date}}
-	    		<span ng-click="deleteWarranty(w.id)">Delete</span>
+	    		<span ng-click="deleteWarranty(w.item_id, w.id)">Delete</span>
 	    	</div>
 	    </div>
 	  </div>
@@ -191,7 +199,9 @@
             <div class="card-content black-text">
               <span class="card-title">{{contact.name}}</span><span><i class="mdi-content-backspace" ng-click="dltContact(contact.id)"></i></span>
               <ul>
-              	<li> Company: {{contact.company}} </li>
+              	<li editable-text="contact.company" onaftersave="editContact(contact.id, contact)"> 
+              		Company: {{contact.company}} 
+              	</li>
               	<li> URL: {{contact.url}}</li>
               	<li> Phone: {{contact.telephone_number}}</li>
               	<li> Email: {{contact.email}}</li>
@@ -214,28 +224,28 @@
       	<table>
 	        <thead>
 	          <tr>
+	              <th data-field="name">Pic</th>
 	              <th data-field="id">Item Name</th>
 	              <th data-field="name">Price</th>
 	              <th data-field="name">Purchase Date</th>
 	              <th data-field="name">Category</th>
 	              <th data-field="name">Serial Number</th>
 	              <th data-field="name">Warranty</th>
-	              <th data-field="name">Picture</th>
 	          </tr>
 	        </thead>
 	        <tbody>
 	          <tr ng-repeat="item in items">
-	            <td>{{ item.name }}</td>
+	          	<td>
+	            	<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
+									<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
+								</a>
+							</td>
+	            <td editable-text="item.name" onaftersave="editItem(item.id, item)">{{ item.name }}</td>
 	            <td>${{ item.price }}.00</td>
 	            <td>{{ item.purchase_date }}</td>
 	            <td>{{ item.category }}</td>
 	            <td>{{ item.serial_number }}</td>
 	            <td>{{ item.warranty_id }}</td>
-	            <td>
-	            	<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
-									<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
-								</a>
-							</td>
 	            <td><span><i class="mdi-content-backspace" ng-click="dltItem(item.id)"></i></span></td>
 	          </tr>
 	        </tbody>
