@@ -7,7 +7,7 @@
 
 	.constant('heroku', {
 		// url: 'https://dwellingkit-api.herokuapp.com/',
-		url: 'http://3b11.t.proxylocal.com/',
+		url: 'http://jqwz.t.proxylocal.com/',
 		config: {
 			headers: {
 				'Content-Type': 'application/json'

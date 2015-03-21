@@ -19,7 +19,7 @@
 			};
 
 
-			// Add Image of Home
+			// Add Profile Image of Home
 			var addImage = function (propId, img){
  
 				heroku.config.headers['Content-Type'] =  undefined;
@@ -30,6 +30,38 @@
 					$http({
 						headers: heroku.config.headers,
 						url: heroku.url + 'properties/' + propId + '/pic',
+						method: 'POST',
+						data: formData
+					});
+			};
+
+			// Add Prop Pictures
+			var addPropPictures = function (propId, img){
+
+				heroku.config.headers['Content-Type'] =  undefined;
+ 
+					var formData = new FormData();
+					formData.append('file[image]', img);
+ 
+					$http({
+						headers: heroku.config.headers,
+						url: heroku.url + 'properties/' + propId + '/pictures',
+						method: 'POST',
+						data: formData
+					});
+			};
+
+			// Add Room Picture
+			var addRmImage = function (propId, roomId, img){
+
+				heroku.config.headers['Content-Type'] =  undefined;
+ 
+					var formData = new FormData();
+					formData.append('file[image]', img);
+ 
+					$http({
+						headers: heroku.config.headers,
+						url: heroku.url + 'properties/' + propId + '/rooms/' + roomId + '/images',
 						method: 'POST',
 						data: formData
 					});
@@ -57,7 +89,9 @@
 				grab: grabUser,
 				addImg: addImage,
 				grabProp: grabProperty,
-				grabItems: grabItems
+				grabItems: grabItems,
+				addRmImg: addRmImage,
+				addPPics: addPropPictures
 			};
 
 		}

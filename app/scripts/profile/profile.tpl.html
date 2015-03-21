@@ -18,8 +18,7 @@
     <div id="test1" class=" row overview col s12">
 			<div class="overview row">
 				<div class="home-img col s12 m6 l3">
-					<!-- <h1 class="flow-text">Add A picture of your home!</h1> -->
-					<img class="responsive-img" src="{{ houseImg.large }}">
+					<!-- <img class="responsive-img" src="{{ houseImg.large }}"> -->
 				</div>
 				<div class="house-info col s12 m4 l4">
 					<table>
@@ -53,60 +52,21 @@
 		      </table>
 				</div>
 				<div class="collage col l4 m12 s12">
-					<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
+					<a ng-repeat="pic in propPics" href="{{pic.large}}" data-lightbox="home">
+						<img data-lightbox="home" src="{{pic.large}}">
 					</a>
-					<a href="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg">
-					</a>
-					<a href="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg">
-					</a>
-					<a href="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh" data-lightbox="home">
-						<img data-lightbox="home" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh">
-					</a>
-					<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
-					</a>
-					<a href="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg">
-					</a>
-					<a href="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg">
-					</a>
-					<a href="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh" data-lightbox="home">
-						<img data-lightbox="home" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh">
-					</a>
-					<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
-					</a>
-					<a href="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg">
-					</a>
-					<a href="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg">
-					</a>
-					<a href="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh" data-lightbox="home">
-						<img data-lightbox="home" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh">
-					</a>
-					<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
-					</a>
-					<a href="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg">
-					</a>
-					<a href="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg" data-lightbox="home">
-						<img data-lightbox="home" src="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg">
-					</a>
-					<a href="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh" data-lightbox="home">
-						<img data-lightbox="home" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh">
-					</a>
+					<form class="upld-pic col s12 m3 l3" ng-submit="uploadPropPics()">
+		  			<input type="file" id="proppics-file" name="photo"/>
+		  			<button type="submit">Upld Property Pics</button>
+					</form>
 				</div>
 			</div>
-			<form class=" upld-pic col s12 m3 l3" ng-submit="upload()">
-  			<input type="file" id="file-select" name="photo"/>
-  			<button type="submit">Upload</button>
+			<form class="upld-pic col s12 m3 l3" ng-submit="upload()">
+  			<input type="file" id="ppic-file" name="photo"/>
+  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
 			</form>
+			<button id="ppic" ng-click="uploadPic()"><i class="mdi-file-attachment"></i></button>
+
 			<div class="charts row col l12">
 	    	<div class="line-chart col l4">
 	    		<canvas id="line" class="chart chart-line" data="data"
@@ -127,12 +87,19 @@
 				<li class="addrm col l12 m12 s12" ng-click="modal2()">Add A Room</li>
     	</ul>
     	<div class="roomInfo col l7 m6 s12 offset-l1" ng-model="singRoom" ng-controller="RoomsController">
-    		<h5>{{singRoom.name}} <i class="mdi-editor-border-color"> (Click Field to Edit)</i></h5>
+    		<div class="top">
+	    		<h5>{{singRoom.name}}</h5>
+	    		<small>Upload photos of your {{singRoom.name}}</small>
+	    		<form class="upld-roompic col s12 m3 l3" ng-submit="uploadRm(singRoom.id)">
+		  			<input type="file" id="rmpic-file" name="photo"/>
+		  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
+					</form>
+				</div>
 		  	<table>
 	        <thead>
 	          <tr>
 	              <th data-field="id">Title</th>
-	              <th data-field="name">Description</th>
+	              <th data-field="name">Description <i>(Click Field to Edit)</i></th>
 	          </tr>
 	        </thead>
 	        <tbody>
@@ -154,8 +121,18 @@
 	          </tr>
 	        </tbody>
 	      </table> 
+	      <h5 class="col l7 m6 s12">{{singRoom.name}} Items 
+		  	<i class="mdi-content-add" ng-click="modal3(singRoom.id)">Add Item</i>
+			  </h5>
+			  <div class="roomItems col l7 m6 s12" ng-repeat="item in roomItems">
+			  	<ul>
+			  		<li>
+			  			{{item.name}}
+			  		</li>
+			  	</ul>
+			  </div>
 		  </div>
-		  <h5 class="col l7 m6 s12 offset-l1">{{singRoom.name}} Items 
+		  <!-- <h5 class="col l7 m6 s12 offset-l1">{{singRoom.name}} Items 
 		  	<i class="mdi-content-add" ng-click="modal3(singRoom.id)">Add Item</i>
 		  </h5>
 		  <div class="roomItems col l7 m6 s12 offset-l1" ng-repeat="item in roomItems">
@@ -164,7 +141,7 @@
 		  			{{item.name}}
 		  		</li>
 		  	</ul>
-		  </div>
+		  </div> -->
 		</div>
 
 
@@ -421,7 +398,7 @@
             </div>
             <div class="input-field col s6">
               <i class="mdi-action-account-circle prefix"></i>
-              <input ng-model="warr.expiration_date" id="icon_prefix" type="text" class="validate">
+              <input ng-model="warr.expiration_date" id="icon_prefix" type="date" class="validate">
               <label for="icon_prefix">Expiration Date</label>
             </div>
             <div class="input-field col s6">
@@ -430,7 +407,7 @@
               <label for="icon_prefix">URL</label>
             </div>
 					  <!-- select with ng-options -->
-					  <label>Room Select</label>
+					  <label></label>
 					  <select class="browser-default" ng-model="warr.itemId" ng-options="item.id as item.name for item in items">
 					    <option value="" disabled selected>Choose Which Item</option>
 					  </select>

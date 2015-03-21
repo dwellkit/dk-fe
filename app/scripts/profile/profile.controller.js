@@ -28,23 +28,51 @@
     		$('ul.tabs').tabs();
 			};
 
+
+			// Trigger to Hide input-file
+			$scope.uploadPic = function(){
+				$('#ppic').on('click', function (){
+					$('#ppic-file').trigger('click');
+				});
+			};
+
 			// Load Tabs 
 			$scope.tabs();
 
 			// Add Picture of Home
     	$scope.upload = function (files) {
 				var propId = $scope.currentProp.id;
-				var img = document.getElementById('file-select');
+				var img = document.getElementById('ppic-file');
 				var file = img.files[0];
  
 				ProfileFactory.addImg(propId, file);
+			};
+
+			// Add Property Pics
+			$scope.uploadPropPics = function (){
+				var propId = $scope.currentProp.id;
+				var img = document.getElementById('proppics-file');
+				var file = img.files[0];
+ 
+				ProfileFactory.addPPics(propId, file);
+			};
+
+			// Add Room Pictures
+			$scope.uploadRm = function (roomId, files) {
+				var propId = $scope.currentProp.id;
+				var img = document.getElementById('rmpic-file');
+				var file = img.files[0];
+
+				ProfileFactory.addRmImg(propId, file);
 			};
 
 			// Grab Specific Property
 			$scope.grabProperty = function (){
 				var propId = $scope.currentProp.id;
 				ProfileFactory.grabProp(propId).success( function (data){
+					console.log(data);
 					$scope.houseImg = data.property.image;
+					$scope.propPics = data.property.pictures;
 					$scope.rooms = data.property.rooms;
 					$scope.singRoom = data.property.rooms[0];
 					localStorage.setItem('propRooms', JSON.stringify(data.property.rooms));
@@ -166,10 +194,13 @@
 
 			// Line Chart
 			$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-		  $scope.series = ['Series A', 'Series B'];
+		  $scope.series = ['Cable', 'Electric', 'Gas', 'Power'];
 		  $scope.data = [
 		    [65, 59, 80, 81, 56, 55, 40],
-		    [28, 48, 40, 19, 86, 27, 90]
+		    [28, 48, 40, 19, 86, 27, 90],
+		    [28, 70, 40, 20, 86, 30, 85],
+		    [28, 48, 40, 47, 86, 39, 100.00]
+
 		  ];
 		  $scope.onClick = function (points, evt) {
 		    console.log(points, evt);
