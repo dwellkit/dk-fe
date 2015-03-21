@@ -52,11 +52,10 @@
 				});
 			};
 
-			// Update A Room
-			$scope.editRoom = function (roomObj){
+			// Editing A Room
+			$scope.editRoom = function (roomObj, roomId){
 				var propId = $scope.addressInfo.property.id;
-
-				RoomsFactory.editRm(propId, roomId, roomObj);
+				RoomsFactory.editRm(propId, roomId, { room: roomObj });
 			};
 
 			// Add Items To Room

@@ -15,6 +15,7 @@
     "materialize": "~0.95.3",
     "ng-file-upload": "~3.2.4",
     "ng-file-upload-shim": "~3.2.4",
-    "lightbox2": "~2.7.1"
+    "lightbox2": "~2.7.1",
+    "angular-xeditable": "~0.1.8"
   }
 }

@@ -52,7 +52,43 @@
 		        </tbody>
 		      </table>
 				</div>
-				<div class="collage col l4 m4 s12">
+				<div class="collage col l4 m12 s12">
+					<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
+					</a>
+					<a href="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg">
+					</a>
+					<a href="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg">
+					</a>
+					<a href="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh" data-lightbox="home">
+						<img data-lightbox="home" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh">
+					</a>
+					<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
+					</a>
+					<a href="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg">
+					</a>
+					<a href="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg">
+					</a>
+					<a href="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh" data-lightbox="home">
+						<img data-lightbox="home" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh">
+					</a>
+					<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
+					</a>
+					<a href="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="https://colline.co/wp-content/uploads/2015/03/creative-inside-house-design.jpg">
+					</a>
+					<a href="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg" data-lightbox="home">
+						<img data-lightbox="home" src="http://cdn.freshome.com/wp-content/uploads/2012/10/Barrier-House-Inside-House.jpg">
+					</a>
+					<a href="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh" data-lightbox="home">
+						<img data-lightbox="home" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZtde5QtimGgkyrcm3GqN6u5qJfokepfFxmtnOcNh1L9YRmjrh">
+					</a>
 					<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
 						<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
 					</a>
@@ -83,7 +119,7 @@
 				<li class="addrm col l12 m12 s12" ng-click="modal2()">Add A Room</li>
     	</ul>
     	<div class="roomInfo col l7 m6 s12 offset-l1" ng-model="singRoom" ng-controller="RoomsController">
-    		<h5 ng-click="editRoom()">{{singRoom.name}} <i class="mdi-editor-border-color"> Edit Room</i></h5>
+    		<h5>{{singRoom.name}} <i class="mdi-editor-border-color"> (Click Field to Edit)</i></h5>
 		  	<table>
 	        <thead>
 	          <tr>
@@ -94,19 +130,19 @@
 	        <tbody>
 	          <tr>
 	            <td>Sqaurefeet</td>
-	            <td contenteditable="true">{{ singRoom.sqft }}</td>
+	            <td editable-text="singRoom.sqft" onaftersave="editRoom(singRoom, singRoom.id)">{{ singRoom.sqft || 'empty' }}</td>
 	          </tr>
 	          <tr>
 	          	<td>Flooring Type</td>
-	            <td>{{ singRoom.flooring_type }}</td>
+	            <td editable-text="singRoom.flooring_type" onaftersave="editRoom(singRoom)">{{ singRoom.flooring_type || 'empty' }}</td>
 	          </tr>
 	          <tr>
 	          	<td>Paint Color</td>
-	            <td>{{ singRoom.paint_color }}</td>
+	            <td editable-text="singRoom.paint_color" onaftersave="editRoom(singRoom)">{{ singRoom.paint_color || 'empty' }}</td>
 	          </tr>
 	          <tr>
 	          	<td>Dimensions</td>
-	            <td>{{ singRoom.dimensions }}</td>
+	            <td editable-text="singRoom.dimensions" onaftersave="editRoom(singRoom)">{{ singRoom.dimensions || 'empty' }}</td>
 	          </tr>
 	        </tbody>
 	      </table> 
@@ -149,7 +185,7 @@
     <div id="test4" class="contact col s12 m12 l12">
 			<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Contacts">
 			<a class="col s12 m12 l12" ng-click="modal4()">Add A Contact</a>
-			<div class="row col l3" ng-repeat="contact in contacts">
+			<div class="row col l3" ng-repeat="contact in contacts | filter: searchText">
         <div class=" c-card col s12 m12 l12">
           <div class="card white darken-1">
             <div class="card-content black-text">
@@ -195,7 +231,11 @@
 	            <td>{{ item.category }}</td>
 	            <td>{{ item.serial_number }}</td>
 	            <td>{{ item.warranty_id }}</td>
-	            <td>Picture</td>
+	            <td>
+	            	<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
+									<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
+								</a>
+							</td>
 	            <td><span><i class="mdi-content-backspace" ng-click="dltItem(item.id)"></i></span></td>
 	          </tr>
 	        </tbody>

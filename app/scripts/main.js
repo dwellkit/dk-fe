@@ -3,7 +3,7 @@
 	'use strict';
 
 	// Angular Module
-	angular.module('DwellingKit', ['ngRoute', 'ngCookies', 'angularFileUpload'])
+	angular.module('DwellingKit', ['ngRoute', 'ngCookies', 'angularFileUpload', 'xeditable'])
 
 	.constant('heroku', {
 		url: 'https://dwellingkit-api.herokuapp.com/',
@@ -51,8 +51,9 @@
 
 	})
 
-	.run([ '$rootScope', 'UserFactory', 'heroku', '$location',
-		function ($rootScope, UserFactory, heroku, $location){
+	.run([ '$rootScope', 'UserFactory', 'heroku', '$location', 'editableOptions',
+		function ($rootScope, UserFactory, heroku, $location, editableOptions){
+			editableOptions.theme = 'default',
 			$rootScope.$on('$routeChangeStart', function (){
 
 				// Check User
