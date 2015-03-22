@@ -36,6 +36,7 @@
 				var propId = $scope.addressInfo.property.id;
 				RoomsFactory.addRm(propId, {room: roomObj});
 				$scope.rm = null;
+				$scope.rooms.push(roomObj);
 
 			};
 
