@@ -162,6 +162,7 @@
 				var propId = $scope.currentProp.id;
 				var itemId = warObj.itemId;
 				RoomsFactory.addWar(propId, itemId, { warranty: warObj });
+				$scope.warranties.push(warObj);
 			};
 
 			// Grab All Warranties
@@ -173,6 +174,7 @@
 				});
 			};
 
+			// Edit Warranty
 			$scope.editWarranty = function (warId, warObj) {
 				var propId = $scope.currentProp.id;
 				RoomsFactory.editWar(propId, warId, { warranty: warObj});
