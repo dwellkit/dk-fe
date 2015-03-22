@@ -201,10 +201,18 @@
               	<li editable-text="contact.company" onaftersave="editContact(contact.id, contact)"> 
               		Company: {{contact.company}} 
               	</li>
-              	<li> URL: {{contact.url}}</li>
-              	<li> Phone: {{contact.telephone_number}}</li>
-              	<li> Email: {{contact.email}}</li>
-              	<li> Notes: {{contact.notes}}</li>
+              	<li editable-text="contact.url" onaftersave="editContact(contact.id, contact)"> 
+              		URL: {{contact.url}}
+              	</li>
+              	<li editable-text="contact.telephone_number" onaftersave="editContact(contact.id, contact)"> 
+              		Phone: {{contact.telephone_number}}
+              	</li>
+              	<li editable-text="contact.email" onaftersave="editContact(contact.id, contact)"> 
+              		Email: {{contact.email}}
+              	</li>
+              	<li editable-text="contact.notes" onaftersave="editContact(contact.id, contact)"> 
+              		Notes: {{contact.notes}}
+              	</li>
               </ul>
             </div>
             <div class="card-action">
@@ -240,11 +248,11 @@
 								</a>
 							</td>
 	            <td editable-text="item.name" onaftersave="editItem(item.id, item)">{{ item.name }}</td>
-	            <td>${{ item.price }}.00</td>
-	            <td>{{ item.purchase_date }}</td>
-	            <td>{{ item.category }}</td>
-	            <td>{{ item.serial_number }}</td>
-	            <td>{{ item.warranty_id }}</td>
+	            <td editable-text="item.price" onaftersave="editItem(item.id, item)">${{ item.price }}.00</td>
+	            <td editable-text="item.purchase_date" onaftersave="editItem(item.id, item)">{{ item.purchase_date }}</td>
+	            <td editable-text="item.category" onaftersave="editItem(item.id, item)">{{ item.category }}</td>
+	            <td editable-text="item.serial_number" onaftersave="editItem(item.id, item)">{{ item.serial_number }}</td>
+	            <td editable-text="item.warranty_id" onaftersave="editItem(item.id, item)">{{ item.warranty_id }}</td>
 	            <td><span><i class="mdi-content-backspace" ng-click="dltItem(item.id)"></i></span></td>
 	          </tr>
 	        </tbody>
