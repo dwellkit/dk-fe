@@ -152,15 +152,37 @@
 				<a ng-click="modal5()">Add A Warranty</a>
 				<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Warranties">
 			</div>
-	    <div class="warranty-list" ng-repeat="w in warranties">
+	    <div class="warranty-list col l4" ng-repeat="w in warranties | filter: searchText">
 	    	<div class="war-img">
-	    		<img src="../images/warranty.png">
+	    		<img src="../images/blank-warranty-label.jpg">
 	    	</div>
-	    	<div class="war-info" editable-text="w.name" onaftersave="editWarranty(w.id, w)">
-	    		Title: {{w.name}}
-	    		Number: {{w.warranty_number}}
-	    		Website: {{w.url}}
-	    		Expiration: {{w.expiration_date}}
+	    	<div class="war-info">
+	    		<table>
+		        <thead>
+		          <tr>
+		              <th data-field="id">Title</th>
+		              <th data-field="name">Description <i>(Click Field to Edit)</i></th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr>
+		            <td>Name</td>
+		            <td editable-text="w.name" onaftersave="editRoom(w, w.id)">{{ w.name || 'empty' }}</td>
+		          </tr>
+		          <tr>
+		          	<td>Warranty Number</td>
+		            <td editable-text="w.warranty_number" onaftersave="editRoom(w, w.id)">{{ w.warranty_number || 'empty' }}</td>
+		          </tr>
+		          <tr>
+		          	<td>Website</td>
+		            <td editable-text="w.url" onaftersave="editRoom(w, w.id)">{{ w.url || 'empty' }}</td>
+		          </tr>
+		          <tr>
+		          	<td>Expiration Date</td>
+		            <td editable-text="w.expiration_date" onaftersave="editRoom(w, w.id)">{{ w.expiration_date || 'empty' }}</td>
+		          </tr>
+		        </tbody>
+		      </table> 
 	    		<span ng-click="deleteWarranty(w.item_id, w.id)">Delete</span>
 	    	</div>
 	    </div>

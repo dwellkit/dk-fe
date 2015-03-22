@@ -49,14 +49,14 @@ header{
 	}
 }
 .nav-wrapper{
-	background-color: white; 
+	background-color: #0493D9; 
 	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.75);
 	i{
 		vertical-align:middle;
 		padding-right: 0.5rem;
 	}
 	p{
-		color: #0493D9;
+		color: white;
 		display: inline-block;
 		font-size: 1rem;
 		margin-left: -1rem;
@@ -67,7 +67,7 @@ header{
 		text-align: right;
 	}
 	li{
-		color: #0493D9;
+		color: white;
 		&:hover{
 			color: navy;
 			background: none;
@@ -309,9 +309,6 @@ form{
 			margin-top: 25%;
 			text-align: center;
 		}
-		img{
-			z-index: -1;
-		}
 	}
 	.home-img:after{
 		content:"Upload Your Photo";
@@ -428,6 +425,23 @@ form{
 			}
 		}
 	}
+}
+
+// Warranty Tab
+.war-img{
+	img{
+		width: 100%;
+		position:relative;
+		opacity: 0.2;
+		z-index: -10;
+	}
+}
+.war-info{
+	height: 20rem;
+	margin-top: -20rem;
+	z-index: 10;
+	overflow: hidden;
+	padding: 0;
 }
 
 // CONTACTS
