@@ -33,6 +33,7 @@
 					});
 			};
 
+
 			// Add Items To Room
 			var addItem = function (propId, roomId, itemObj){
 				$http.post(heroku.url + 'properties/' + propId + '/rooms/' + roomId + '/items', itemObj, heroku.config)

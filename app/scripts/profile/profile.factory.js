@@ -67,6 +67,22 @@
 					});
 			};
 
+			// Add Picture to Items
+			var addItemImage = function (propId, itemId, img){
+
+				heroku.config.headers['Content-Type'] =  undefined;
+ 
+					var formData = new FormData();
+					formData.append('file[image]', img);
+ 
+					$http({
+						headers: heroku.config.headers,
+						url: heroku.url + 'properties/' + propId + '/items/' + itemId + '/pictures',
+						method: 'POST',
+						data: formData
+					});
+			};
+
 			// Grab Specific Property
 			var grabProperty = function (propId){
 				return $http({
@@ -91,7 +107,8 @@
 				grabProp: grabProperty,
 				grabItems: grabItems,
 				addRmImg: addRmImage,
-				addPPics: addPropPictures
+				addPPics: addPropPictures,
+				addItImg: addItemImage
 			};
 
 		}

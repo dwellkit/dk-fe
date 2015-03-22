@@ -68,7 +68,14 @@
 			<button id="ppic" ng-click="uploadPic()"><i class="mdi-file-attachment"></i></button>
 
 			<div class="charts row col l12">
+	    	<div class="donut-chart col l4">
+					<h2 class="flow-text">Squarefeet Per Room</h2>
+	    		<canvas id="doughnut" class="chart chart-doughnut" data="DNdata"
+  					labels="DNlabels">
+  				</canvas>
+	    	</div>
 	    	<div class="line-chart col l4">
+	    	<h2 class="flow-text">Bills Per Month</h2>
 	    		<canvas id="line" class="chart chart-line" data="data"
 					  labels="labels" legend="true" series="series"
 					  click="onClick">
@@ -154,7 +161,7 @@
 			</div>
 	    <div class="warranty-list col l4" ng-repeat="w in warranties | filter: searchText">
 	    	<div class="war-img">
-	    		<img src="../images/blank-warranty-label.jpg">
+	    		<img src="../images/blank-warranty.jpg">
 	    	</div>
 	    	<div class="war-info">
 	    		<table>
@@ -246,6 +253,10 @@
 	            	<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
 									<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
 								</a>
+								<form class="upld-itempic col s12 m3 l3" ng-submit="uploadItemPics(item.id)">
+					  			<input type="file" id="{{item.id}}" name="photo"/>
+					  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
+								</form>
 							</td>
 	            <td editable-text="item.name" onaftersave="editItem(item.id, item)">{{ item.name }}</td>
 	            <td editable-text="item.price" onaftersave="editItem(item.id, item)">${{ item.price }}.00</td>

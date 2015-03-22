@@ -63,7 +63,24 @@
 				var img = document.getElementById('rmpic-file');
 				var file = img.files[0];
 
-				ProfileFactory.addRmImg(propId, file);
+				ProfileFactory.addRmImg(propId, roomId, file);
+			};
+
+			var img;
+			// Grab Unique ID's in Items Tab for Pic Uploads
+			$(document).on('click', function(){
+				console.log(event.target.id);
+				var img = event.target.id;
+			});
+
+			// Add Items Pictures
+			$scope.uploadItemPics = function (itemId, files){
+				var propId = $scope.currentProp.id;
+				console.log(event.target);
+				// var img = document.getElementById('itempic-file');
+				var file = img.files[0];
+
+				ProfileFactory.addItImg(propId, itemId, file);
 			};
 
 			// Grab Specific Property
@@ -74,6 +91,16 @@
 					$scope.houseImg = data.property.image;
 					$scope.propPics = data.property.pictures;
 					$scope.rooms = data.property.rooms;
+					
+					//Do Not Chart Info
+					$scope.roomsSF = data.property.rooms.map(function (item){
+						return item.sqft;
+					});
+					$scope.roomNames = data.property.rooms.map( function (item){
+						return item.name;
+					});
+					$scope.DNdata = $scope.roomsSF;
+					$scope.DNlabels = $scope.roomNames;
 					$scope.singRoom = data.property.rooms[0];
 					localStorage.setItem('propRooms', JSON.stringify(data.property.rooms));
 					$rootScope.$broadcast('prop:grabbed', data);
@@ -81,6 +108,15 @@
 			};
 
 			$scope.grabProperty();
+
+			// Bills Chart
+			$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+		  $scope.series = ['Series A', 'Series B'];
+		  $scope.data = [
+		    [65, 59, 80, 81, 56, 55, 40],
+		    [28, 48, 40, 19, 86, 27, 90]
+		  ];
+
 
 			// Show Room Info Upon Click
 			$scope.displaySingle = function (room){
@@ -194,19 +230,6 @@
 				});
 			};
 
-			// Line Chart
-			$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-		  $scope.series = ['Cable', 'Electric', 'Gas', 'Power'];
-		  $scope.data = [
-		    [65, 59, 80, 81, 56, 55, 40],
-		    [28, 48, 40, 19, 86, 27, 90],
-		    [28, 70, 40, 20, 86, 30, 85],
-		    [28, 48, 40, 47, 86, 39, 100.00]
-
-		  ];
-		  $scope.onClick = function (points, evt) {
-		    console.log(points, evt);
-		  };
 
 			// Modal Config & Trigger
 			$scope.load = function () {

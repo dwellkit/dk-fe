@@ -6,8 +6,8 @@
 	angular.module('DwellingKit', ['ngRoute', 'ngCookies', 'angularFileUpload', 'xeditable', 'chart.js'])
 
 	.constant('heroku', {
-		// url: 'https://dwellingkit-api.herokuapp.com/',
-		url: 'http://jqwz.t.proxylocal.com/',
+		url: 'https://dwellingkit-api.herokuapp.com/',
+		// url: 'http://jqwz.t.proxylocal.com/',
 		config: {
 			headers: {
 				'Content-Type': 'application/json'
