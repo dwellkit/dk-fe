@@ -1,0 +1,44 @@
+<div id="modal2" class="modal" ng-controller="RoomsController">
+      <div class="modal-content">
+        <h2>Add A Room</h2>
+        <form ng-submit="addRoom(rm)">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.name" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Room Name</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.sqft" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Square Footage</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.dimensions" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Dimensions</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.flooring_type" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Floor Type</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.wall_type" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Wall Type</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.paint_color" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Paint Color</label>
+            </div>
+          </div>           
+          <button>Add Room</button></br>
+          <small>You can leave any of the above items blank except the name!</small>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#/add-your-address" class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
+      </div>
+    </div>

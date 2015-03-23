@@ -21,7 +21,8 @@ gulp.task('styles', function () {
 
 gulp.task('html', ['styles'], function () {
 
-  return gulp.src('app/*.html')
+  // The below will look inside of not only the app foler but also any folder in the app folder
+  return gulp.src('app/**/*.html')
     .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
     .pipe($.if('*.css', $.csso()))
     .pipe($.useref.restore())
