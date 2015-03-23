@@ -1,0 +1,29 @@
+<div class="input-address">
+	<h1>Input Your Address</h1> 
+  <h5> This is so we can gather some info about your home for you!</h5>
+	<form ng-submit="submitAddress(user)" class="row container">
+    <div class="row">
+      <div class="input-field col l6 m6 s12">
+        <i class="mdi-action-account-circle prefix"></i>
+        <input ng-model="user.address" id="icon_prefix" type="text" class="validate">
+        <label for="icon_prefix">Street</label>
+      </div>
+   	<button id="reg" class="waves-effect waves-light btn-large"><i class="mdi-file-cloud left"></i>Submit</a></button>
+  </form>
+</div>
+
+    <!-- Modal Structure -->
+    
+    <div id="modal1" class="modal" ng-controller="UserController">
+      <div class="modal-content">
+        <h2>Confirm Address</h2>
+        <h6>You entered the following..</h6>
+        <ul ng-model="addressInfo">
+          <li>Street: {{ addressInfo.address }}</li>
+      </div>
+      <div class="modal-footer">
+        <h6>Is this information correct?</h6>
+        <a class="waves-effect waves-green btn-flat" ng-click="routeRoom()">Yes</a>
+        <a href="#/add-your-address" class="waves-effect waves-green btn-flat modal-action modal-close">No</a>
+      </div>
+    </div>

@@ -1,0 +1,71 @@
+<div class="add-rooms row container" ng-model="addressInfo">
+  <h1 ng-model="addressInfo" class="center-align">Your Home Information</h1>
+  
+  <iframe class="map col s12 m6 l6"width="350" height="275" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=4998%20Bent%20Oak%20Drive%20Northwest%2C%20Acworth%2C%20GA%2C%20United%20States&key=AIzaSyBfXbj6bvAcfbWayWxtOKIwvKyTORvZn34">
+  </iframe>
+
+  <div class="basic col s12 m6 l6 left-align">
+    <h4>Basic Info</h4>
+    <div class="propInfo">
+      <h6>Street: {{addressInfo.property.address.street_address}}</h6>
+      <h6>Bedrooms: {{addressInfo.property.bedrooms}}</h6>
+      <h6>Bathrooms: {{addressInfo.property.bathrooms}}</h6>
+      <h6>Total Squarefeet: {{addressInfo.property.sqft}}</h6>
+      <h6>Year Built: {{addressInfo.property.yearbuilt}}</h6>
+    </div>
+  </div>
+  
+  <div class="editInfo col s12">
+    <h4>Missing Some Information?</h4>
+    <a ng-click="modal()">Add Rooms</a>
+    <a href="#/profile">Profile</a> </br>
+    <small>Don't worry you can add rooms later too</small>
+  </div>
+</div>
+
+
+<!-- Modal Structure -->
+    <div id="modal2" class="modal" ng-controller="RoomsController">
+      <div class="modal-content">
+        <h2>Add A Room</h2>
+        <form ng-submit="addRoom(rm)">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.name" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Room Name</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.sqft" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Square Footage</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.dimensions" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Dimensions</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.flooring_type" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Floor Type</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.wall_type" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Wall Type</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.paint_color" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Paint Color</label>
+            </div>
+          </div>           
+          <button>Add Room</button></br>
+          <small>You can leave any of the above items blank except the name!</small>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#/add-your-address" class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
+      </div>
+    </div>

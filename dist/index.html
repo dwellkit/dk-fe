@@ -1,0 +1,51 @@
+<!doctype html>
+<html class="no-js" ng-app="DwellingKit">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>dwellingkit</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="styles/vendor.css">
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script src="scripts/vendor/modernizr.js"></script>
+  </head>
+  <body>
+
+    <!-- Header -->
+    <header>
+      <nav ng-controller="NavController" class="row">
+        <div class="nav-wrapper row col s12">
+          <a class="col s4 l4" href="#/"><img src="../images/icon_transparent_white.png" alt=""><p ng-show="loggedin" ng-show="registered" class="flow-text" >{{ address }}</p></a>
+          <ul class="right col l8 s4" ng-show="loggedin">
+            <a class="flow-text" href="#/profile"><li><i class="mdi-communication-contacts prefix"></i>Profile</li></a>
+            <a ng-click="logout()" href="#/"><li class="flow-text"><i class="mdi-navigation-close prefix"></i>Logout</li></a>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    
+    <!-- Main -->
+    <main>
+      <div class="welcome-container" ng-view></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <div class="footer-container">
+            © 2015 Copyright
+            <a class="grey-text text-lighten-4 right" href="#/about">About DwellingKit</a> 
+            <a class="grey-text text-lighten-4 right" href="#/contact">Contact Us</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="scripts/vendor.js"></script>
+
+        <script src="scripts/main.js"></script>
+</body>
+</html>

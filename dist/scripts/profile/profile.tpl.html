@@ -1,0 +1,465 @@
+<div class="profile">
+
+	<!-- Tab Structure -->
+
+	<div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s12 m2 l2"><a class="active" href="#test1">OverView</a></li>
+        <li class="tab col s12 m2 l2" ng-click="grabProperty()"><a href="#test2">Rooms</a></li>
+        <li class="tab col s12 m2 l2" ng-click="grabWarranties()"><a href="#test3">Warranties</a></li>
+        <li class="tab col s12 m2 l2" ng-click="grabContacts()"><a href="#test4">Contacts</a></li>
+        <li class="tab col s12 m2 l2" ng-click="grabItems()"><a href="#test5">Items</a></li>
+      </ul>
+    </div>
+
+    <!-- Overview Tab -->
+
+    <div id="test1" class=" row overview col s12">
+			<div class="overview row">
+				<div class="home-img col s12 m6 l3">
+					<img class="responsive-img" src="{{ houseImg.large }}">
+				</div>
+				<div class="house-info col s12 m4 l4">
+					<table>
+		        <thead>
+		          <tr>
+		              <th data-field="id">Title</th>
+		              <th data-field="name">Description</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr>
+		            <td>Total Rooms</td>
+		            <td>{{ mainProp.actual_rooms }}</td>
+		          </tr>
+		          <tr>
+		          	<td>Bedrooms</td>
+		            <td>{{ mainProp.bedrooms }}</td>
+		          <tr>
+		          	<td>Bathrooms</td>
+		            <td>{{ mainProp.bathrooms }}</td>
+		          </tr>
+		          <tr>
+		          	<td>Sqft</td>
+		            <td>{{ mainProp.sqft }}</td>
+		          </tr>
+		          <tr>
+		          	<td>Year Built</td>
+		            <td>{{ mainProp.yearbuilt }}</td>
+		          </tr>
+		        </tbody>
+		      </table>
+				</div>
+				<div class="collage col l4 m12 s12">
+					<a ng-repeat="pic in propPics" href="{{pic.large}}" data-lightbox="home">
+						<img data-lightbox="home" src="{{pic.large}}">
+					</a>
+					<div class="upload-form">
+						<form class="upld-pic col s12 m3 l3" ng-submit="uploadPropPics()">
+		  				<input type="file" id="proppics-file" name="photo"/>
+		  				<button type="submit">Upld Property Pics</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<form class="upld-pic col s12 m3 l3" ng-submit="upload()">
+  			<input type="file" id="ppic-file" name="photo"/>
+  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
+			</form>
+			<button id="ppic" ng-click="uploadPic()"><i class="mdi-file-attachment"></i></button>
+
+			<div class="charts row col l12">
+	    	<div class="donut-chart col l4">
+					<h2 class="flow-text">Squarefeet Per Room</h2>
+	    		<canvas id="doughnut" class="chart chart-doughnut" data="DNdata"
+  					labels="DNlabels">
+  				</canvas>
+	    	</div>
+	    	<div class="line-chart col l4">
+	    		<h2 class="flow-text">Bills Per Month</h2>
+	    		<canvas id="line" class="chart chart-line" data="data"
+					  labels="labels" legend="true" series="series"
+					  click="onClick">
+					</canvas> 
+	    	</div>
+	    	<div class="polar-chart col l4">
+	    		<h2 class="flow-text">Total Item Price Per Room</h2>
+	    		<canvas id="base" class="chart-base" chart-type="type" data="polarData"
+  					labels="polarLabels" legend="true">
+  				</canvas> 
+	    	</div>
+	    </div>
+    </div>
+
+    <!-- Rooms Tab -->
+
+    <div id="test2" class="rooms row col s12">
+    	<ul class="row col l4 m4 s12 rooms-list">
+    		<li class="col l12 m12 s12" ng-repeat="room in rooms" ng-click="displaySingle(room)"> {{room.name}} 
+    			<i class="mdi-content-remove-circle" ng-controller="RoomsController" ng-click="dltRoom(room.id)"></i>
+    		</li>
+				<li class="addrm col l12 m12 s12" ng-click="modal2()">Add A Room</li>
+    	</ul>
+    	<div class="roomInfo col l7 m6 s12 offset-l1" ng-model="singRoom" ng-controller="RoomsController">
+    		<div class="top">
+	    		<h5>{{singRoom.name}}</h5>
+	    		<div class="singleRoom-pics">
+	    			<a ng-repeat="pic in singRoom.pictures" href="{{pic.large}}" data-lightbox="room">
+							<img data-lightbox="home" src="{{pic.large}}">
+						</a>
+	    		</div>
+	    		<form class="upld-roompic col s12 m3 l3" ng-submit="uploadRm(singRoom.id)">
+	    			<small> (Upload photos of your {{singRoom.name}})</small>
+		  			<input type="file" id="rmpic-file" name="photo"/>
+		  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
+					</form>
+				</div>
+		  	<table>
+	        <thead>
+	          <tr>
+	              <th data-field="id">Title</th>
+	              <th data-field="name">Description <i>(Click Field to Edit)</i></th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <tr>
+	            <td>Sqaurefeet</td>
+	            <td editable-text="singRoom.sqft" onaftersave="editRoom(singRoom, singRoom.id)">{{ singRoom.sqft || 'empty' }}</td>
+	          </tr>
+	          <tr>
+	          	<td>Flooring Type</td>
+	            <td editable-text="singRoom.flooring_type" onaftersave="editRoom(singRoom, singRoom.id)">{{ singRoom.flooring_type || 'empty' }}</td>
+	          </tr>
+	          <tr>
+	          	<td>Paint Color</td>
+	            <td editable-text="singRoom.paint_color" onaftersave="editRoom(singRoom, singRoom.id)">{{ singRoom.paint_color || 'empty' }}</td>
+	          </tr>
+	          <tr>
+	          	<td>Dimensions</td>
+	            <td editable-text="singRoom.dimensions" onaftersave="editRoom(singRoom, singRoom.id)">{{ singRoom.dimensions || 'empty' }}</td>
+	          </tr>
+	        </tbody>
+	      </table> 
+	      <h5 class="col l7 m6 s12">{{singRoom.name}} Items 
+		  	<i class="mdi-content-add" ng-click="modal3(singRoom.id)">Add Item</i>
+			  </h5>
+			  <div class="roomItems col l7 m6 s12" ng-repeat="item in singRoom.items">
+			  	<ul>
+			  		<li>
+			  			{{item.name}}
+			  		</li>
+			  	</ul>
+			  </div>
+		  </div>
+		</div>
+
+
+    <!-- Warranty Tab -->
+
+    <div id="test3" class="warranty row col s12">
+    	<div class="war-top col l12 m12 s12">
+				<a ng-click="modal5()">Add A Warranty</a>
+				<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Warranties">
+			</div>
+	    <div class="warranty-list col l4" ng-repeat="w in warranties | filter: searchText">
+	    	<div class="war-img">
+	    		<img src="../images/blank-warranty.jpg">
+	    	</div>
+	    	<div class="war-info">
+	    		<table>
+		        <thead>
+		          <tr>
+		              <th data-field="id">Title</th>
+		              <th data-field="name">Description <i>(Click Field to Edit)</i></th>
+	    						<span ng-click="deleteWarranty(w.item_id, w.id)"><i class="mdi-content-backspace"></i></span>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr>
+		            <td>Name</td>
+		            <td editable-text="w.name" onaftersave="editRoom(w, w.id)">{{ w.name || 'empty' }}</td>
+		          </tr>
+		          <tr>
+		          	<td>Warranty Number</td>
+		            <td editable-text="w.warranty_number" onaftersave="editRoom(w, w.id)">{{ w.warranty_number || 'empty' }}</td>
+		          </tr>
+		          <tr>
+		          	<td>Website</td>
+		            <td editable-text="w.url" onaftersave="editRoom(w, w.id)">{{ w.url || 'empty' }}</td>
+		          </tr>
+		          <tr>
+		          	<td>Expiration Date</td>
+		            <td editable-text="w.expiration_date" onaftersave="editRoom(w, w.id)">{{ w.expiration_date || 'empty' }}</td>
+		          </tr>
+		        </tbody>
+		      </table> 
+	    	</div>
+	    </div>
+	  </div>
+    <!-- Contacts Tab -->
+
+    <div id="test4" class="contact col s12 m12 l12">
+			<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Contacts">
+			<a class="col s12 m12 l12" ng-click="modal4()">Add A Contact</a>
+			<div class="row col l3" ng-repeat="contact in contacts | filter: searchText">
+        <div class=" c-card col s12 m12 l12">
+          <div class="card white darken-1">
+            <div class="card-content black-text">
+              <span class="card-title">{{contact.name}}</span><span><i class="mdi-content-backspace" ng-click="dltContact(contact.id)"></i></span>
+              <ul>
+              	<li editable-text="contact.company" onaftersave="editContact(contact.id, contact)"> 
+              		Company: {{contact.company}} 
+              	</li>
+              	<li editable-text="contact.url" onaftersave="editContact(contact.id, contact)"> 
+              		URL: {{contact.url}}
+              	</li>
+              	<li editable-text="contact.telephone_number" onaftersave="editContact(contact.id, contact)"> 
+              		Phone: {{contact.telephone_number}}
+              	</li>
+              	<li editable-text="contact.email" onaftersave="editContact(contact.id, contact)"> 
+              		Email: {{contact.email}}
+              	</li>
+              	<li editable-text="contact.notes" onaftersave="editContact(contact.id, contact)"> 
+              		Notes: {{contact.notes}}
+              	</li>
+              </ul>
+            </div>
+            <div class="card-action">
+              <a href="tel:{{contact.telephone_number}}">Call</a>
+              <a href='mailto:{{contact.email}}'>Email</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+		<!-- Items Tab -->
+
+    <div id="test5" class="items-tab contact col s12">
+			<div class="row">
+      	<table>
+	        <thead>
+	          <tr>
+	              <th data-field="name">Pic</th>
+	              <th data-field="id">Item Name</th>
+	              <th data-field="name">Price</th>
+	              <th data-field="name">Purchase Date</th>
+	              <th data-field="name">Category</th>
+	              <th data-field="name">Serial Number</th>
+	              <th data-field="name">Warranty</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <tr ng-repeat="item in items">
+	          	<td>
+	            	<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
+									<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
+								</a>
+								<form class="upld-itempic col s12 m3 l3" ng-submit="uploadItemPics(item.id)">
+					  			<input type="file" id="{{item.id}}" name="photo"/>
+					  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
+								</form>
+							</td>
+	            <td editable-text="item.name" onaftersave="editItem(item.id, item)">{{ item.name }}</td>
+	            <td editable-text="item.price" onaftersave="editItem(item.id, item)">${{ item.price }}.00</td>
+	            <td editable-text="item.purchase_date" onaftersave="editItem(item.id, item)">{{ item.purchase_date }}</td>
+	            <td editable-text="item.category" onaftersave="editItem(item.id, item)">{{ item.category }}</td>
+	            <td editable-text="item.serial_number" onaftersave="editItem(item.id, item)">{{ item.serial_number }}</td>
+	            <td editable-text="item.warranty_id" onaftersave="editItem(item.id, item)">{{ item.warranty_id }}</td>
+	            <td><span><i class="mdi-content-backspace" ng-click="dltItem(item.id)"></i></span></td>
+	          </tr>
+	        </tbody>
+	      </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========================================== MODALS ========================================================= -->
+
+
+		<!-- Add Room Modal Structure -->
+
+    <div id="modal2" class="modal" ng-controller="RoomsController">
+      <div class="modal-content">
+        <h2>Add A Room</h2>
+        <form ng-submit="addRoom(rm)">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.name" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Room Name</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.sqft" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Square Footage</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.dimensions" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Dimensions</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.flooring_type" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Floor Type</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.wall_type" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Wall Type</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="rm.paint_color" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Paint Color</label>
+            </div>
+          </div>           
+          <button>Add Room</button></br>
+          <small>You can leave any of the above items blank except the name!</small>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#/add-your-address" class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
+      </div>
+    </div>
+
+		<!-- Add Items Modal Structure -->
+
+    <div id="modal3" class="modal" ng-controller="RoomsController">
+      <div class="modal-content">
+        <h2>Add Item to Room</h2>
+        <form ng-submit="addItem(item, roomId)">
+          <div class="row">
+            <div class="input-field col s4">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="item.name" id="icon_prefix" type="text">
+              <label for="icon_prefix">Item Name</label>
+            </div>
+            <div class="input-field col s4">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="item.serial_number" id="icon_prefix" type="text">
+              <label for="icon_prefix">Serial Number</label>
+            </div>
+            <div class="input-field col s4">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="item.price" id="icon_prefix" type="text">
+              <label for="icon_prefix">Price</label>
+            </div>
+            <div class="input-field col s4">
+            	<h6>Purchase Date</h6>
+							<input ng-model="item.purchase_date" type="date" class="datepicker">
+            </div>
+            <div class="item-category col l6 m6 s12">
+						  <select class="browser-default" ng-model="item.category">
+						    <option value="" disabled selected>Category</option>
+						    <option value="Appliance">Appliance</option>
+						    <option value="Antique">Antique</option>
+						    <option value="Electronic">Electronic</option>
+						    <option value="Furniture">Furniture</option>
+						  </select>
+            </div>
+          </div>           
+          <button>Add Item</button></br>
+          <small>You can leave any of the above items blank except the name!</small>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#/add-your-address" class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
+      </div>
+    </div>
+
+    <!-- Add Contact Modal Structure -->
+
+    <div id="modal4" class="modal">
+      <div class="modal-content">
+        <h2>Add Contact</h2>
+        <form ng-submit="addContact(contact)">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.name" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Contact Name</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.email" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Email</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.company" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Company</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.telephone_number" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Phone Number</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.fax_number" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Fax</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.url" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">URL</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="contact.notes" id="icon_prefix" type="textarea" class="validate">
+              <label for="icon_prefix">Notes</label>
+            </div>
+          </div>           
+          <button>Add Contact</button></br>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
+      </div>
+    </div>
+
+		<!-- Add Warranty On the Fly Modal -->
+
+		<div id="modal5" class="modal">
+      <div class="modal-content">
+        <h2>Add Warranty</h2>
+        <form ng-submit="addWarranty(warr)">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="warr.name" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Name</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="warr.warranty_number" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Warranty Number</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="warr.expiration_date" id="icon_prefix" type="date" class="validate">
+              <label for="icon_prefix">Expiration Date</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input ng-model="warr.url" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">URL</label>
+            </div>
+					  <!-- select with ng-options -->
+					  <label></label>
+					  <select class="browser-default" ng-model="warr.itemId" ng-options="item.id as item.name for item in items">
+					    <option value="" disabled selected>Choose Which Item</option>
+					  </select>
+          </div>           
+          <button>Add Warranty</button></br>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
+      </div>
+    </div>
