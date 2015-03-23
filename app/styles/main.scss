@@ -372,6 +372,12 @@ form{
 				width: 5rem;
 				height: 4rem;
 			}
+			form{
+				float:right;
+				button{
+					height: 1.5rem;
+				}
+			}
 		}
 	}
 	.overview input{
@@ -403,6 +409,11 @@ form{
 		cursor: pointer;
 		&:hover{
 			color: #0493D9; 
+		}
+	}
+	.singleRoom-pics{
+		img{
+			width:5rem;
 		}
 	}
 	.room-head{

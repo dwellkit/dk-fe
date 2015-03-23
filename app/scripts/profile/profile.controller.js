@@ -58,7 +58,7 @@
 			};
 
 			// Add Room Pictures
-			$scope.uploadRm = function (roomId, files) {
+			$scope.uploadRm = function (roomId) {
 				var propId = $scope.currentProp.id;
 				var img = document.getElementById('rmpic-file');
 				var file = img.files[0];
@@ -66,18 +66,11 @@
 				ProfileFactory.addRmImg(propId, roomId, file);
 			};
 
-			var img;
-			// Grab Unique ID's in Items Tab for Pic Uploads
-			$(document).on('click', function(){
-				console.log(event.target.id);
-				var img = event.target.id;
-			});
-
 			// Add Items Pictures
-			$scope.uploadItemPics = function (itemId, files){
+			$scope.uploadItemPics = function (itemId){
 				var propId = $scope.currentProp.id;
 				console.log(event.target);
-				// var img = document.getElementById('itempic-file');
+				var img = document.getElementById(itemId);
 				var file = img.files[0];
 
 				ProfileFactory.addItImg(propId, itemId, file);
@@ -92,7 +85,7 @@
 					$scope.propPics = data.property.pictures;
 					$scope.rooms = data.property.rooms;
 					
-					//Do Not Chart Info
+					//Dough Nut Chart Info
 					$scope.roomsSF = data.property.rooms.map(function (item){
 						return item.sqft;
 					});
@@ -131,7 +124,6 @@
 			// Show Room Info Upon Click
 			$scope.displaySingle = function (room){
 				$scope.singRoom = room;
-				$scope.roomItems = room.items;
 			};
 
 			// Grab All Items

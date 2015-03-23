@@ -4,8 +4,8 @@
 
 	angular.module("DwellingKit")
 
-	.controller('NavController', ['$scope', 'UserFactory', '$rootScope', '$location',
-		function ($scope, UserFactory, $rootScope, $location){
+	.controller('NavController', ['$scope', 'UserFactory', '$rootScope', '$location', 'ProfileFactory',
+		function ($scope, UserFactory, $rootScope, $location, ProfileFactory){
 
 			var user = UserFactory.user();
 			
@@ -15,6 +15,8 @@
 			} else {
 				$scope.loggedin = false;
 			}
+
+			UserFactory.status();
 
 			$scope.logout = function (){
 				UserFactory.logout();				
@@ -26,6 +28,10 @@
 
 			$scope.$on('user:loggedin', function (){
 				$scope.loggedin = true;
+			});
+
+			$scope.$on('user:fetch', function (event, data){
+				$scope.address = data.property[0].address.full_address;
 			});
 
 		}

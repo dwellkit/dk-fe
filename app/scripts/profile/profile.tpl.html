@@ -55,10 +55,12 @@
 					<a ng-repeat="pic in propPics" href="{{pic.large}}" data-lightbox="home">
 						<img data-lightbox="home" src="{{pic.large}}">
 					</a>
-					<form class="upld-pic col s12 m3 l3" ng-submit="uploadPropPics()">
-		  			<input type="file" id="proppics-file" name="photo"/>
-		  			<button type="submit">Upld Property Pics</button>
-					</form>
+					<div class="upload-form">
+						<form class="upld-pic col s12 m3 l3" ng-submit="uploadPropPics()">
+		  				<input type="file" id="proppics-file" name="photo"/>
+		  				<button type="submit">Upld Property Pics</button>
+						</form>
+					</div>
 				</div>
 			</div>
 			<form class="upld-pic col s12 m3 l3" ng-submit="upload()">
@@ -102,8 +104,13 @@
     	<div class="roomInfo col l7 m6 s12 offset-l1" ng-model="singRoom" ng-controller="RoomsController">
     		<div class="top">
 	    		<h5>{{singRoom.name}}</h5>
-	    		<small>Upload photos of your {{singRoom.name}}</small>
+	    		<div class="singleRoom-pics">
+	    			<a ng-repeat="pic in singRoom.pictures" href="{{pic.large}}" data-lightbox="room">
+							<img data-lightbox="home" src="{{pic.large}}">
+						</a>
+	    		</div>
 	    		<form class="upld-roompic col s12 m3 l3" ng-submit="uploadRm(singRoom.id)">
+	    			<small> (Upload photos of your {{singRoom.name}})</small>
 		  			<input type="file" id="rmpic-file" name="photo"/>
 		  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
 					</form>
@@ -137,7 +144,7 @@
 	      <h5 class="col l7 m6 s12">{{singRoom.name}} Items 
 		  	<i class="mdi-content-add" ng-click="modal3(singRoom.id)">Add Item</i>
 			  </h5>
-			  <div class="roomItems col l7 m6 s12" ng-repeat="item in roomItems">
+			  <div class="roomItems col l7 m6 s12" ng-repeat="item in singRoom.items">
 			  	<ul>
 			  		<li>
 			  			{{item.name}}
@@ -145,16 +152,6 @@
 			  	</ul>
 			  </div>
 		  </div>
-		  <!-- <h5 class="col l7 m6 s12 offset-l1">{{singRoom.name}} Items 
-		  	<i class="mdi-content-add" ng-click="modal3(singRoom.id)">Add Item</i>
-		  </h5>
-		  <div class="roomItems col l7 m6 s12 offset-l1" ng-repeat="item in roomItems">
-		  	<ul>
-		  		<li>
-		  			{{item.name}}
-		  		</li>
-		  	</ul>
-		  </div> -->
 		</div>
 
 
@@ -377,7 +374,7 @@
 
     <!-- Add Contact Modal Structure -->
 
-    <div id="modal4" class="modal" ng-controller="ProfileController">
+    <div id="modal4" class="modal">
       <div class="modal-content">
         <h2>Add Contact</h2>
         <form ng-submit="addContact(contact)">
@@ -428,7 +425,7 @@
 
 		<!-- Add Warranty On the Fly Modal -->
 
-		<div id="modal5" class="modal" ng-controller="ProfileController">
+		<div id="modal5" class="modal">
       <div class="modal-content">
         <h2>Add Warranty</h2>
         <form ng-submit="addWarranty(warr)">
