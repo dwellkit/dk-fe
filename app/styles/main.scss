@@ -458,6 +458,15 @@ form{
 	z-index: 10;
 	overflow: hidden;
 	padding: 0;
+	span{
+		color: lightgray;
+		font-size: 1.3rem;
+		float:right;
+		cursor: pointer;
+		&:hover{
+			color: red;
+		}
+	}
 }
 
 // CONTACTS

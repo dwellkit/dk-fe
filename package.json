@@ -30,6 +30,8 @@
     "wiredep": "^1.4.3"
   },
   "dependencies": {
+    "express": "^4.12.3",
+    "gzippo": "^0.2.0",
     "jshint": "^2.6.3"
   }
 }
