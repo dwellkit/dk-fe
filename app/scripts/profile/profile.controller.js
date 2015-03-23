@@ -117,6 +117,16 @@
 		    [28, 48, 40, 19, 86, 27, 90]
 		  ];
 
+		  // Price Items Per Room Chart
+		  $scope.polarLabels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
+	    $scope.polarData = [300, 500, 100, 40, 120];
+	    $scope.type = 'PolarArea';
+
+	    $scope.toggle = function () {
+	      $scope.type = $scope.type === 'PolarArea' ?
+	        'Pie' : 'PolarArea';
+	    };
+
 
 			// Show Room Info Upon Click
 			$scope.displaySingle = function (room){

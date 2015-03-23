@@ -15,4 +15,4 @@
  * Materialize 
  * Sass
  * Angular Xeditable
- 
+ * ChartJS

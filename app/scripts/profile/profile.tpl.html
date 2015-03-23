@@ -18,7 +18,7 @@
     <div id="test1" class=" row overview col s12">
 			<div class="overview row">
 				<div class="home-img col s12 m6 l3">
-					<!-- <img class="responsive-img" src="{{ houseImg.large }}"> -->
+					<img class="responsive-img" src="{{ houseImg.large }}">
 				</div>
 				<div class="house-info col s12 m4 l4">
 					<table>
@@ -75,11 +75,17 @@
   				</canvas>
 	    	</div>
 	    	<div class="line-chart col l4">
-	    	<h2 class="flow-text">Bills Per Month</h2>
+	    		<h2 class="flow-text">Bills Per Month</h2>
 	    		<canvas id="line" class="chart chart-line" data="data"
 					  labels="labels" legend="true" series="series"
 					  click="onClick">
 					</canvas> 
+	    	</div>
+	    	<div class="polar-chart col l4">
+	    		<h2 class="flow-text">Total Item Price Per Room</h2>
+	    		<canvas id="base" class="chart-base" chart-type="type" data="polarData"
+  					labels="polarLabels" legend="true">
+  				</canvas> 
 	    	</div>
 	    </div>
     </div>
