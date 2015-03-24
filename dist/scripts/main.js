@@ -393,20 +393,36 @@
 			$scope.grabProperty();
 
 			// Grab Bills
-			$scope.bills = [];
-
 			$scope.grabBills = function (){
+				$scope.bills = [];
 				var propId = $scope.currentProp.id;
 				BillsFactory.grabBills(propId).success( function (data){
-					console.log(data);
-					$scope.stuff = data.bills.map( function (bill){
+					$scope.powerBills = data.bills.map( function (bill){
 						if(bill.bill_type === 'power'){
 							return bill.amount_due;
 						}
+					}).filter( function (b){
+						return b !== undefined;
 					});
-					console.log($scope.stuff);
-					$scope.bills.push($scope.stuff);
-					console.log($scope.bills);
+					$scope.bills.push($scope.powerBills);
+
+				$scope.gasBills = data.bills.map( function (bill){
+						if(bill.bill_type === 'gas'){
+							return bill.amount_due;
+						}
+					}).filter( function (b){
+						return b !== undefined;
+					});
+					$scope.bills.push($scope.gasBills);
+
+				$scope.waterBills = data.bills.map( function (bill){
+						if(bill.bill_type === 'water'){
+							return bill.amount_due;
+						}
+					}).filter( function (b){
+						return b !== undefined;
+					});
+					$scope.bills.push($scope.waterBills);
 				});
 			};
 			$scope.grabBills();
