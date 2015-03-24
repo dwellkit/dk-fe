@@ -281,8 +281,8 @@
 
 	angular.module('DwellingKit')
 
-	.controller('ProfileController', [ '$scope', 'UserFactory', 'ProfileFactory', 'RoomsFactory', '$rootScope', 'ContactsFactory',
-		function ($scope, UserFactory, ProfileFactory, RoomsFactory, $rootScope, ContactsFactory){
+	.controller('ProfileController', [ '$scope', 'UserFactory', 'ProfileFactory', 'RoomsFactory', '$rootScope', 'ContactsFactory', 'BillsFactory',
+		function ($scope, UserFactory, ProfileFactory, RoomsFactory, $rootScope, ContactsFactory, BillsFactory){
 
 			// Check User
 			UserFactory.user();
@@ -306,10 +306,17 @@
 			};
 
 
-			// Trigger to Hide input-file
+			// Trigger to Hide input-file button on Overview Tab
 			$scope.uploadPic = function(){
 				$('#ppic').on('click', function (){
-					$('#ppic-file').trigger('click');
+					$('#proppics-file').trigger('click');
+				});
+			};
+
+			// Trigger to Hide input-file butotn on Rooms Tab
+			$scope.uploadRoomPic = function (){
+				$('#rmpic').on('click', function (){
+					$('#rmpic-file').trigger('click');
 				});
 			};
 
@@ -332,6 +339,7 @@
 				var file = img.files[0];
  
 				ProfileFactory.addPPics(propId, file);
+				$scope.propPics.push(file);
 			};
 
 			// Add Room Pictures
@@ -371,7 +379,12 @@
 					});
 					$scope.DNdata = $scope.roomsSF;
 					$scope.DNlabels = $scope.roomNames;
+
+
+
+					// Single Room Display
 					$scope.singRoom = data.property.rooms[0];
+
 					localStorage.setItem('propRooms', JSON.stringify(data.property.rooms));
 					$rootScope.$broadcast('prop:grabbed', data);
 				});
@@ -379,19 +392,36 @@
 
 			$scope.grabProperty();
 
+			// Grab Bills
+			$scope.bills = [];
+
+			$scope.grabBills = function (){
+				var propId = $scope.currentProp.id;
+				BillsFactory.grabBills(propId).success( function (data){
+					console.log(data);
+					$scope.stuff = data.bills.map( function (bill){
+						if(bill.bill_type === 'power'){
+							return bill.amount_due;
+						}
+					});
+					console.log($scope.stuff);
+					$scope.bills.push($scope.stuff);
+					console.log($scope.bills);
+				});
+			};
+			$scope.grabBills();
+
 			// Bills Chart
-			$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-		  $scope.series = ['Series A', 'Series B'];
+			$scope.labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		  $scope.series = ['Power', 'Gas', 'Water' ];
 		  $scope.data = [
 		    [65, 59, 80, 81, 56, 55, 40],
 		    [28, 48, 40, 19, 86, 27, 90]
 		  ];
 
 		  // Price Items Per Room Chart
-		  $scope.polarLabels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
-	    $scope.polarData = [300, 500, 100, 40, 120];
+	    $scope.polarData = [300, 500, 100, 40, 120, 100, 600];
 	    $scope.type = 'PolarArea';
-
 	    $scope.toggle = function () {
 	      $scope.type = $scope.type === 'PolarArea' ?
 	        'Pie' : 'PolarArea';
@@ -439,6 +469,7 @@
 				var propId = $scope.currentProp.id;
 				ContactsFactory.addCont(propId, { contact: contObj });
 				$scope.contact = null;
+				$scope.contacts.push(contObj);
 			};
 
 			// Grab Contacts
@@ -707,7 +738,7 @@
 
 			// Add A Room
 			$scope.addRoom = function (roomObj){
-				var propId = $scope.addressInfo.property.id;
+				var propId = $scope.propId;
 				RoomsFactory.addRm(propId, {room: roomObj});
 				$scope.rm = null;
 				$scope.rooms.push(roomObj);
@@ -716,7 +747,7 @@
 
 			// Delete A Room
 			$scope.dltRoom = function (roomId){
-				var propId = $scope.addressInfo.property.id;
+				var propId = $scope.propId;
 				RoomsFactory.dltRm(propId, roomId).success( function (){
 					for (var i = 0; i < $scope.rooms.length; i++){
 						if ($scope.rooms[i].id === roomId){
@@ -729,13 +760,13 @@
 
 			// Editing A Room
 			$scope.editRoom = function (roomObj, roomId){
-				var propId = $scope.addressInfo.property.id;
+				var propId = $scope.propId;
 				RoomsFactory.editRm(propId, roomId, { room: roomObj });
 			};
 
 			// Add Items To Room
 			$scope.addItem = function (itemObj, roomId){
-				var propId = $scope.addressInfo.property.id;
+				var propId = $scope.propId;
 				RoomsFactory.addIt(propId, roomId, { item: itemObj });
 			};
 
@@ -749,6 +780,7 @@
 
 			$scope.$on('prop:grabbed', function (event, data){
 				$scope.rooms = data.property.rooms;
+				$scope.propId = data.property.id;
 			});
 
 		}
@@ -883,6 +915,29 @@
 				dltCont: dltContact,
 				editCont: editContact
 			};
+		}
+
+	]);
+
+}());
+(function(){
+
+	'use strict';
+
+	angular.module('DwellingKit')
+
+	.factory('BillsFactory', ['$http', '$rootScope', 'heroku',
+		function ($http, $rootScope, heroku){
+
+			// Grab All Bills
+			var grabBills = function (propId){
+				return $http.get(heroku.url + 'properties/' + propId + '/bills', heroku.config);
+			};
+
+			return{
+				grabBills: grabBills
+			};
+
 		}
 
 	]);
