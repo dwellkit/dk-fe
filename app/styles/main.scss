@@ -237,17 +237,6 @@ form{
 .basic{
 	margin-bottom: 3rem;
 }
-// Upload Buttons
-#ppic-file{
-	position: relative;
-}
-#ppic{
-	position: absolute;
-	margin-top: -2rem;
-	// margin-left: 4.5rem;
-	padding: 0.4rem;
-	z-index: 100;
-}
 
 // Profile View
 .profile{
@@ -309,6 +298,10 @@ form{
 			margin-top: 25%;
 			text-align: center;
 		}
+		img{
+			height: 100%;
+			width: 100%;
+		}
 	}
 	.charts{
 		h2{
@@ -331,10 +324,25 @@ form{
 	}
 	.upld-pic{
 		margin-top: -2rem;
-		z-index: 1;
-		display: inline-block;
+		position: relative;
 		input{
-			// width: 1rem;
+			width: 2rem;
+		}
+		#ppic-sub{
+			width:3rem;
+			height:3rem;
+			margin-left: 2rem;
+			border-radius: 2rem;
+		}
+		#ppic{
+			margin-top:1.5rem;
+			position: absolute;
+			background-color: #0493D9;
+			height:3rem;
+			border-radius: 2rem;
+			color: white;
+			width: 3rem;
+			margin-right: 1rem;
 		}
 	}
 	button{
@@ -374,9 +382,6 @@ form{
 			}
 			form{
 				float:right;
-				button{
-					height: 1.5rem;
-				}
 			}
 		}
 	}
@@ -393,8 +398,23 @@ form{
 				color:red;
 			}
 		}
-		img{
+		.add-itemPic{
+			input{
+				width:2rem;
+			}
+		}
+		.itemImg{
+			float:left;
+			margin-left: 2rem;
 			width: 5rem;
+			height: 5rem;
+			-webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.3);
+			-moz-box-shadow:    5px 5px 10px 0px rgba(0,0,0,0.3);
+			box-shadow:         5px 5px 10px 0px rgba(0,0,0,0.3);
+			img{
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 }
@@ -411,9 +431,17 @@ form{
 			color: #0493D9; 
 		}
 	}
+	ul{
+		.addrm:hover{
+			i{
+				color: #0493D9;
+			}
+		}
+	}
 	.singleRoom-pics{
 		img{
-			width:5rem;
+			width:4rem;
+			height: 3rem;
 		}
 	}
 	.room-head{
@@ -428,16 +456,30 @@ form{
 .roomInfo{
 	.top{
 		h5{
-			display: inline-block;
+			position: relative;
+			float:left;
 		}
 		form{
-			float:right;
-			margin-right:25%;
+			margin-bottom: 1rem;
+			margin-top:0.5rem;
 			button{
-				margin-left:1rem;
+				margin-left:0.5rem;
+				padding: 0rem;
+				border-radius: 2rem;
+				height: 2rem;
+				width: 2rem;
 			}
 			input{
-				width:2rem;
+				display: none;
+				position: relative;
+				margin-right: 2rem;
+			}
+			i{
+				color: white;
+			}
+			#rmpic{
+				// position: absolute;
+				z-index: 1;
 			}
 		}
 	}
@@ -450,6 +492,17 @@ form{
 		position:relative;
 		opacity: 0.2;
 		z-index: -10;
+	}
+}
+.war-top{
+	i{
+		font-size: 2rem;
+		color: #0493D9;
+		cursor: pointer;
+		margin-left: 1rem;
+		&:hover{
+			color:navy;
+		}
 	}
 }
 .war-info{
@@ -472,6 +525,18 @@ form{
 // CONTACTS
 .card .card-title{
 	color: #0493D9;
+}
+.con-top{
+	margin-top:1rem;
+	i{
+		font-size: 2rem;
+		color: #0493D9;
+		cursor: pointer;
+		margin-left: 1rem;
+		&:hover{
+			color:navy;
+		}
+	}
 }
 .card-action{
 	margin-bottom: 2rem;
@@ -520,15 +585,20 @@ footer.page-footer{
 	input{
 		margin-bottom: 0;
 	}
+	.btn-flat{
+		float:right;
+		font-size: 2rem;
+		color: lightgray;
+		&:hover{
+			color: red;
+		}
+	}
 	button{
 		@include button();
 		padding: 1rem;
 		border: none;
 		margin-top: 1rem;
 		border-radius: 0.2rem;
-	}
-	.modal-footer{
-		border-top: 0.2rem solid lightgray;
 	}
 }
 #modal3{
@@ -547,10 +617,15 @@ footer.page-footer{
 		margin-top: 1rem;
 		border-radius: 0.2rem;
 	}
-	.modal-footer{
-		border-top: 0.2rem solid lightgray;
-	}
 }	
+#item-x{
+		float:right;
+		font-size: 2rem;
+		color: lightgray;
+		&:hover{
+			color: red;
+		}
+}
 #modal4{
 	width: 50rem;
 	height: 31rem;
@@ -559,6 +634,14 @@ footer.page-footer{
 	background-color: white;
 	input{
 		margin-bottom: 0;
+	}
+	.btn-flat{
+		float:right;
+		font-size: 2rem;
+		color: lightgray;
+		&:hover{
+			color: red;
+		}
 	}
 	h2{
 		text-align: center;
@@ -583,6 +666,17 @@ footer.page-footer{
 	background-color: white;
 	input{
 		margin-bottom: 0;
+	}
+	select{
+		margin-top:1rem;
+	}
+	.btn-flat{
+		float:right;
+		font-size: 2rem;
+		color: lightgray;
+		&:hover{
+			color: red;
+		}
 	}
 	h2{
 		text-align: center;

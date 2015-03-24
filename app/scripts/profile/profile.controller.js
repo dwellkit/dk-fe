@@ -29,10 +29,17 @@
 			};
 
 
-			// Trigger to Hide input-file
+			// Trigger to Hide input-file button on Overview Tab
 			$scope.uploadPic = function(){
 				$('#ppic').on('click', function (){
-					$('#ppic-file').trigger('click');
+					$('#proppics-file').trigger('click');
+				});
+			};
+
+			// Trigger to Hide input-file butotn on Rooms Tab
+			$scope.uploadRoomPic = function (){
+				$('#rmpic').on('click', function (){
+					$('#rmpic-file').trigger('click');
 				});
 			};
 
@@ -55,6 +62,7 @@
 				var file = img.files[0];
  
 				ProfileFactory.addPPics(propId, file);
+				$scope.propPics.push(file);
 			};
 
 			// Add Room Pictures
@@ -94,7 +102,12 @@
 					});
 					$scope.DNdata = $scope.roomsSF;
 					$scope.DNlabels = $scope.roomNames;
+
+
+
+					// Single Room Display
 					$scope.singRoom = data.property.rooms[0];
+
 					localStorage.setItem('propRooms', JSON.stringify(data.property.rooms));
 					$rootScope.$broadcast('prop:grabbed', data);
 				});
@@ -104,17 +117,15 @@
 
 			// Bills Chart
 			$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-		  $scope.series = ['Series A', 'Series B'];
+		  $scope.series = ['Bill 1', 'Bill 2'];
 		  $scope.data = [
 		    [65, 59, 80, 81, 56, 55, 40],
 		    [28, 48, 40, 19, 86, 27, 90]
 		  ];
 
 		  // Price Items Per Room Chart
-		  $scope.polarLabels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
-	    $scope.polarData = [300, 500, 100, 40, 120];
+	    $scope.polarData = [300, 500, 100, 40, 120, 100, 600];
 	    $scope.type = 'PolarArea';
-
 	    $scope.toggle = function () {
 	      $scope.type = $scope.type === 'PolarArea' ?
 	        'Pie' : 'PolarArea';
@@ -162,6 +173,7 @@
 				var propId = $scope.currentProp.id;
 				ContactsFactory.addCont(propId, { contact: contObj });
 				$scope.contact = null;
+				$scope.contacts.push(contObj);
 			};
 
 			// Grab Contacts

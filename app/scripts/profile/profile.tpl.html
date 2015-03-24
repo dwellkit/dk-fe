@@ -18,7 +18,7 @@
     <div id="test1" class=" row overview col s12">
 			<div class="overview row">
 				<div class="home-img col s12 m6 l3">
-					<img class="responsive-img" src="{{ houseImg.large }}">
+					<img src="{{ propPics[4].large }}">
 				</div>
 				<div class="house-info col s12 m4 l4">
 					<table>
@@ -55,19 +55,20 @@
 					<a ng-repeat="pic in propPics" href="{{pic.large}}" data-lightbox="home">
 						<img data-lightbox="home" src="{{pic.large}}">
 					</a>
-					<div class="upload-form">
-						<form class="upld-pic col s12 m3 l3" ng-submit="uploadPropPics()">
-		  				<input type="file" id="proppics-file" name="photo"/>
-		  				<button type="submit">Upld Property Pics</button>
-						</form>
-					</div>
 				</div>
 			</div>
-			<form class="upld-pic col s12 m3 l3" ng-submit="upload()">
+			<form class="upld-pic col s12 m3 l3" ng-submit="uploadPropPics()">
+				<a id="ppic" ng-click="uploadPic()"><button><i class="mdi-file-attachment"></i></button></a>
+				<small>Upload some pictures of your home!</small> </br>
+				<input type="file" id="proppics-file" name="photo"/>
+				<button id="ppic-sub" type="submit"><i class="mdi-file-cloud-upload"></i></button>
+			</form>
+
+			<!-- <form class="upld-pic col s12 m3 l3" ng-submit="upload()">
   			<input type="file" id="ppic-file" name="photo"/>
   			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
 			</form>
-			<button id="ppic" ng-click="uploadPic()"><i class="mdi-file-attachment"></i></button>
+			<button id="ppic" ng-click="uploadPic()"><i class="mdi-file-attachment"></i></button> -->
 
 			<div class="charts row col l12">
 	    	<div class="donut-chart col l4">
@@ -84,9 +85,9 @@
 					</canvas> 
 	    	</div>
 	    	<div class="polar-chart col l4">
-	    		<h2 class="flow-text">Total Item Price Per Room</h2>
+	    		<h2 class="flow-text">Total Items Cost Per Room</h2>
 	    		<canvas id="base" class="chart-base" chart-type="type" data="polarData"
-  					labels="polarLabels" legend="true">
+  					labels="roomNames" legend="true">
   				</canvas> 
 	    	</div>
 	    </div>
@@ -99,21 +100,23 @@
     		<li class="col l12 m12 s12" ng-repeat="room in rooms" ng-click="displaySingle(room)"> {{room.name}} 
     			<i class="mdi-content-remove-circle" ng-controller="RoomsController" ng-click="dltRoom(room.id)"></i>
     		</li>
-				<li class="addrm col l12 m12 s12" ng-click="modal2()">Add A Room</li>
+				<li class="addrm col l12 m12 s12" ng-click="modal2()"><i class="mdi-content-add">Add A Room</i></li>
     	</ul>
     	<div class="roomInfo col l7 m6 s12 offset-l1" ng-model="singRoom" ng-controller="RoomsController">
     		<div class="top">
 	    		<h5>{{singRoom.name}}</h5>
-	    		<div class="singleRoom-pics">
+		    		<span>
+			    		<form class="upld-roompic col s12 m3 l3" ng-submit="uploadRm(singRoom.id)">
+			    			<a id="rmpic" ng-click="uploadRoomPic()"><button><i class="mdi-file-attachment"></i></button></a>
+				  			<input type="file" id="rmpic-file" name="photo"/>
+				  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
+							</form>
+						</span>
+	    		<div class="singleRoom-pics col l12">
 	    			<a ng-repeat="pic in singRoom.pictures" href="{{pic.large}}" data-lightbox="room">
 							<img data-lightbox="home" src="{{pic.large}}">
 						</a>
 	    		</div>
-	    		<form class="upld-roompic col s12 m3 l3" ng-submit="uploadRm(singRoom.id)">
-	    			<small> (Upload photos of your {{singRoom.name}})</small>
-		  			<input type="file" id="rmpic-file" name="photo"/>
-		  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
-					</form>
 				</div>
 		  	<table>
 	        <thead>
@@ -159,7 +162,7 @@
 
     <div id="test3" class="warranty row col s12">
     	<div class="war-top col l12 m12 s12">
-				<a ng-click="modal5()">Add A Warranty</a>
+				<i class="mdi-content-add-circle" ng-click="modal5()"></i>
 				<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Warranties">
 			</div>
 	    <div class="warranty-list col l4" ng-repeat="w in warranties | filter: searchText">
@@ -200,8 +203,10 @@
     <!-- Contacts Tab -->
 
     <div id="test4" class="contact col s12 m12 l12">
-			<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Contacts">
-			<a class="col s12 m12 l12" ng-click="modal4()">Add A Contact</a>
+    	<div class="con-top col l12 m12 s12">
+    		<input class="col s12 m6 l3" type="text" ng-model="searchText" placeholder="Search Contacts">
+				<i class="col s12 m12 l3 mdi-content-add-circle" ng-click="modal4()"></i>
+    	</div>
 			<div class="row col l3" ng-repeat="contact in contacts | filter: searchText">
         <div class=" c-card col s12 m12 l12">
           <div class="card white darken-1">
@@ -253,13 +258,17 @@
 	        <tbody>
 	          <tr ng-repeat="item in items">
 	          	<td>
-	            	<a href="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg" data-lightbox="home">
-									<img data-lightbox="home" src="http://upload.wikimedia.org/wikipedia/en/3/32/Market_house_mon_inside.jpg">
-								</a>
-								<form class="upld-itempic col s12 m3 l3" ng-submit="uploadItemPics(item.id)">
-					  			<input type="file" id="{{item.id}}" name="photo"/>
-					  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
-								</form>
+	          		<div class="add-itemPic">
+									<form class="upld-itempic col s12 m3 l3" ng-submit="uploadItemPics(item.id)">
+						  			<input type="file" id="{{item.id}}" name="photo"/>
+						  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
+									</form>
+								</div>
+	          		<div class="itemImg">
+	          			<a href="{{item.pictures[0].large}}" data-lightbox="home">
+										<img data-lightbox="home" src="{{item.pictures[0].large}}">
+									</a>
+								</div>
 							</td>
 	            <td editable-text="item.name" onaftersave="editItem(item.id, item)">{{ item.name }}</td>
 	            <td editable-text="item.price" onaftersave="editItem(item.id, item)">${{ item.price }}.00</td>
@@ -284,6 +293,7 @@
 
     <div id="modal2" class="modal" ng-controller="RoomsController">
       <div class="modal-content">
+        <i class="close mdi-navigation-close waves-effect waves-green btn-flat modal-action modal-close"></i>
         <h2>Add A Room</h2>
         <form ng-submit="addRoom(rm)">
           <div class="row">
@@ -310,7 +320,7 @@
             <div class="input-field col s6">
               <i class="mdi-action-account-circle prefix"></i>
               <input ng-model="rm.wall_type" id="icon_prefix" type="text" class="validate">
-              <label for="icon_prefix">Wall Type</label>
+              <label for="icon_prefix">Wall Covering</label>
             </div>
             <div class="input-field col s6">
               <i class="mdi-action-account-circle prefix"></i>
@@ -322,15 +332,13 @@
           <small>You can leave any of the above items blank except the name!</small>
         </form>
       </div>
-      <div class="modal-footer">
-        <a href="#/add-your-address" class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
-      </div>
     </div>
 
 		<!-- Add Items Modal Structure -->
 
     <div id="modal3" class="modal" ng-controller="RoomsController">
       <div class="modal-content">
+        <i id="item-x" class="mdi-navigation-close waves-effect waves-green btn-flat modal-action modal-close"></i>
         <h2>Add Item to Room</h2>
         <form ng-submit="addItem(item, roomId)">
           <div class="row">
@@ -349,11 +357,11 @@
               <input ng-model="item.price" id="icon_prefix" type="text">
               <label for="icon_prefix">Price</label>
             </div>
-            <div class="input-field col s4">
+            <div class="input-field col l6 s4 offset-l3">
             	<h6>Purchase Date</h6>
 							<input ng-model="item.purchase_date" type="date" class="datepicker">
             </div>
-            <div class="item-category col l6 m6 s12">
+            <div class="item-category col l6 m6 s12 offset-l3">
 						  <select class="browser-default" ng-model="item.category">
 						    <option value="" disabled selected>Category</option>
 						    <option value="Appliance">Appliance</option>
@@ -364,11 +372,7 @@
             </div>
           </div>           
           <button>Add Item</button></br>
-          <small>You can leave any of the above items blank except the name!</small>
         </form>
-      </div>
-      <div class="modal-footer">
-        <a href="#/add-your-address" class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
       </div>
     </div>
 
@@ -376,6 +380,7 @@
 
     <div id="modal4" class="modal">
       <div class="modal-content">
+        <i class="mdi-navigation-close waves-effect waves-green btn-flat modal-action modal-close"></i>
         <h2>Add Contact</h2>
         <form ng-submit="addContact(contact)">
           <div class="row">
@@ -411,15 +416,12 @@
             </div>
             <div class="input-field col s6">
               <i class="mdi-action-account-circle prefix"></i>
-              <input ng-model="contact.notes" id="icon_prefix" type="textarea" class="validate">
-              <label for="icon_prefix">Notes</label>
+              <textarea name="Notes" ng-model="contact.notes" id="" placeholder="Notes..." cols="30" rows="10"></textarea>
+              <!-- <input ng-model="contact.notes" id="icon_prefix" type="textarea" class="validate"> -->
             </div>
           </div>           
           <button>Add Contact</button></br>
         </form>
-      </div>
-      <div class="modal-footer">
-        <a class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
       </div>
     </div>
 
@@ -427,39 +429,36 @@
 
 		<div id="modal5" class="modal">
       <div class="modal-content">
+        <i class="mdi-navigation-close waves-effect waves-green btn-flat modal-action modal-close"></i>
         <h2>Add Warranty</h2>
         <form ng-submit="addWarranty(warr)">
           <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col l6 s6">
               <i class="mdi-action-account-circle prefix"></i>
               <input ng-model="warr.name" id="icon_prefix" type="text" class="validate">
               <label for="icon_prefix">Name</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col l6 s6">
               <i class="mdi-action-account-circle prefix"></i>
               <input ng-model="warr.warranty_number" id="icon_prefix" type="text" class="validate">
               <label for="icon_prefix">Warranty Number</label>
             </div>
-            <div class="input-field col s6">
-              <i class="mdi-action-account-circle prefix"></i>
+            <div class="input-field col l6 s6 offset-l3">
+            	<h6>Expiration Date</h6>
               <input ng-model="warr.expiration_date" id="icon_prefix" type="date" class="validate">
-              <label for="icon_prefix">Expiration Date</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col l6 s6 offset-l3">
               <i class="mdi-action-account-circle prefix"></i>
               <input ng-model="warr.url" id="icon_prefix" type="text" class="validate">
               <label for="icon_prefix">URL</label>
             </div>
 					  <!-- select with ng-options -->
 					  <label></label>
-					  <select class="browser-default" ng-model="warr.itemId" ng-options="item.id as item.name for item in items">
-					    <option value="" disabled selected>Choose Which Item</option>
+					  <select class="browser-default col l6 offset-l3" ng-model="warr.itemId" ng-options="item.id as item.name for item in items">
+					    <option value="" disabled selected>Choose Item</option>
 					  </select>
           </div>           
           <button>Add Warranty</button></br>
         </form>
-      </div>
-      <div class="modal-footer">
-        <a class="waves-effect waves-green btn-flat modal-action modal-close">I'm done</a>
       </div>
     </div>
