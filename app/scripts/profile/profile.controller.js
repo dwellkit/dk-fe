@@ -4,8 +4,8 @@
 
 	angular.module('DwellingKit')
 
-	.controller('ProfileController', [ '$scope', 'UserFactory', 'ProfileFactory', 'RoomsFactory', '$rootScope', 'ContactsFactory',
-		function ($scope, UserFactory, ProfileFactory, RoomsFactory, $rootScope, ContactsFactory){
+	.controller('ProfileController', [ '$scope', 'UserFactory', 'ProfileFactory', 'RoomsFactory', '$rootScope', 'ContactsFactory', 'BillsFactory',
+		function ($scope, UserFactory, ProfileFactory, RoomsFactory, $rootScope, ContactsFactory, BillsFactory){
 
 			// Check User
 			UserFactory.user();
@@ -115,9 +115,28 @@
 
 			$scope.grabProperty();
 
+			// Grab Bills
+			$scope.bills = [];
+
+			$scope.grabBills = function (){
+				var propId = $scope.currentProp.id;
+				BillsFactory.grabBills(propId).success( function (data){
+					console.log(data);
+					$scope.stuff = data.bills.map( function (bill){
+						if(bill.bill_type === 'power'){
+							return bill.amount_due;
+						}
+					});
+					console.log($scope.stuff);
+					$scope.bills.push($scope.stuff);
+					console.log($scope.bills);
+				});
+			};
+			$scope.grabBills();
+
 			// Bills Chart
-			$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-		  $scope.series = ['Bill 1', 'Bill 2'];
+			$scope.labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		  $scope.series = ['Power', 'Gas', 'Water' ];
 		  $scope.data = [
 		    [65, 59, 80, 81, 56, 55, 40],
 		    [28, 48, 40, 19, 86, 27, 90]
