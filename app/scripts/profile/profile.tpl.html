@@ -121,8 +121,6 @@
 		  	<table>
 	        <thead>
 	          <tr>
-	              <th data-field="id">Title</th>
-	              <th data-field="name">Description <i>(Click Field to Edit)</i></th>
 	          </tr>
 	        </thead>
 	        <tbody>
@@ -171,17 +169,13 @@
 	    	</div>
 	    	<div class="war-info">
 	    		<table>
-		        <thead>
-		          <tr>
-		              <th data-field="id">Title</th>
-		              <th data-field="name">Description <i>(Click Field to Edit)</i></th>
-	    						<span ng-click="deleteWarranty(w.item_id, w.id)"><i class="mdi-content-backspace"></i></span>
-		          </tr>
-		        </thead>
 		        <tbody>
 		          <tr>
 		            <td>Name</td>
 		            <td editable-text="w.name" onaftersave="editRoom(w, w.id)">{{ w.name || 'empty' }}</td>
+		            <td>
+	    						<span ng-click="deleteWarranty(w.item_id, w.id)"><i class="mdi-content-backspace"></i></span>
+		            </td>
 		          </tr>
 		          <tr>
 		          	<td>Warranty Number</td>
