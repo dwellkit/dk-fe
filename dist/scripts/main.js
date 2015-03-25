@@ -320,6 +320,14 @@
 				});
 			};
 
+			// Trigger to Hide input-file button on Items
+			$scope.uploadItemPic = function (itemId){
+				$('#' + itemId + '1').on('click', function (){
+					console.log('yo');
+					$('#' + itemId).trigger('click');
+				});
+			};
+
 			// Load Tabs 
 			$scope.tabs();
 

@@ -241,7 +241,7 @@
 
 		<!-- Items Tab -->
 
-    <div id="test5" class="items-tab contact col s12">
+    <div id="test5" class="items-tab col s12">
 			<div class="row">
       	<table>
 	        <thead>
@@ -260,6 +260,7 @@
 	          	<td>
 	          		<div class="add-itemPic">
 									<form class="upld-itempic col s12 m3 l3" ng-submit="uploadItemPics(item.id)">
+										<a id="{{item.id}}1" ng-click="uploadItemPic(item.id)"><button><i class="mdi-file-attachment"></i></button></a>
 						  			<input type="file" id="{{item.id}}" name="photo"/>
 						  			<button type="submit"><i class="mdi-file-cloud-upload"></i></button>
 									</form>
