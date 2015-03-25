@@ -403,9 +403,18 @@ form{
 		}
 		.add-itemPic{
 			input{
-				width:2rem;
+				width:1rem;
+				display: none;
+			}
+			button{
+				border-radius: 2rem;
+			}
+			a{
+				margin-top: 1rem;
+				z-index: 2;
 			}
 		}
+
 		.itemImg{
 			float:left;
 			margin-left: 2rem;
