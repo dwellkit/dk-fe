@@ -433,8 +433,8 @@
 		 
 
 		  // Price Items Per Room Chart
-	    $scope.polarData = [300, 500, 100, 40, 120, 100, 600];
 	    $scope.type = 'PolarArea';
+	    $scope.polarLabels = ['Electronic','Appliance','Outdoor','Furniture'];
 	    $scope.toggle = function () {
 	      $scope.type = $scope.type === 'PolarArea' ?
 	        'Pie' : 'PolarArea';
@@ -452,8 +452,60 @@
 				ProfileFactory.grabItems(propId).success( function (data){
 					$scope.items = data.items;
 					console.log($scope.items);
+					$scope.categories = [];
+
+					// Electronic Items
+					$scope.electronics = data.items.map( function (item){
+						if(item.category === 'Electronic'){
+							return item.price;
+						}
+					}).filter( function (itemPrice){
+						return itemPrice !== undefined;
+					}).reduce(function (a, b){
+						return (a + b);
+					});
+					$scope.categories.push($scope.electronics);
+
+					// Appliances Items
+					$scope.appliances = data.items.map( function (item){
+						if(item.category === 'Appliance'){
+							return item.price;
+						}
+					}).filter( function (itemPrice){
+						return itemPrice !== undefined;
+					}).reduce(function (a, b){
+						return (a + b);
+					});
+					$scope.categories.push($scope.appliances);
+
+					// Outdoor Items
+					$scope.outdoor = data.items.map( function (item){
+						if(item.category === 'Outdoor'){
+							return item.price;
+						}
+					}).filter( function (itemPrice){
+						return itemPrice !== undefined;
+					}).reduce(function (a, b){
+						return (a + b);
+					});
+					$scope.categories.push($scope.outdoor);
+
+					// Furniture Items
+					$scope.furniture = data.items.map( function (item){
+						if(item.category === 'Furniture'){
+							return item.price;
+						}
+					}).filter( function (itemPrice){
+						return itemPrice !== undefined;
+					}).reduce(function (a, b){
+						return (a + b);
+					});
+					$scope.categories.push($scope.furniture);
+					console.log($scope.categories);
 				});
 			};
+
+			$scope.grabItems();
 
 			// Edit Item
 			$scope.editItem = function (itemId, itemObj){
@@ -465,7 +517,6 @@
 
 			// Delete Items
 			$scope.dltItem = function (itemId){
-				console.log('clicked');
 				var propId = $scope.currentProp.id;
 				RoomsFactory.dltIt(propId, itemId).success( function (){
 					for (var i = 0; i < $scope.items.length; i++){

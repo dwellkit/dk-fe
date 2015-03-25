@@ -86,8 +86,8 @@
 	    	</div>
 	    	<div class="polar-chart col l4">
 	    		<h2 class="flow-text">Total Cost Per Item Type</h2>
-	    		<canvas id="base" class="chart-base" chart-type="type" data="polarData"
-  					labels="roomNames" legend="true">
+	    		<canvas id="base" class="chart-base" chart-type="type" data="categories"
+  					labels="polarLabels" legend="true">
   				</canvas> 
 	    	</div>
 	    </div>
@@ -365,7 +365,7 @@
 						  <select class="browser-default" ng-model="item.category">
 						    <option value="" disabled selected>Category</option>
 						    <option value="Appliance">Appliance</option>
-						    <option value="Antique">Antique</option>
+						    <option value="Outdoor">Outdoor</option>
 						    <option value="Electronic">Electronic</option>
 						    <option value="Furniture">Furniture</option>
 						  </select>
